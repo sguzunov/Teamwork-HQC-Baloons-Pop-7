@@ -1,6 +1,7 @@
-High-Quality Programming Code – Team Projects
+﻿High-Quality Programming Code – Team Projects
 =============================================
 This document describes the teamwork assignment for Telerik Academy students in HQC course
+
 
 Detailed Assignment Description
 -------------------------------
