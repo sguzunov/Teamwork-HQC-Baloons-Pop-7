@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Baloons-Inital file.cs" />
+    <Compile Include="Baloons - Initial File.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
