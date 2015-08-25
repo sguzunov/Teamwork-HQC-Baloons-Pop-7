@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A1781DB4-BD6E-4303-9F74-C29BB77D6D22}</ProjectGuid>
+    <ProjectGuid>{80F3A5C8-BC9B-4AEC-B0CF-5A2DFCABC1A5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Baloons___After</RootNamespace>

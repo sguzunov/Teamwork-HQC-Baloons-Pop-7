@@ -62,8 +62,10 @@ namespace BalloonsPops
         }
         private static bool IsLegalMove(int i, int j)
         {
-            if ((i < 0) || (j < 0) || (j > length - 1) || (i > shirina - 1)) return false;
-            else return (_t[i, j] != ".");
+            if ((i < 0) || (j < 0) || (j > length - 1) || (i > shirina - 1))
+                return false;
+            else
+                return (_t[i, j] != ".");
         }
 
         private static void greshka()
@@ -131,7 +133,8 @@ namespace BalloonsPops
             Console.WriteLine("Scoreboard:");
             foreach (KeyValuePair<int, string> s in statistics)
             {
-                if (p == 4) break;
+                if (p == 4)
+                    break;
                 else
                 {
                     p++;
@@ -149,10 +152,21 @@ namespace BalloonsPops
 
             string hop = tmp.ToString();
 
-            if (tmp.ToString() == "") greshka();
-            if (tmp.ToString() == "top") { ShowStatistics(); tmp.Clear(); goto Play; }
-            if (tmp.ToString() == "restart") { tmp.Clear(); Restart(); }
-            if (tmp.ToString() == "exit") Exit();
+            if (tmp.ToString() == "")
+                greshka();
+            if (tmp.ToString() == "top")
+            {
+                ShowStatistics();
+                tmp.Clear();
+                goto Play;
+            }
+            if (tmp.ToString() == "restart")
+            {
+                tmp.Clear();
+                Restart();
+            }
+            if (tmp.ToString() == "exit")
+                Exit();
 
             string activeCell;
             tmp.Replace(" ", "");
