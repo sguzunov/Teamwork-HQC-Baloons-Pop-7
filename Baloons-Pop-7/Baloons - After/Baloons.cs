@@ -31,7 +31,7 @@ namespace BalloonsPops
             {
                 for (int col = 0; col < HEIGHT; col++)
                 {
-                    gameField[row, col] = RND.GetRandomInt();
+                    gameField[row, col] = RamdomGenerator.GetRandomInt();
                 }
             }
             Console.WriteLine("    0 1 2 3 4 5 6 7 8 9");
@@ -70,7 +70,7 @@ namespace BalloonsPops
                 return (gameField[i, j] != ".");
         }
 
-        private static void greshka()
+        private static void Error()
         {
             Console.WriteLine("Invalid move or command");
             tmp.Clear();
@@ -102,8 +102,6 @@ namespace BalloonsPops
 
         private static void Restart()
         {
-
-
             Start();
         }
 
@@ -116,7 +114,7 @@ namespace BalloonsPops
             }
             else
             {
-                Console.Write("opal;aaaaaaaa! You popped all baloons in " + counter + " moves."
+                Console.Write("Good Job! You popped all baloons in " + counter + " moves."
                                  + "Please enter your name for the top scoreboard:");
                 tmp.Append(Console.ReadLine());
                 statistics.Add(counter, tmp.ToString());
@@ -128,19 +126,19 @@ namespace BalloonsPops
 
         private static void PrintAgain()
         {
-            int p = 0;
+            int position = 0;
 
 
 
             Console.WriteLine("Scoreboard:");
-            foreach (KeyValuePair<int, string> s in statistics)
+            foreach (KeyValuePair<int, string> statistic in statistics)
             {
-                if (p == 4)
+                if (position == 4)
                     break;
                 else
                 {
-                    p++;
-                    Console.WriteLine("{0}. {1} --> {2} moves", p, s.Value, s.Key);
+                    position++;
+                    Console.WriteLine("{0}. {1} --> {2} moves", position, statistic.Value, statistic.Key);
                 }
             }
         }
@@ -155,7 +153,7 @@ namespace BalloonsPops
             string hop = tmp.ToString();
 
             if (tmp.ToString() == "")
-                greshka();
+                Error();
             if (tmp.ToString() == "top")
             {
                 ShowStatistics();
@@ -179,7 +177,7 @@ namespace BalloonsPops
             }
             catch (Exception)
             {
-                greshka();
+                Error();
             }
             if (IsLegalMove(i, j))
             {
@@ -192,13 +190,13 @@ namespace BalloonsPops
             Console.WriteLine("    0 1 2 3 4 5 6 7 8 9");
             Console.WriteLine("   ---------------------");
 
-            for (int ii = 0; ii < WIDTH; ii++)
+            for (int row = 0; row < WIDTH; row++)
             {
-                Console.Write(ii + " | ");
+                Console.Write(row + " | ");
 
-                for (int jj = 0; jj < HEIGHT; jj++)
+                for (int col = 0; col < HEIGHT; col++)
                 {
-                    Console.Write(gameField[ii, jj] + " ");
+                    Console.Write(gameField[row, col] + " ");
                 }
                 Console.Write("| ");
                 Console.WriteLine();
@@ -233,9 +231,8 @@ namespace BalloonsPops
         private static void remove()
         {
             int i;
-            int j;
             Queue<string> temp = new Queue<string>();
-            for (j = HEIGHT - 1; j >= 0; j--)
+            for (int j = HEIGHT - 1; j >= 0; j--)
             {
                 for (i = WIDTH - 1; i >= 0; i--)
                 {
@@ -256,11 +253,11 @@ namespace BalloonsPops
         }
         private static bool IsFinished()
         {
-            return (filledCells== 0);
+            return (filledCells == 0);
         }
     }
 
-    public static class RND
+    public static class RamdomGenerator
     {
 
         static Random r = new Random();
