@@ -1,47 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-
-//harasva li vi koda? za vruzka s mene v Twitter sym #shisho33
+﻿
 namespace BalloonsPops
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading;
+
+
     public class Baloons
     {
-        const int shirina = 5;
-        const int length = 10;
+        const int WIDTH = 5;
+        const int HEIGHT = 10;
 
-        private static int ost = shirina * length;
-        private static int counter = 0; private static int clearedCells = 0;
-        public static string[,] _t = new string[shirina, length];
+        private static int filledCells;
+        private static int counter = 0; 
+        private static int clearedCells = 0;
+        public static string[,] gameField = new string[WIDTH, HEIGHT];
         public static StringBuilder tmp = new StringBuilder();
         private static SortedDictionary<int, string> statistics = new SortedDictionary<int, string>();
 
         public static void Start()
         {
             Console.WriteLine("Welcome to “Balloons Pops” game. Please try to pop the balloons. Use 'top' to view the top scoreboard, 'restart' to start a new game and 'exit' to quit the game.");
-            ost = shirina * length;
+            filledCells= WIDTH * HEIGHT;
             counter = 0;
-
             clearedCells = 0;
-            for (int i = 0; i < shirina; i++)
+
+            for (int row = 0; row < WIDTH; row++)
             {
-                for (int j = 0; j < length; j++)
+                for (int col = 0; col < HEIGHT; col++)
                 {
-                    _t[i, j] = RND.GetRandomInt();
+                    gameField[row, col] = RND.GetRandomInt();
                 }
             }
             Console.WriteLine("    0 1 2 3 4 5 6 7 8 9");
             Console.WriteLine("   ---------------------");
 
-            for (int i = 0; i < shirina; i++)
+            for (int row = 0; row < WIDTH; row++)
             {
-                Console.Write(i + " | ");
+                Console.Write(row + " | ");
 
-                for (int j = 0; j < length; j++)
+                for (int col = 0; col < HEIGHT; col++)
                 {
-                    Console.Write(_t[i, j] + " ");
+                    Console.Write(gameField[row, col] + " ");
                 }
                 Console.Write("| ");
                 Console.WriteLine();
@@ -62,10 +64,10 @@ namespace BalloonsPops
         }
         private static bool IsLegalMove(int i, int j)
         {
-            if ((i < 0) || (j < 0) || (j > length - 1) || (i > shirina - 1))
+            if ((i < 0) || (j < 0) || (j > HEIGHT - 1) || (i > WIDTH - 1))
                 return false;
             else
-                return (_t[i, j] != ".");
+                return (gameField[i, j] != ".");
         }
 
         private static void greshka()
@@ -94,7 +96,7 @@ namespace BalloonsPops
             Console.WriteLine("Good Bye");
             Thread.Sleep(1000);
             Console.WriteLine(counter.ToString());
-            Console.WriteLine(ost.ToString());
+            Console.WriteLine(filledCells.ToString());
             Environment.Exit(0);
         }
 
@@ -181,7 +183,7 @@ namespace BalloonsPops
             }
             if (IsLegalMove(i, j))
             {
-                activeCell = _t[i, j];
+                activeCell = gameField[i, j];
                 clear(i, j, activeCell);
             }
             else
@@ -190,13 +192,13 @@ namespace BalloonsPops
             Console.WriteLine("    0 1 2 3 4 5 6 7 8 9");
             Console.WriteLine("   ---------------------");
 
-            for (int ii = 0; ii < shirina; ii++)
+            for (int ii = 0; ii < WIDTH; ii++)
             {
                 Console.Write(ii + " | ");
 
-                for (int jj = 0; jj < length; jj++)
+                for (int jj = 0; jj < HEIGHT; jj++)
                 {
-                    Console.Write(_t[ii, jj] + " ");
+                    Console.Write(gameField[ii, jj] + " ");
                 }
                 Console.Write("| ");
                 Console.WriteLine();
@@ -207,9 +209,9 @@ namespace BalloonsPops
 
         private static void clear(int i, int j, string activeCell)
         {
-            if ((i >= 0) && (i <= 4) && (j <= 9) && (j >= 0) && (_t[i, j] == activeCell))
+            if ((i >= 0) && (i <= 4) && (j <= 9) && (j >= 0) && (gameField[i, j] == activeCell))
             {
-                _t[i, j] = ".";
+                gameField[i, j] = ".";
                 clearedCells++;
                 //Up
                 clear(i - 1, j, activeCell);
@@ -222,7 +224,7 @@ namespace BalloonsPops
             }
             else
             {
-                ost -= clearedCells;
+                filledCells-= clearedCells;
                 clearedCells = 0;
                 return;
             }
@@ -233,20 +235,20 @@ namespace BalloonsPops
             int i;
             int j;
             Queue<string> temp = new Queue<string>();
-            for (j = length - 1; j >= 0; j--)
+            for (j = HEIGHT - 1; j >= 0; j--)
             {
-                for (i = shirina - 1; i >= 0; i--)
+                for (i = WIDTH - 1; i >= 0; i--)
                 {
-                    if (_t[i, j] != ".")
+                    if (gameField[i, j] != ".")
                     {
-                        temp.Enqueue(_t[i, j]);
-                        _t[i, j] = ".";
+                        temp.Enqueue(gameField[i, j]);
+                        gameField[i, j] = ".";
                     }
                 }
                 i = 4;
                 while (temp.Count > 0)
                 {
-                    _t[i, j] = temp.Dequeue();
+                    gameField[i, j] = temp.Dequeue();
                     i--;
                 }
                 temp.Clear();
@@ -254,7 +256,7 @@ namespace BalloonsPops
         }
         private static bool IsFinished()
         {
-            return (ost == 0);
+            return (filledCells== 0);
         }
     }
 
@@ -271,7 +273,7 @@ namespace BalloonsPops
         }
     }
 
-    class StartBaloons
+    public class StartBaloons
     {
 
         static void Main(string[] args)
