@@ -1,16 +1,16 @@
-﻿namespace BalloonsPops
+﻿namespace Balloons
 {
     using System;
     using System.Linq;
     public static class GameField
     {
-        public static void Draw(string[,] gameField,int width,int height)
+        public static void Draw(string[,] gameField, int width, int height)
         {
             for (int row = 0; row < width; row++)
             {
                 for (int col = 0; col < height; col++)
                 {
-                    gameField[row, col] = RamdomGenerator.GetRandomInt();
+                    gameField[row, col] = RandomGenerator.Instance.Next(1, 4).ToString();
                 }
             }
 

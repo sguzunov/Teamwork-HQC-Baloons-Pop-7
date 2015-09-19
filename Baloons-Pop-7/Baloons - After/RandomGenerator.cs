@@ -1,16 +1,26 @@
-﻿namespace BalloonsPops
+﻿namespace Balloons
 {
     using System;
-    using System.Linq;
-    public static class RamdomGenerator
+
+    public class RandomGenerator
     {
-        static Random rnd = new Random();
-        public static string GetRandomInt()
+        private static Random instance;
+
+        private RandomGenerator()
         {
-            string legalChars = "1234";
-            string result = null;
-            result = legalChars[rnd.Next(0, legalChars.Length)].ToString();
-            return result;
+        }
+
+        public static Random Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    return new Random();
+                }
+
+                return instance;
+            }
         }
     }
 }

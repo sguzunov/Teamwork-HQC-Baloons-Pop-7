@@ -1,12 +1,11 @@
-﻿
-namespace BalloonsPops
+﻿namespace Balloons
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
     using System.Threading;
 
+    using Balloons.Common;
 
     public class Baloons
     {
@@ -14,7 +13,7 @@ namespace BalloonsPops
         const int HEIGHT = 10;
 
         private static int filledCells;
-        private static int counter = 0; 
+        private static int counter = 0;
         private static int clearedCells = 0;
         public static string[,] gameField = new string[WIDTH, HEIGHT];
         public static StringBuilder userInput = new StringBuilder();
@@ -22,7 +21,7 @@ namespace BalloonsPops
 
         public static void Start()
         {
-            Console.WriteLine("Welcome to “Balloons Pops” game. Please try to pop the balloons. Use 'top' to view the top scoreboard, 'restart' to start a new game and 'exit' to quit the game.");
+            Console.WriteLine(GameMessages.INITIAL_GAME_MESSAGE);
             filledCells = WIDTH * HEIGHT;
             counter = 0;
             clearedCells = 0;
@@ -51,14 +50,14 @@ namespace BalloonsPops
 
         private static void Error()
         {
-            Console.WriteLine("Invalid move or command");
+            Console.WriteLine(GameMessages.INVALID_COMMAND_MESSAGE);
             userInput.Clear();
             GameLogic(userInput);
         }
 
         private static void InvalidMove()
         {
-            Console.WriteLine("Illegal move: cannot pop missing ballon!");
+            Console.WriteLine(GameMessages.INVALID_MOVE_MESSAGE);
             userInput.Clear();
             GameLogic(userInput);
 
@@ -66,7 +65,7 @@ namespace BalloonsPops
 
         private static void Exit()
         {
-            Console.WriteLine("Good Bye");
+            Console.WriteLine(GameMessages.END_GAME_MESSAGE);
             Thread.Sleep(1000);
             Console.WriteLine(counter.ToString());
             Console.WriteLine(filledCells.ToString());
@@ -82,7 +81,7 @@ namespace BalloonsPops
         {
             if (!IsFinished())
             {
-                Console.Write("Enter a row and column: ");
+                Console.Write(GameMessages.CELL_INPUT_MESSAGE);
                 userInput.Append(Console.ReadLine());
             }
             else
@@ -195,7 +194,7 @@ namespace BalloonsPops
             }
             else
             {
-                filledCells-= clearedCells;
+                filledCells -= clearedCells;
                 clearedCells = 0;
                 return;
             }
@@ -230,7 +229,7 @@ namespace BalloonsPops
         }
     }
 
-   
+
 
     public class StartBaloons
     {
