@@ -1,4 +1,4 @@
-﻿namespace Balloons.Contracts
+﻿namespace Baloons.Contracts
 {
     public interface IPlayer
     {

@@ -1,4 +1,4 @@
-﻿namespace Balloons.Common
+﻿namespace Baloons.Common
 {
     public static class GameMessages
     {

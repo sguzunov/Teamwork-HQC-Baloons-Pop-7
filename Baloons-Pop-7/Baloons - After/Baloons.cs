@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using System.Threading;
 
     using Common;
+    using Commands;
 
     public class Baloons
     {
@@ -63,20 +63,6 @@
 
         }
 
-        private static void Exit()
-        {
-            Console.WriteLine(GameMessages.END_GAME_MESSAGE);
-            Thread.Sleep(1000);
-            Console.WriteLine(counter.ToString());
-            Console.WriteLine(filledCells.ToString());
-            Environment.Exit(0);
-        }
-
-        private static void Restart()
-        {
-            Start();
-        }
-
         private static void ReadTheIput()
         {
             if (!IsFinished())
@@ -89,8 +75,8 @@
                 Console.Write("Good Job! You popped all baloons in " + counter + " moves."
                                  + "Please enter your name for the top scoreboard:");
                 userInput.Append(Console.ReadLine());
-                Statistics.statistics.Add(counter, userInput.ToString());
-                Statistics.Show();
+                StatisticsCommand.statistics.Add(counter, userInput.ToString());
+                StatisticsCommand.Show();
                 userInput.Clear();
                 Start();
             }
@@ -101,7 +87,7 @@
             int i = -1;
             int j = -1;
 
-        Play:
+//        Play:
             ReadTheIput();
 
             string input = userInput.ToString();
@@ -110,17 +96,19 @@
                 InvalidCommandError();
             if (userInput.ToString() == "top")
             {
-                Statistics.Show();
+                StatisticsCommand.Show();
                 userInput.Clear();
-                goto Play;
+                ReadTheIput();
             }
             if (userInput.ToString() == "restart")
             {
                 userInput.Clear();
-                Restart();
+                RestartCommand.Restart();
             }
             if (userInput.ToString() == "exit")
-                Exit();
+            {
+                ExitCommand.Exit();
+            }              
 
             string activeCell;
             userInput.Replace(" ", "");
