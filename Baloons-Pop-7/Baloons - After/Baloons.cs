@@ -17,7 +17,6 @@
         private static int clearedCells = 0;
         public static string[,] gameField = new string[WIDTH, HEIGHT];
         public static StringBuilder userInput = new StringBuilder();
-        private static SortedDictionary<int, string> statistics = new SortedDictionary<int, string>();
 
         public static void Start()
         {
@@ -89,31 +88,13 @@
                 Console.Write("Good Job! You popped all baloons in " + counter + " moves."
                                  + "Please enter your name for the top scoreboard:");
                 userInput.Append(Console.ReadLine());
-                statistics.Add(counter, userInput.ToString());
-                ShowStatistic();
+                Statistics.statistics.Add(counter, userInput.ToString());
+                Statistics.Show();
                 userInput.Clear();
                 Start();
             }
         }
 
-        private static void ShowStatistic()
-        {
-            int position = 0;
-
-
-
-            Console.WriteLine("Scoreboard:");
-            foreach (KeyValuePair<int, string> statistic in statistics)
-            {
-                if (position == 4)
-                    break;
-                else
-                {
-                    position++;
-                    Console.WriteLine("{0}. {1} --> {2} moves", position, statistic.Value, statistic.Key);
-                }
-            }
-        }
         private static void PlayGame()
         {
             int i = -1;
@@ -128,7 +109,7 @@
                 Error();
             if (userInput.ToString() == "top")
             {
-                ShowStatistic();
+                Statistics.Show();
                 userInput.Clear();
                 goto Play;
             }
