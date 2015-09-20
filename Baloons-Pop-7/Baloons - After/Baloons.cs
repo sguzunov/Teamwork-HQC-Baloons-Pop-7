@@ -1,11 +1,11 @@
-﻿namespace Balloons
+﻿namespace Baloons
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Threading;
 
-    using Balloons.Common;
+    using Common;
 
     public class Baloons
     {
@@ -39,6 +39,7 @@
 
 
         }
+
         private static bool IsLegalMove(int i, int j)
         {
             if ((i < 0) || (j < 0) || (j > HEIGHT - 1) || (i > WIDTH - 1))
@@ -204,20 +205,10 @@
                 temp.Clear();
             }
         }
+
         private static bool IsFinished()
         {
             return (filledCells == 0);
-        }
-    }
-
-
-
-    public class StartBaloons
-    {
-
-        static void Main(string[] args)
-        {
-            Baloons.Start();
         }
     }
 }
