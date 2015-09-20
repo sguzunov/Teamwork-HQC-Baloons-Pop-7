@@ -1,10 +1,14 @@
-﻿namespace Balloons
+﻿namespace Baloons
 {
     using System;
 
+    using Common;
+
     public static class GameField
     {
-        public static void Draw(string[,] gameField, int width, int height)
+        public static string[,] gameField = new string[GameConstants.WIDTH, GameConstants.HEIGHT];
+
+        public static string[,] InitialGameField(int width, int height)
         {
             for (int row = 0; row < width; row++)
             {
@@ -13,7 +17,11 @@
                     gameField[row, col] = RandomGenerator.GetRandomInt();
                 }
             }
+            return gameField;
+        }
 
+        public static void Draw(string[,] gameField, int width, int height)
+        {
             Console.WriteLine("    0 1 2 3 4 5 6 7 8 9");
             Console.WriteLine("   ---------------------");
 

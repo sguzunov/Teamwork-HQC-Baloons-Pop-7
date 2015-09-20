@@ -9,23 +9,20 @@
 
     public class Baloons
     {
-        const int WIDTH = 5;
-        const int HEIGHT = 10;
-
         private static int filledCells;
         private static int counter = 0;
         private static int clearedCells = 0;
-        public static string[,] gameField = new string[WIDTH, HEIGHT];
         public static StringBuilder userInput = new StringBuilder();
 
         public static void Start()
         {
             Console.WriteLine(GameMessages.INITIAL_GAME_MESSAGE);
-            filledCells = WIDTH * HEIGHT;
+            filledCells = GameConstants.WIDTH * GameConstants.HEIGHT;
             counter = 0;
             clearedCells = 0;
 
-            GameField.Draw(gameField, WIDTH, HEIGHT);
+            GameField.gameField = GameField.InitialGameField(GameConstants.WIDTH, GameConstants.HEIGHT);
+            GameField.Draw(GameField.gameField, GameConstants.WIDTH, GameConstants.HEIGHT);
 
             GameLogic(userInput);
         }
@@ -36,19 +33,22 @@
             counter++;
             userInput.Clear();
             GameLogic(userInput);
-
-
         }
 
         private static bool IsLegalMove(int i, int j)
         {
-            if ((i < 0) || (j < 0) || (j > HEIGHT - 1) || (i > WIDTH - 1))
+            if ((i < 0) || (j < 0) || (j > GameConstants.HEIGHT - 1) || (i > GameConstants.WIDTH - 1))
+            {
                 return false;
+            }
+
             else
-                return (gameField[i, j] != ".");
+            {
+                return (GameField.gameField[i, j] != ".");
+            }
         }
 
-        private static void Error()
+        private static void InvalidCommandError()
         {
             Console.WriteLine(GameMessages.INVALID_COMMAND_MESSAGE);
             userInput.Clear();
@@ -104,10 +104,10 @@
         Play:
             ReadTheIput();
 
-            string hop = userInput.ToString();
+            string input = userInput.ToString();
 
             if (userInput.ToString() == "")
-                Error();
+                InvalidCommandError();
             if (userInput.ToString() == "top")
             {
                 Statistics.Show();
@@ -131,39 +131,28 @@
             }
             catch (Exception)
             {
-                Error();
+                InvalidCommandError();
             }
             if (IsLegalMove(i, j))
             {
-                activeCell = gameField[i, j];
+                activeCell = GameField.gameField[i, j];
                 clear(i, j, activeCell);
             }
             else
-                InvalidMove();
-            remove();
-            Console.WriteLine("    0 1 2 3 4 5 6 7 8 9");
-            Console.WriteLine("   ---------------------");
-
-            for (int row = 0; row < WIDTH; row++)
             {
-                Console.Write(row + " | ");
-
-                for (int col = 0; col < HEIGHT; col++)
-                {
-                    Console.Write(gameField[row, col] + " ");
-                }
-                Console.Write("| ");
-                Console.WriteLine();
+                InvalidMove();
             }
+                
+            remove();
 
-            Console.WriteLine("   ---------------------");
+            GameField.Draw(GameField.gameField, GameConstants.WIDTH, GameConstants.HEIGHT);
         }
 
         private static void clear(int i, int j, string activeCell)
         {
-            if ((i >= 0) && (i <= 4) && (j <= 9) && (j >= 0) && (gameField[i, j] == activeCell))
+            if ((i >= 0) && (i <= 4) && (j <= 9) && (j >= 0) && (GameField.gameField[i, j] == activeCell))
             {
-                gameField[i, j] = ".";
+                GameField.gameField[i, j] = ".";
                 clearedCells++;
                 //Up
                 clear(i - 1, j, activeCell);
@@ -186,20 +175,20 @@
         {
             int i;
             Queue<string> temp = new Queue<string>();
-            for (int j = HEIGHT - 1; j >= 0; j--)
+            for (int j = GameConstants.HEIGHT - 1; j >= 0; j--)
             {
-                for (i = WIDTH - 1; i >= 0; i--)
+                for (i = GameConstants.WIDTH - 1; i >= 0; i--)
                 {
-                    if (gameField[i, j] != ".")
+                    if (GameField.gameField[i, j] != ".")
                     {
-                        temp.Enqueue(gameField[i, j]);
-                        gameField[i, j] = ".";
+                        temp.Enqueue(GameField.gameField[i, j]);
+                        GameField.gameField[i, j] = ".";
                     }
                 }
                 i = 4;
                 while (temp.Count > 0)
                 {
-                    gameField[i, j] = temp.Dequeue();
+                    GameField.gameField[i, j] = temp.Dequeue();
                     i--;
                 }
                 temp.Clear();
