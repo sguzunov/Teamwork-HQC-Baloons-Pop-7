@@ -2,7 +2,8 @@
 {
     public static class GameMessages
     {
-        public const string INITIAL_GAME_MESSAGE = "Welcome to 'Balloons Pops' game. Try to pop all the balloons. Use commands 'top' - to view the top scoreboard, 'restart' - to start a new game and 'exit' - to quit the game.";
+        public const string INITIAL_GAME_MESSAGE = 
+            "Welcome to 'Balloons Pops' game.\nTry to pop all the balloons.\nUse the commands:\n -> 'top' - to view the top scoreboard,\n -> 'restart' - to start a new game \n -> 'exit' - to quit the game.\n";
 
         public const string END_GAME_MESSAGE = "Goodbye";
 

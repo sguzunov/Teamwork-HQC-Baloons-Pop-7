@@ -1,7 +1,7 @@
 ﻿namespace Balloons
 {
     using System;
-    using System.Linq;
+
     public static class GameField
     {
         public static void Draw(string[,] gameField, int width, int height)
@@ -10,10 +10,9 @@
             {
                 for (int col = 0; col < height; col++)
                 {
-                    gameField[row, col] = RandomGenerator.Instance.Next(1, 4).ToString();
+                    gameField[row, col] = RandomGenerator.GetRandomInt();
                 }
             }
-
 
             Console.WriteLine("    0 1 2 3 4 5 6 7 8 9");
             Console.WriteLine("   ---------------------");

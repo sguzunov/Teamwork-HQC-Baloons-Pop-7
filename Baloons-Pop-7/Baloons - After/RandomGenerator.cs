@@ -2,25 +2,16 @@
 {
     using System;
 
-    public class RandomGenerator
+    public static class RandomGenerator
     {
-        private static Random instance;
+        static Random randomNumber = new Random();
 
-        private RandomGenerator()
+        public static string GetRandomInt()
         {
-        }
-
-        public static Random Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    return new Random();
-                }
-
-                return instance;
-            }
+            string legalChars = "1234";
+            string result = null;
+            result = legalChars[randomNumber.Next(0, legalChars.Length)].ToString();
+            return result;
         }
     }
 }
