@@ -7,20 +7,18 @@
     using Common;
     using Commands;
     using Logic;
+    using GameRules;
 
     public class Baloons
     {
-        private static int filledCells;
+
         private static int counter = 0;
-        private static int clearedCells = 0;
         public static StringBuilder userInput = new StringBuilder();
 
         public static void Start()
         {
             Console.WriteLine(GameMessages.INITIAL_GAME_MESSAGE);
-            filledCells = GameConstants.WIDTH * GameConstants.HEIGHT;
-            counter = 0;
-            clearedCells = 0;
+
 
             GameField.gameField = GameField.InitialGameField(GameConstants.WIDTH, GameConstants.HEIGHT);
             GameField.Draw(GameField.gameField, GameConstants.WIDTH, GameConstants.HEIGHT);
@@ -38,7 +36,7 @@
 
         private static void ReadTheIput()
         {
-            if (!IsFinished())
+            if (!PopBaloons.IsFinished())
             {
                 Console.Write(GameMessages.CELL_INPUT_MESSAGE);
                 userInput.Append(Console.ReadLine());
@@ -104,7 +102,7 @@
             if (CheckConditionLegalMove.IsLegalMove(i, j))
             {
                 activeCell = GameField.gameField[i, j];
-                clear(i, j, activeCell);
+                PopBaloons.Clear(i, j, activeCell);
             }
             else
             {
@@ -118,28 +116,7 @@
             GameField.Draw(GameField.gameField, GameConstants.WIDTH, GameConstants.HEIGHT);
         }
 
-        private static void clear(int i, int j, string activeCell)
-        {
-            if ((i >= 0) && (i <= 4) && (j <= 9) && (j >= 0) && (GameField.gameField[i, j] == activeCell))
-            {
-                GameField.gameField[i, j] = ".";
-                clearedCells++;
-                //Up
-                clear(i - 1, j, activeCell);
-                //Down
-                clear(i + 1, j, activeCell);
-                //Left
-                clear(i, j + 1, activeCell);
-                //Right
-                clear(i, j - 1, activeCell);
-            }
-            else
-            {
-                filledCells -= clearedCells;
-                clearedCells = 0;
-                return;
-            }
-        }
+
 
         private static void remove()
         {
@@ -163,11 +140,6 @@
                 }
                 temp.Clear();
             }
-        }
-
-        private static bool IsFinished()
-        {
-            return (filledCells == 0);
         }
     }
 }
