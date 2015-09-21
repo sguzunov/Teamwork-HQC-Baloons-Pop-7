@@ -1,6 +1,7 @@
 ﻿namespace Baloons.Logic
 {
     using Common;
+    using Gamefield;
 
     class CheckConditionLegalMove
     {

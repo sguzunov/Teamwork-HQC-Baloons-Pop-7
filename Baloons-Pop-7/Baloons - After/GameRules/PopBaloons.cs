@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Baloons.GameRules
 {
     using Common;
+    using Gamefield;
 
     public class PopBaloons
     {

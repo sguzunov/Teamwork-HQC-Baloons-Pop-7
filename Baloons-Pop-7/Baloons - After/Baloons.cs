@@ -8,6 +8,7 @@
     using Commands;
     using Logic;
     using GameRules;
+    using Gamefield;
 
     public class Baloons
     {
@@ -111,35 +112,9 @@
                 GameLogic(userInput);
             }
 
-            remove();
+            GameField.RemovePoppedBaloons();
 
             GameField.Draw(GameField.gameField, GameConstants.WIDTH, GameConstants.HEIGHT);
-        }
-
-
-
-        private static void remove()
-        {
-            int i;
-            Queue<string> temp = new Queue<string>();
-            for (int j = GameConstants.HEIGHT - 1; j >= 0; j--)
-            {
-                for (i = GameConstants.WIDTH - 1; i >= 0; i--)
-                {
-                    if (GameField.gameField[i, j] != ".")
-                    {
-                        temp.Enqueue(GameField.gameField[i, j]);
-                        GameField.gameField[i, j] = ".";
-                    }
-                }
-                i = 4;
-                while (temp.Count > 0)
-                {
-                    GameField.gameField[i, j] = temp.Dequeue();
-                    i--;
-                }
-                temp.Clear();
-            }
         }
     }
 }
