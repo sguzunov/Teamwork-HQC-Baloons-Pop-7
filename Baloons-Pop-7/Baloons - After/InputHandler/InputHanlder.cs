@@ -1,39 +1,18 @@
-﻿namespace Baloons
+﻿namespace Baloons.InputHandler
 {
     using System;
-    using System.Collections.Generic;
     using System.Text;
 
+    using GameRules;
     using Common;
+    using Gamefield;
     using Commands;
     using Logic;
-    using GameRules;
-    using Gamefield;
 
-    public class Baloons
+    public class InputHanlder
     {
-
         private static int counter = 0;
         public static StringBuilder userInput = new StringBuilder();
-
-        public static void Start()
-        {
-            Console.WriteLine(GameMessages.INITIAL_GAME_MESSAGE);
-
-
-            GameField.gameField = GameField.InitialGameField(GameConstants.WIDTH, GameConstants.HEIGHT);
-            GameField.Draw(GameField.gameField, GameConstants.WIDTH, GameConstants.HEIGHT);
-
-            GameLogic(userInput);
-        }
-
-        public static void GameLogic(StringBuilder userInput)
-        {
-            PlayGame();
-            counter++;
-            userInput.Clear();
-            GameLogic(userInput);
-        }
 
         private static void ReadTheIput()
         {
@@ -50,7 +29,7 @@
                 StatisticsCommand.statistics.Add(counter, userInput.ToString());
                 StatisticsCommand.Show();
                 userInput.Clear();
-                Start();
+                StartCommand.Start();
             }
         }
 
@@ -59,7 +38,6 @@
             int i = -1;
             int j = -1;
 
-            //        Play:
             ReadTheIput();
 
             string input = userInput.ToString();
@@ -70,7 +48,7 @@
                 userInput.Clear();
                 GameLogic(userInput);
             }
-               
+
             if (userInput.ToString() == "top")
             {
                 StatisticsCommand.Show();
@@ -115,6 +93,14 @@
             GameField.RemovePoppedBaloons();
 
             GameField.Draw(GameField.gameField, GameConstants.WIDTH, GameConstants.HEIGHT);
+        }
+
+        public static void GameLogic(StringBuilder userInput)
+        {
+            PlayGame();
+            counter++;
+            userInput.Clear();
+            GameLogic(userInput);
         }
     }
 }
