@@ -6,6 +6,7 @@
 
     using Common;
     using Commands;
+    using Logic;
 
     public class Baloons
     {
@@ -35,34 +36,6 @@
             GameLogic(userInput);
         }
 
-        private static bool IsLegalMove(int i, int j)
-        {
-            if ((i < 0) || (j < 0) || (j > GameConstants.HEIGHT - 1) || (i > GameConstants.WIDTH - 1))
-            {
-                return false;
-            }
-
-            else
-            {
-                return (GameField.gameField[i, j] != ".");
-            }
-        }
-
-        private static void InvalidCommandError()
-        {
-            Console.WriteLine(GameMessages.INVALID_COMMAND_MESSAGE);
-            userInput.Clear();
-            GameLogic(userInput);
-        }
-
-        private static void InvalidMove()
-        {
-            Console.WriteLine(GameMessages.INVALID_MOVE_MESSAGE);
-            userInput.Clear();
-            GameLogic(userInput);
-
-        }
-
         private static void ReadTheIput()
         {
             if (!IsFinished())
@@ -87,13 +60,18 @@
             int i = -1;
             int j = -1;
 
-//        Play:
+            //        Play:
             ReadTheIput();
 
             string input = userInput.ToString();
 
             if (userInput.ToString() == "")
-                InvalidCommandError();
+            {
+                InvalidCommand.DisplayMessage();
+                userInput.Clear();
+                GameLogic(userInput);
+            }
+               
             if (userInput.ToString() == "top")
             {
                 StatisticsCommand.Show();
@@ -108,7 +86,7 @@
             if (userInput.ToString() == "exit")
             {
                 ExitCommand.Exit();
-            }              
+            }
 
             string activeCell;
             userInput.Replace(" ", "");
@@ -119,18 +97,22 @@
             }
             catch (Exception)
             {
-                InvalidCommandError();
+                InvalidCommand.DisplayMessage();
+                userInput.Clear();
+                GameLogic(userInput);
             }
-            if (IsLegalMove(i, j))
+            if (CheckConditionLegalMove.IsLegalMove(i, j))
             {
                 activeCell = GameField.gameField[i, j];
                 clear(i, j, activeCell);
             }
             else
             {
-                InvalidMove();
+                InvalidMove.DisplayMessage();
+                userInput.Clear();
+                GameLogic(userInput);
             }
-                
+
             remove();
 
             GameField.Draw(GameField.gameField, GameConstants.WIDTH, GameConstants.HEIGHT);
