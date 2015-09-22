@@ -52,17 +52,21 @@
     <Compile Include="Common\GameMessages.cs" />
     <Compile Include="ConsoleUI\ConsoleRenderer.cs" />
     <Compile Include="ConsoleUI\IRenderer.cs" />
-    <Compile Include="Contracts\IPlayer.cs" />
+    <Compile Include="InputHandler\ConsoleInputHandler.cs" />
+    <Compile Include="GamePlayer\IPlayer.cs" />
     <Compile Include="GameField\Field.cs" />
     <Compile Include="GameField\GameField.cs" />
     <Compile Include="GameField\IGameField.cs" />
     <Compile Include="GameRules\PopBaloons.cs" />
+    <Compile Include="InputHandler\IInputHandler.cs" />
     <Compile Include="InputHandler\InputHanlder.cs" />
     <Compile Include="Logic\CheckConditionLegalMove.cs" />
     <Compile Include="Logic\InvalidCommand.cs" />
     <Compile Include="Logic\InvalidMove.cs" />
+    <Compile Include="GamePlayer\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerator.cs" />
+    <Compile Include="ScoreBoard.cs" />
     <Compile Include="StartBaloons.cs" />
   </ItemGroup>
   <ItemGroup>
