@@ -3,7 +3,7 @@
     using System;
 
     using Balloons.Common;
-    using Balloons.Gamefield;
+    using Balloons.GameField;
     using Balloons.InputHandler;
 
     public class StartCommand

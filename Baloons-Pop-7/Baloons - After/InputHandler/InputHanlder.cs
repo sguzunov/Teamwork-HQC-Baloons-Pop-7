@@ -5,7 +5,7 @@
 
     using Balloons.Commands;
     using Balloons.Common;
-    using Balloons.Gamefield;
+    using Balloons.GameField;
     using Balloons.GameRules;
     using Balloons.Logic;
 

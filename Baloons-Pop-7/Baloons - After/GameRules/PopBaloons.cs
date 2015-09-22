@@ -1,7 +1,7 @@
 ﻿namespace Balloons.GameRules
 {
     using Balloons.Common;
-    using Balloons.Gamefield;
+    using Balloons.GameField;
 
     public class PopBaloons
     {
