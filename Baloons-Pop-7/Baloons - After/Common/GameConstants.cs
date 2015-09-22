@@ -1,4 +1,4 @@
-﻿namespace Baloons.Common
+﻿namespace Balloons.Common
 {
     public static class GameConstants
     {

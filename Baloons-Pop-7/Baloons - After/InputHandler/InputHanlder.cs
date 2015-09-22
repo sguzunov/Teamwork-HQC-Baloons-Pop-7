@@ -1,13 +1,13 @@
-﻿namespace Baloons.InputHandler
+﻿namespace Balloons.InputHandler
 {
     using System;
     using System.Text;
 
-    using GameRules;
-    using Common;
-    using Gamefield;
-    using Commands;
-    using Logic;
+    using Balloons.Commands;
+    using Balloons.Common;
+    using Balloons.Gamefield;
+    using Balloons.GameRules;
+    using Balloons.Logic;
 
     public class InputHanlder
     {

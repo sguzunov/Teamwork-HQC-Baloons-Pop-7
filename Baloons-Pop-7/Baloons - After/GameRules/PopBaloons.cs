@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Baloons.GameRules
+﻿namespace Balloons.GameRules
 {
-    using Common;
-    using Gamefield;
+    using Balloons.Common;
+    using Balloons.Gamefield;
 
     public class PopBaloons
     {
         private static int clearedCells = 0;
-        private static int filledCells = GameConstants.WIDTH* GameConstants.HEIGHT;
+        private static int filledCells = GameConstants.WIDTH * GameConstants.HEIGHT;
 
         internal static void Clear(int i, int j, string activeCell)
         {

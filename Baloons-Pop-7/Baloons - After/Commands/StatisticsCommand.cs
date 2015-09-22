@@ -1,4 +1,4 @@
-﻿namespace Baloons
+﻿namespace Balloons.Commands
 {
     using System;
     using System.Collections.Generic;

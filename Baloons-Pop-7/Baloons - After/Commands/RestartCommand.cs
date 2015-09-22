@@ -1,4 +1,4 @@
-﻿namespace Baloons.Commands
+﻿namespace Balloons.Commands
 {
     using Commands;
 

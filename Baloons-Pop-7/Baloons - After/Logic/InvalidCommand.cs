@@ -1,8 +1,8 @@
-﻿namespace Baloons.Logic
+﻿namespace Balloons.Logic
 {
     using System;
 
-    using Common;
+    using Balloons.Common;
 
     public class InvalidCommand
     {

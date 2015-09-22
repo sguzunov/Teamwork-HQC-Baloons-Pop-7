@@ -1,10 +1,10 @@
-﻿namespace Baloons
+﻿namespace Balloons.Commands
 {
     using System;
 
-    using Common;
-    using Gamefield;
-    using InputHandler;
+    using Balloons.Common;
+    using Balloons.Gamefield;
+    using Balloons.InputHandler;
 
     public class StartCommand
     {

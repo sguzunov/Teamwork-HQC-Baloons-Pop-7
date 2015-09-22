@@ -1,9 +1,9 @@
-﻿namespace Baloons.Gamefield
+﻿namespace Balloons.Gamefield
 {
     using System;
-
-    using Common;
     using System.Collections.Generic;
+
+    using Balloons.Common;
 
     public static class GameField
     {

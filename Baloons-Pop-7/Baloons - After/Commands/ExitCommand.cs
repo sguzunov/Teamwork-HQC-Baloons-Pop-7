@@ -1,9 +1,9 @@
-﻿namespace Baloons.Commands
+﻿namespace Balloons.Commands
 {
     using System;
     using System.Threading;
 
-    using Common;
+    using Balloons.Common;
 
     public class ExitCommand
     {

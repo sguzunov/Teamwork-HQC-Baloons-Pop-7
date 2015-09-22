@@ -1,7 +1,7 @@
-﻿namespace Baloons.Logic
+﻿namespace Balloons.Logic
 {
-    using Common;
-    using Gamefield;
+    using Balloons.Common;
+    using Balloons.Gamefield;
 
     class CheckConditionLegalMove
     {
