@@ -55,12 +55,12 @@
         {
             get
             {
-                if (this.isValidRow(row))
+                if (!this.isValidRow(row))
                 {
                     throw new IndexOutOfRangeException("Invalid row position!");
                 }
 
-                if (this.isValidColumn(column))
+                if (!this.isValidColumn(column))
                 {
                     throw new IndexOutOfRangeException("Invalid column position!");
                 }
@@ -70,12 +70,12 @@
 
             set
             {
-                if (this.isValidRow(row))
+                if (!this.isValidRow(row))
                 {
                     throw new IndexOutOfRangeException("Invalid row position!");
                 }
 
-                if (this.isValidColumn(column))
+                if (!this.isValidColumn(column))
                 {
                     throw new IndexOutOfRangeException("Invalid column position!");
                 }
@@ -97,12 +97,12 @@
 
         private bool isValidRow(int row)
         {
-            return 0 < row && row < this.Rows - 1;
+            return 0 <= row && row < this.Rows;
         }
 
         private bool isValidColumn(int column)
         {
-            return 0 < column && column < this.Columns - 1;
+            return 0 <= column && column < this.Columns;
         }
 
         private bool isValidDimension(int size)

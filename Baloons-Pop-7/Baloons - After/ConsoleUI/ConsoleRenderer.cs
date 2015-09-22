@@ -9,20 +9,21 @@
     {
         public void RenderGameField(IGameField field)
         {
-            int rows = field.Columns;
-            int columns = field.Rows;
+            int rows = field.Rows;
+            int columns = field.Columns;
 
-            Console.Write("    ");
+            Console.Write("   ");
             for (int i = 0; i < columns; i++)
             {
-                Console.Write(i);
+                Console.Write(" {0}", i + 1);
             }
+            Console.WriteLine();
 
             this.PrintBorder(columns);
 
             for (int row = 0; row < rows; row++)
             {
-                Console.Write(row + " | ");
+                Console.Write("{0} | ", row + 1);
 
                 for (int column = 0; column < columns; column++)
                 {
@@ -38,7 +39,7 @@
                     }
                 }
 
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Gray;
 
                 Console.Write("| ");
                 Console.WriteLine();
@@ -50,7 +51,7 @@
         private void PrintBorder(int columns)
         {
             Console.Write("   ");
-            Console.Write(string.Concat(Enumerable.Repeat("-", columns)));
+            Console.WriteLine(string.Concat(Enumerable.Repeat("-", columns * 2)));
         }
     }
 }
