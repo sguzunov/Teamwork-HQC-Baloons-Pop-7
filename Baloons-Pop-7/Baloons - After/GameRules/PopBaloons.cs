@@ -6,7 +6,7 @@
     public class PopBaloons
     {
         private static int clearedCells = 0;
-        private static int filledCells = GameConstants.WIDTH * GameConstants.HEIGHT;
+        private static int filledCells = GameConstants.WIDTH_OF_FIELD * GameConstants.HEIGHT_OF_FIELD;
 
         internal static void Clear(int i, int j, string activeCell)
         {

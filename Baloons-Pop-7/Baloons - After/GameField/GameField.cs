@@ -7,7 +7,7 @@
 
     public static class GameField
     {
-        public static string[,] gameField = new string[GameConstants.WIDTH, GameConstants.HEIGHT];
+        public static string[,] gameField = new string[GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD];
 
         public static string[,] InitialGameField(int width, int height)
         {
@@ -25,9 +25,9 @@
         {
             int i;
             Queue<string> temp = new Queue<string>();
-            for (int j = GameConstants.HEIGHT - 1; j >= 0; j--)
+            for (int j = GameConstants.HEIGHT_OF_FIELD - 1; j >= 0; j--)
             {
-                for (i = GameConstants.WIDTH - 1; i >= 0; i--)
+                for (i = GameConstants.WIDTH_OF_FIELD - 1; i >= 0; i--)
                 {
                     if (GameField.gameField[i, j] != ".")
                     {

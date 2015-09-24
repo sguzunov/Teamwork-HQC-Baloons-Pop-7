@@ -2,20 +2,21 @@
 {
     using System;
     using System.Collections.Generic;
+    using Common;
 
     public class StatisticsCommand
     {
-        const int MAX_POSITION = 4;
+        
         internal static SortedDictionary<int, string> statistics = new SortedDictionary<int, string>();
 
         internal static void Show()
         {
-            int position = 0;
+            var position = GameConstants.FIRST_STATISTIC_POSITION;
 
             Console.WriteLine("Scoreboard:");
             foreach (KeyValuePair<int, string> statistic in statistics)
             {
-                if (position == MAX_POSITION)
+                if (position == GameConstants.LAST_STATISTIC_POSITION )
                 {
                     break;
                 }

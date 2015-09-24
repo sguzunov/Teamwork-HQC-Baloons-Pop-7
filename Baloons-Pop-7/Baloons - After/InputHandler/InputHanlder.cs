@@ -92,7 +92,7 @@
 
             GameField.RemovePoppedBaloons();
 
-            GameField.Draw(GameField.gameField, GameConstants.WIDTH, GameConstants.HEIGHT);
+            GameField.Draw(GameField.gameField, GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
         }
 
         public static void GameLogic(StringBuilder userInput)
