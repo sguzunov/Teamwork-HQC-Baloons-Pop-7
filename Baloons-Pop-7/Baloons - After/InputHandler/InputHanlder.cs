@@ -26,7 +26,7 @@
                 Console.Write("Good Job! You popped all baloons in " + counter + " moves."
                                  + "Please enter your name for the top scoreboard:");
                 userInput.Append(Console.ReadLine());
-                StatisticsCommand.statistics.Add(counter, userInput.ToString());
+                StatisticsCommand.Add(counter, userInput.ToString());
                 StatisticsCommand.Show();
                 userInput.Clear();
                 StartCommand.Start();
