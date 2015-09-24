@@ -6,7 +6,7 @@
     public class PopBaloons
     {
         private static int clearedCells = 0;
-        private static int filledCells = GameConstants.WIDTH_OF_FIELD * GameConstants.HEIGHT_OF_FIELD;
+        private static int filledCells = GameConstants.FILLED_CELLS;
 
         internal static void Clear(int i, int j, string activeCell)
         {
@@ -33,7 +33,15 @@
 
         internal static bool IsFinished()
         {
-            return (filledCells == 0);
+            if (filledCells == 0)
+            {
+                filledCells = GameConstants.FILLED_CELLS;
+                return true;                
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -29,7 +29,6 @@
                 {
                     position++;
                     Console.WriteLine("{0}. {1} --> {2} moves", position, statistic.Value, statistic.Key);
-                    Console.WriteLine();
                 }
             }
         }
