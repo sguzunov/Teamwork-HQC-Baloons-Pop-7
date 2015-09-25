@@ -52,6 +52,7 @@
     <Compile Include="Common\GameConstants.cs" />
     <Compile Include="Common\GameMessages.cs" />
     <Compile Include="ConsoleUI\ConsoleRenderer.cs" />
+    <Compile Include="ConsoleUI\FieldDrawer.cs" />
     <Compile Include="ConsoleUI\IRenderer.cs" />
     <Compile Include="InputHandler\ConsoleInputHandler.cs" />
     <Compile Include="GamePlayer\IPlayer.cs" />

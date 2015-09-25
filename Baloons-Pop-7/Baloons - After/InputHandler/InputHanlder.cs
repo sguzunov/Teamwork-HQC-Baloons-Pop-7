@@ -8,6 +8,7 @@
     using Balloons.GameField;
     using Balloons.GameRules;
     using Balloons.Logic;
+    using Balloons.ConsoleUI;
 
     public class InputHanlder
     {
@@ -92,7 +93,7 @@
 
             RemoveBallonsCommand.RemovePoppedBaloons(GameField.gameField);
 
-            GameField.Draw(GameField.gameField, GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
+            FieldDrawer.Draw(GameField.gameField, GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
         }
 
         public static void GameLogic(StringBuilder userInput)
