@@ -21,29 +21,7 @@
             return gameField;
         }
 
-        internal static void RemovePoppedBaloons()
-        {
-            int i;
-            Queue<string> temp = new Queue<string>();
-            for (int j = GameConstants.HEIGHT_OF_FIELD - 1; j >= 0; j--)
-            {
-                for (i = GameConstants.WIDTH_OF_FIELD - 1; i >= 0; i--)
-                {
-                    if (GameField.gameField[i, j] != ".")
-                    {
-                        temp.Enqueue(GameField.gameField[i, j]);
-                        GameField.gameField[i, j] = ".";
-                    }
-                }
-                i = 4;
-                while (temp.Count > 0)
-                {
-                    GameField.gameField[i, j] = temp.Dequeue();
-                    i--;
-                }
-                temp.Clear();
-            }
-        }
+        
 
 
         // method Drow should be in a separate classe and maybe have an interface IDrowable??

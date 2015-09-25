@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\RemoveBallonsCommand.cs" />
     <Compile Include="Commands\RestartCommand.cs" />
     <Compile Include="Commands\StartCommand.cs" />
     <Compile Include="Commands\StatisticsCommand.cs" />

@@ -90,7 +90,7 @@
                 GameLogic(userInput);
             }
 
-            GameField.RemovePoppedBaloons();
+            RemoveBallonsCommand.RemovePoppedBaloons(GameField.gameField);
 
             GameField.Draw(GameField.gameField, GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
         }
