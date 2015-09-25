@@ -17,6 +17,7 @@
             {
                 Console.Write(" {0}", i + 1);
             }
+
             Console.WriteLine();
 
             this.PrintBorder(columns);
@@ -24,7 +25,6 @@
             for (int row = 0; row < rows; row++)
             {
                 Console.Write("{0} | ", row + 1);
-
                 for (int column = 0; column < columns; column++)
                 {
                     if (field[row, column] == ".")
@@ -51,7 +51,7 @@
         private void PrintBorder(int columns)
         {
             Console.Write("   ");
-            Console.WriteLine(string.Concat(Enumerable.Repeat("-", columns * 2)));
+            Console.WriteLine(new string('-', columns));
         }
     }
 }

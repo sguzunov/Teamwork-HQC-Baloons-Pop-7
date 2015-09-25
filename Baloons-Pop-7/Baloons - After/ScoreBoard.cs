@@ -8,18 +8,42 @@
 
     public class ScoreBoard
     {
-        private IList<IPlayer> players;
+        private const int MaxPossiblePlayers = 5;
 
-        public ScoreBoard()
+        private static object syncLock = new object();
+        private static ScoreBoard instance;
+        private IList<IPlayer> listOfPlayers;
+
+        private ScoreBoard()
         {
-            this.players = new List<IPlayer>();
+            this.listOfPlayers = new List<IPlayer>();
         }
 
-        public IList<IPlayer> GetPlayers
+        public static ScoreBoard Instance
         {
             get
             {
-                return this.players;
+                if (instance == null)
+                {
+                    lock (syncLock)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new ScoreBoard();
+                        }
+                    }
+                }
+
+                return instance;
+            }
+        }
+
+        public IList<IPlayer> GetSortedPlayers
+        {
+            get
+            {
+                var sortedPlayers = this.SortPlayersByPoints(this.listOfPlayers);
+                return sortedPlayers;
             }
         }
 
@@ -30,14 +54,27 @@
                 throw new ArgumentNullException("New player cannot be null.");
             }
 
-            this.players.Add(newPlayer);
+            if (this.listOfPlayers.Count < MaxPossiblePlayers)
+            {
+                this.listOfPlayers.Add(newPlayer);
+            }
+            else
+            {
+                this.listOfPlayers.Add(newPlayer);
+                this.RemovePlayerWithLeastPoints(this.listOfPlayers);
+            }
+        }
 
-            this.players = this.SortPlayersByPoints(this.players);
+        private void RemovePlayerWithLeastPoints(IList<IPlayer> players)
+        {
+            int leastPoints = players.Min(p => p.Points);
+            var playerWithLeastPoints = players.Single(p => p.Points == leastPoints);
+            players.Remove(playerWithLeastPoints);
         }
 
         private IList<IPlayer> SortPlayersByPoints(IList<IPlayer> players)
         {
-            return this.players.OrderBy(p => p.Points).ToList();
+            return players.OrderByDescending(p => p.Points).ToList();
         }
     }
 }
