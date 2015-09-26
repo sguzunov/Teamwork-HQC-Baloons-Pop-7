@@ -7,5 +7,6 @@
         public const int FILLED_CELLS = WIDTH_OF_FIELD * HEIGHT_OF_FIELD;
         public const int FIRST_STATISTIC_POSITION = 0;
         public const int LAST_STATISTIC_POSITION = 4;
+        public const string LEGAL_CHARS = "1234";
     }
 }

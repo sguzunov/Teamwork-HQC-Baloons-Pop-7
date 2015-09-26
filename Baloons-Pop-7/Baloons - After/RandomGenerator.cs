@@ -1,6 +1,7 @@
 ﻿namespace Balloons
 {
     using System;
+    using Balloons.Common;
 
     public static class RandomGenerator
     {
@@ -8,7 +9,7 @@
 
         public static string GetRandomInt()
         {
-            string legalChars = "1234";
+            string legalChars = GameConstants.LEGAL_CHARS;
             string result = null;
             result = legalChars[randomNumber.Next(0, legalChars.Length)].ToString();
             return result;
