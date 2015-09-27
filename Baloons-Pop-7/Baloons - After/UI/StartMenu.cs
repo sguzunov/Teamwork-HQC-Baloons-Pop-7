@@ -8,13 +8,10 @@
 
     using Balloons.UI;
     using Balloons.GameField;
+    using Balloons.Common;
 
-    public class StartMenu:IRenderer
+    public class StartMenu
     {
-
-        public void RenderGameField(IGameField field)
-        {
-            throw new NotImplementedException();
-        }
+         
     }
 }
