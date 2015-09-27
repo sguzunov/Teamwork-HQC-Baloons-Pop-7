@@ -1,6 +1,7 @@
-﻿using System;
-namespace Balloons.ConsoleUI
+﻿namespace Balloons.ConsoleUI
 {
+    using System;
+
     public class FieldDrawer
     {
 
