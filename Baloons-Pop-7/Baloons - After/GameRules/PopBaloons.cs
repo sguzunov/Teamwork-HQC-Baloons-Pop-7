@@ -10,9 +10,9 @@
 
         internal static void Clear(int i, int j, string activeCell)
         {
-            if ((i >= 0) && (i <= 4) && (j <= 9) && (j >= 0) && (GameField.gameField[i, j] == activeCell))
+            if ((i >= 0) && (i <= 4) && (j <= 9) && (j >= 0) && (Field.gameField[i, j] == activeCell))
             {
-                GameField.gameField[i, j] = ".";
+                Field.gameField[i, j] = ".";
                 clearedCells++;
                 //Up
                 Clear(i - 1, j, activeCell);

@@ -81,7 +81,7 @@
             }
             if (CheckConditionLegalMove.IsLegalMove(i, j))
             {
-                activeCell = GameField.gameField[i, j];
+                activeCell = Field.gameField[i, j];
                 PopBaloons.Clear(i, j, activeCell);
             }
             else
@@ -91,9 +91,9 @@
                 GameLogic(userInput);
             }
 
-            RemoveBallonsCommand.RemovePoppedBaloons(GameField.gameField);
+            RemoveBallonsCommand.RemovePoppedBaloons(Field.gameField);
 
-            FieldDrawer.Draw(GameField.gameField, GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
+            FieldDrawer.Draw(Field.gameField, GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
         }
 
         public static void GameLogic(StringBuilder userInput)

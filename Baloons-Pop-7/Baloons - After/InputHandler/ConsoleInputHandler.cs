@@ -1,12 +1,11 @@
-﻿using Balloons.Logic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Balloons.InputHandler
+﻿namespace Balloons.InputHandler
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     public class ConsoleInputHandler : IInputHandler
     {
         private readonly string[] validCommands = new string[]
@@ -63,7 +62,7 @@ namespace Balloons.InputHandler
         public string ParseInput(string userInput)
         {
             var inputSplit = userInput.ToLower().Split(' ');
-            
+
             int row;
             int col;
             string command;

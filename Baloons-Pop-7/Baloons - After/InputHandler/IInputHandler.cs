@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Balloons.InputHandler
+﻿namespace Balloons.InputHandler
 {
+    using System;
+
     public interface IInputHandler
     {
         string ReadInput();

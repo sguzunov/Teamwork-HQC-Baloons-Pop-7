@@ -14,8 +14,8 @@
             Console.WriteLine();
             Console.WriteLine(GameMessages.INITIAL_GAME_MESSAGE);
 
-            GameField.gameField = GameField.InitialGameField(GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
-            FieldDrawer.Draw(GameField.gameField, GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
+            Field.gameField = Field.InitialGameField(GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
+            FieldDrawer.Draw(Field.gameField, GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
 
             InputHanlder.GameLogic(InputHanlder.userInput);
         }
