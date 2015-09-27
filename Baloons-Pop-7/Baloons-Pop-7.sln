@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Baloons - Before", "Baloons - Before", "{125D9400-E9C1-4DE4-8ECE-2DBC40C777E8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Baloons - After", "Baloons - After", "{8F21A262-4621-4B39-AFA6-B6DB29AC7437}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Balloons - After", "Balloons - After", "{8F21A262-4621-4B39-AFA6-B6DB29AC7437}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baloons - Before", "Baloons - Before\Baloons - Before.csproj", "{540563AE-F21C-4A69-8FC5-53EA55E59EC4}"
 EndProject

@@ -1,4 +1,4 @@
-﻿namespace Balloons.ConsoleUI
+﻿namespace Balloons.UI
 {
     using System;
     using System.Linq;
@@ -51,7 +51,7 @@
         private void PrintBorder(int columns)
         {
             Console.Write("   ");
-            Console.WriteLine(new string('-', columns));
+            Console.WriteLine(new string('-', columns * 2));
         }
     }
 }

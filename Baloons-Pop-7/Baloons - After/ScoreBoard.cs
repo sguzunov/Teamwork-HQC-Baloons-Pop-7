@@ -9,6 +9,7 @@
     public class ScoreBoard
     {
         private const int MaxPossiblePlayers = 5;
+        private const string PlayerNullErrorMessage = "New player cannot be null.";
 
         private static object syncLock = new object();
         private static ScoreBoard instance;
@@ -51,7 +52,7 @@
         {
             if (newPlayer == null)
             {
-                throw new ArgumentNullException("New player cannot be null.");
+                throw new ArgumentNullException(PlayerNullErrorMessage);
             }
 
             if (this.listOfPlayers.Count < MaxPossiblePlayers)

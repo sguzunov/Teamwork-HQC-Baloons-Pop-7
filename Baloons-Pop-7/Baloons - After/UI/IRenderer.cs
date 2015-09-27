@@ -1,4 +1,4 @@
-﻿namespace Balloons.ConsoleUI
+﻿namespace Balloons.UI
 {
     using Balloons.GameField;
 
