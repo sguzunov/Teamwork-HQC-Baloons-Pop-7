@@ -1,21 +1,4 @@
-﻿<<<<<<< .mine
-
-
-
-
-
-
-
-=======
-using Balloons.Logic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
->>>>>>> .theirs
-namespace Balloons.InputHandler
+﻿namespace Balloons.InputHandler
 {
     using System;
     using System.Collections.Generic;
@@ -79,7 +62,7 @@ namespace Balloons.InputHandler
         public string ParseInput(string userInput)
         {
             var inputSplit = userInput.ToLower().Split(' ');
-            
+
             int row;
             int col;
             string command;
