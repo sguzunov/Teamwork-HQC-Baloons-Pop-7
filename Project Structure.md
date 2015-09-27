@@ -16,21 +16,31 @@
 	+ A factory pattern will be used in order to create different fields depending on the input (easy/hard)	
 
 * **GameRules**
-	+ Pop Balloons 
+	+  Pop Balloons 
 	+ Remove Balloons
 		+ Strategy pattern - the balloons will be removed depending on the gravity 
 		
 * **Scoreboard**
-	+ ScoreBoard class ( singleton pattern already implemented)
-	+ Player class
- 
- * **Input handler**
-	+ Input handler class 
-		+ read the input
-		+ validate the input
-	
- * **Commands**
-	+ Abstract class command with method execute
-		+ Command pattern
-		+ different classes for the different commands
-			+ undo/save command - Memento pattern
+	+	ScoreBoard class ( singleton pattern already implemented)
+	+	Player class
+
+* **Input handler**
+	 +	Input handler class 
+		+	read the input
+		+	validate the input
+
+* **Commands**
+	+	Abstract class command with method execute
+		+	Command pattern
+		+	different classes for the different commands
+			+	undo/save command - Memento pattern
+
+* **Validator**
+	+ A class containing the validations
+
+* **Sounds**
+
+* **Engine**
+	+ Initialize (facade pattern)
+	+ Play 
+	+ end the game (IsFinished method)
