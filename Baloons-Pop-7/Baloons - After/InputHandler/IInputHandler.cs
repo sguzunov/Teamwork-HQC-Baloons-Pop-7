@@ -1,7 +1,13 @@
-﻿namespace Balloons.InputHandler
+﻿using System;
+
+namespace Balloons.InputHandler
 {
     public interface IInputHandler
     {
-        void ReadCommand();
+        string ReadInput();
+
+        bool IsValidInput(string command);
+
+        string ParseInput(string userInput);
     }
 }
