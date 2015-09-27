@@ -14,7 +14,7 @@
 
             else
             {
-                return (GameField.gameField[i, j] != ".");
+                return (Field.gameField[i, j] != ".");
             }
         }
     }

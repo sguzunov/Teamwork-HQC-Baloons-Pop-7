@@ -2,6 +2,6 @@
 {
     public interface IInputHandler
     {
-        void ReadCommand();
+        string ReadCommand();
     }
 }

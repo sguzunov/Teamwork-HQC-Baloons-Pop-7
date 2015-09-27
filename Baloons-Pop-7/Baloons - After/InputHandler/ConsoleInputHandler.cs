@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Balloons.InputHandler
+﻿namespace Balloons.InputHandler
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     public class ConsoleInputHandler : IInputHandler
     {
-        public void ReadCommand()
+        public string ReadCommand()
         {
-            
+            // TODO : get the command
+            // TODO : validate command
+            // TODO : Parse string command to enum
+            return "";
         }
     }
 }

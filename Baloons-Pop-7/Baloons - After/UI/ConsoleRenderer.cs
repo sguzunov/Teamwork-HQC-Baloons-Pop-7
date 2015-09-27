@@ -53,5 +53,16 @@
             Console.Write("   ");
             Console.WriteLine(new string('-', columns * 2));
         }
+
+
+        public void RenderStartMenu()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RenderGameScoreBoard()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
