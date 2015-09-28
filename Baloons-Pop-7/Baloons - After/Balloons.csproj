@@ -51,12 +51,14 @@
     <Compile Include="Commands\StatisticsCommand.cs" />
     <Compile Include="Common\GameConstants.cs" />
     <Compile Include="Common\GameMessages.cs" />
+    <Compile Include="Common\GameMode.cs" />
     <Compile Include="Common\GameType.cs" />
     <Compile Include="Common\Validator.cs" />
     <Compile Include="Facade.cs" />
     <Compile Include="GameEngine\BalloonsGameEngine.cs" />
     <Compile Include="GameEngine\IBalloonsEngine.cs" />
     <Compile Include="GameFieldFactories\GameFieldFactory.cs" />
+    <Compile Include="Helpers\ConsoleHelper.cs" />
     <Compile Include="RandomProvider.cs" />
     <Compile Include="UI\ConsoleRenderer.cs" />
     <Compile Include="UI\FieldDrawer.cs" />
@@ -83,9 +85,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

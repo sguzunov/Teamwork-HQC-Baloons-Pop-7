@@ -6,7 +6,7 @@
     {
         void RenderGameField(IGameField field);
 
-        void RenderStartMenu();
+        void RenderMenu();
 
         void RenderGameScoreBoard();
     }

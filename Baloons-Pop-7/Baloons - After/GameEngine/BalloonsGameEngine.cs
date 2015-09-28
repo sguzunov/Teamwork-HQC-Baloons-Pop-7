@@ -9,6 +9,7 @@
     using Balloons.UI;
     using Balloons.InputHandler;
     using Balloons.GameField;
+    using Balloons.Helpers;
 
     public class BalloonsGameEngine : IBalloonsEngine
     {
@@ -24,11 +25,12 @@
 
         public void InitializeGame()
         {
-            // TODO : When have restart command ask pool
-
+            // TODO : When have restart command ask pool  pattern          
             this.field = new GameField(5, 10);
             this.field.Fill();
-            this.renderer.RenderGameField(this.field);
+
+            this.renderer.RenderMenu();
+            //this.renderer.RenderGameField(this.field);
         }
 
         public void StartGame()

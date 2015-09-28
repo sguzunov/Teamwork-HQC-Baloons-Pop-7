@@ -1,10 +1,6 @@
 ﻿namespace Balloons.InputHandler
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class ConsoleInputHandler : IInputHandler
     {
@@ -27,7 +23,7 @@
         {
             string userInput = Console.ReadLine();
 
-            if (!IsValidInput(userInput))
+            if (!this.IsValidInput(userInput))
             {
                 return string.Empty;
             }
@@ -69,7 +65,7 @@
 
             if (inputSplit.Length == 1)
             {
-                if (Array.IndexOf(validCommands, inputSplit[0]) >= 0)
+                if (Array.IndexOf(this.validCommands, inputSplit[0]) >= 0)
                 {
                     command = inputSplit[0];
                 }
@@ -78,12 +74,10 @@
                     command = string.Empty;
                 }
             }
-
-            else if ((int.TryParse(inputSplit[0].ToString(), out row)) && (int.TryParse(inputSplit[1].ToString(), out col)))
+            else if (int.TryParse(inputSplit[0].ToString(), out row) && int.TryParse(inputSplit[1].ToString(), out col))
             {
                 command = "pop " + row.ToString() + " " + col.ToString();
             }
-
             else
             {
                 command = string.Empty;

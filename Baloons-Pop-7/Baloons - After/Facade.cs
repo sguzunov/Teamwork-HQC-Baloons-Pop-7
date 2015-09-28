@@ -1,8 +1,8 @@
 ﻿namespace Balloons
 {
-    using Balloons.UI;
-    using Balloons.InputHandler;
     using Balloons.GameEngine;
+    using Balloons.InputHandler;
+    using Balloons.UI;
 
     public static class Facade
     {
@@ -13,6 +13,7 @@
             IBalloonsEngine engine = new BalloonsGameEngine(renderer, inputHandler);
 
             engine.InitializeGame();
+            engine.StartGame();
         }
     }
 }

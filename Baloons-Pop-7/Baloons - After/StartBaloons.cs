@@ -8,18 +8,16 @@
     using Balloons.UI;
     using Balloons.GamePlayer;
     using Balloons.GameFieldFactories;
+    using Balloons.Helpers;
+    using Balloons.Common;
 
     public class StartBaloons
     {
         public static void Main(string[] args)
         {
-            StartCommand.Start();
+            // StartCommand.Start();
 
-            //var fac = new GameFieldFactory();
-            //var fld = fac.CreateGameField(Common.GameType.Hard);
-            //fld.Fill();
-            //var renderer = new ConsoleRenderer();
-            //renderer.RenderGameField(fld);
+            Facade.StartGame();
         }
     }
 }
