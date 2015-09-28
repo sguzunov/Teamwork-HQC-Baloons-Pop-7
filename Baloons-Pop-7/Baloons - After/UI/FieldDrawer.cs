@@ -22,7 +22,7 @@
                     }
                     else
                     {
-                        PrintMenu.DrawBaloonsInColor(gameField[row, col]);
+                        Console.Write(PrintMenu.DrawBaloonsInColor(gameField[row, col]) + " ");
                     }
                 }
 
