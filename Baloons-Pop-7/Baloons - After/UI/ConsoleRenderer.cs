@@ -9,11 +9,17 @@
 
     public class ConsoleRenderer : IRenderer
     {
+        private const char TopAndBottomBorderSymbol = '-';
+        private const string FieldLeftBorderSymbol = "{0} | ";
+        private const string FieldRigthBorderSymbol = "| ";
+        private const string Indent = "   ";
+
         public void RenderGameField(IGameField field)
         {
             int columns = field.Columns;
 
-            Console.Write("   ");
+            // Prints columns index
+            Console.Write(Indent);
             for (int i = 0; i < columns; i++)
             {
                 Console.Write(" {0}", i + 1);
@@ -22,9 +28,7 @@
             Console.WriteLine();
 
             this.PrintBorder(columns);
-
             this.PrintMatrix(field);
-
             this.PrintBorder(columns);
         }
 
@@ -33,6 +37,11 @@
             ConsoleHelper.CentraliseCursor(GameMessages.InitialGameMessage.Length);
             Console.WriteLine(GameMessages.InitialGameMessage);
 
+            this.PrintCommands(GameMessages.CommandsMessages);
+        }
+
+        public void RenderCommands()
+        {
             this.PrintCommands(GameMessages.CommandsMessages);
         }
 
@@ -48,26 +57,34 @@
 
             for (int row = 0; row < rows; row++)
             {
-                Console.Write("{0} | ", row + 1);
+                // Prints rows index                
+                Console.Write(FieldLeftBorderSymbol, row + 1);
+
                 for (int column = 0; column < columns; column++)
                 {
-                    if (field[row, column] == ".")
+                    string symbol = field[row, column];
+                    if (symbol == ".")
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        ConsoleHelper.ChangeForegroundColorDependingOnSymbol(symbol);
                         Console.Write(field[row, column] + " ");
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Blue;
+                        ConsoleHelper.ChangeForegroundColorDependingOnSymbol(symbol);
                         Console.Write(field[row, column] + " ");
                     }
                 }
 
                 Console.ForegroundColor = ConsoleColor.Gray;
-
-                Console.Write("| ");
+                Console.Write(FieldRigthBorderSymbol);
                 Console.WriteLine();
             }
+        }
+
+        private void PrintBorder(int columns)
+        {
+            Console.Write(Indent);
+            Console.WriteLine(new string(TopAndBottomBorderSymbol, columns * 2));
         }
 
         private void PrintCommands(string[] commands)
@@ -78,12 +95,6 @@
                 ConsoleHelper.CentraliseCursor(textMaxLength);
                 Console.WriteLine(commands[i]);
             }
-        }
-
-        private void PrintBorder(int columns)
-        {
-            Console.Write("   ");
-            Console.WriteLine(new string('-', columns * 2));
         }
     }
 }

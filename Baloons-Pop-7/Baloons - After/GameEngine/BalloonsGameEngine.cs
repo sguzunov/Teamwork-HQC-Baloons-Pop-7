@@ -30,7 +30,7 @@
             this.field.Fill();
 
             this.renderer.RenderMenu();
-            //this.renderer.RenderGameField(this.field);
+            this.renderer.RenderGameField(this.field);
         }
 
         public void StartGame()

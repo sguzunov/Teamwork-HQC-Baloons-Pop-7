@@ -8,6 +8,8 @@
 
         void RenderMenu();
 
+        void RenderCommands();
+
         void RenderGameScoreBoard();
     }
 }
