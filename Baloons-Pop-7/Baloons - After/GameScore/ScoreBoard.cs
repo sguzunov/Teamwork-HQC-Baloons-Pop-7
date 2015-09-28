@@ -1,4 +1,4 @@
-﻿namespace Balloons
+﻿namespace Balloons.GameScore
 {
     using System;
     using System.Collections.Generic;

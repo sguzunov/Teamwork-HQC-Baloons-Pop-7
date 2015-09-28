@@ -5,6 +5,7 @@
 
     using Balloons.Common;
     using Balloons.GameField;
+    using Balloons.GameScore;
     using Balloons.Helpers;
 
     public class ConsoleRenderer : IRenderer
@@ -45,9 +46,13 @@
             this.PrintCommands(GameMessages.CommandsMessages);
         }
 
-        public void RenderGameScoreBoard()
+        public void RenderGameScoreBoard(ScoreBoard scoreboard)
         {
-            throw new NotImplementedException();
+            var topPlayers = scoreboard.GetSortedPlayers;
+            for (int i = 0; i < topPlayers.Count; i++)
+            {
+                Console.WriteLine("{0}. {1} won {2} points", i + 1, topPlayers[i].Name, topPlayers[i].Points);
+            }
         }
 
         private void PrintMatrix(IGameField field)
@@ -89,10 +94,10 @@
 
         private void PrintCommands(string[] commands)
         {
-            int textMaxLength = commands.Max(m => m.Length);
+            int commandMaxLength = commands.Max(m => m.Length);
             for (int i = 0; i < commands.Length; i++)
             {
-                ConsoleHelper.CentraliseCursor(textMaxLength);
+                ConsoleHelper.CentraliseCursor(commandMaxLength);
                 Console.WriteLine(commands[i]);
             }
         }

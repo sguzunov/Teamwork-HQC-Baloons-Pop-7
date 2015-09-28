@@ -10,6 +10,7 @@
     using Balloons.GameFieldFactories;
     using Balloons.Helpers;
     using Balloons.Common;
+    using Balloons.GameScore;
 
     public class StartBaloons
     {

@@ -1,6 +1,7 @@
 ﻿namespace Balloons.UI
 {
     using Balloons.GameField;
+using Balloons.GameScore;
 
     public interface IRenderer
     {
@@ -10,6 +11,6 @@
 
         void RenderCommands();
 
-        void RenderGameScoreBoard();
+        void RenderGameScoreBoard(ScoreBoard scoreboard);
     }
 }
