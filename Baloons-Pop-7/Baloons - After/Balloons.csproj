@@ -52,6 +52,7 @@
     <Compile Include="Common\GameConstants.cs" />
     <Compile Include="Common\GameMessages.cs" />
     <Compile Include="Common\GameType.cs" />
+    <Compile Include="Common\Validator.cs" />
     <Compile Include="Facade.cs" />
     <Compile Include="GameEngine\BalloonsGameEngine.cs" />
     <Compile Include="GameEngine\IBalloonsEngine.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="ScoreBoard.cs" />
     <Compile Include="StartBaloons.cs" />
+    <Compile Include="UI\PrintMenu.cs" />
     <Compile Include="UI\StartMenu.cs" />
   </ItemGroup>
   <ItemGroup>
