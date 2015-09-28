@@ -17,7 +17,7 @@
 
         private static void ReadTheIput()
         {
-            if (!PopBaloons.IsFinished())
+            if (!PopBalloons.IsFinished())
             {
                 Console.Write(GameMessages.CELL_INPUT_MESSAGE);
                 userInput.Append(Console.ReadLine());
@@ -82,7 +82,7 @@
             if (CheckConditionLegalMove.IsLegalMove(i, j))
             {
                 activeCell = Field.gameField[i, j];
-                PopBaloons.Clear(i, j, activeCell);
+                PopBalloons.Clear(i, j, activeCell);
             }
             else
             {
