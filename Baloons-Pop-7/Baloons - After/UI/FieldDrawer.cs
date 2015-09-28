@@ -4,7 +4,6 @@
 
     public class FieldDrawer
     {
-
         public static void Draw(string[,] gameField, int width, int height)
         {
             Console.WriteLine("    0 1 2 3 4 5 6 7 8 9");
@@ -23,8 +22,7 @@
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.Write(gameField[row, col] + " ");
+                        PrintMenu.DrawBaloonsInColor(gameField[row, col]);
                     }
                 }
 
