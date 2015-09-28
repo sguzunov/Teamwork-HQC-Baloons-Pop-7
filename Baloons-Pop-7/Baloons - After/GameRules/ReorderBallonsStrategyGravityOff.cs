@@ -1,22 +1,22 @@
 ﻿namespace Balloons.Commands
 {
-    using Balloons.Common;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
 
-    public class RemoveBallonsCommand
+    using Balloons.Common;
+    using Balloons.GameRules;
+
+    public class ReorderBallonsStrategyGravityOff : ReorderBalloonsStrategy
     {
-        internal static void RemovePoppedBaloons(string[,] gameField)
+        public override void ReorderBalloons(string[,] gameField)
         {
             int row;
             int col;
 
             Queue<string> currentGameField = new Queue<string>();
 
-            for (col = 0; col < GameConstants.HEIGHT_OF_FIELD; col++)
+            for (col = GameConstants.HEIGHT_OF_FIELD - 1; col >= 0; col--)
             {
-                for (row = 0; row < GameConstants.WIDTH_OF_FIELD; row++)
+                for (row = GameConstants.WIDTH_OF_FIELD - 1; row >= 0; row--)
                 {
                     if (gameField[row, col] != ".")
                     {
@@ -25,11 +25,11 @@
                     }
                 }
 
-                row = 0;
+                row = GameConstants.WIDTH_OF_FIELD - 1;
                 while (currentGameField.Count > 0)
                 {
                     gameField[row, col] = currentGameField.Dequeue();
-                    row++;
+                    row--;
                 }
 
                 currentGameField.Clear();

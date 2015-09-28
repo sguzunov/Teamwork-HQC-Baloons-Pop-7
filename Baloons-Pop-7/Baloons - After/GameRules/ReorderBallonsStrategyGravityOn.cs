@@ -1,13 +1,13 @@
 ﻿namespace Balloons.Commands
 {
-    using Balloons.Common;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
 
-    public class RemoveBallonsCommand
+    using Balloons.Common;
+    using Balloons.GameRules;
+
+    public class ReorderBallonsStrategyGravityOn : ReorderBalloonsStrategy
     {
-        internal static void RemovePoppedBaloons(string[,] gameField)
+        public override void ReorderBalloons(string[,] gameField)
         {
             int row;
             int col;
