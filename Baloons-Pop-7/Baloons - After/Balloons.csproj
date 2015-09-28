@@ -56,6 +56,11 @@
     <Compile Include="GameEngine\BalloonsGameEngine.cs" />
     <Compile Include="GameEngine\IBalloonsEngine.cs" />
     <Compile Include="GameFieldFactories\GameFieldFactory.cs" />
+    <Compile Include="GameRules\Gravity.cs" />
+    <Compile Include="GameRules\PopBalloons.cs" />
+    <Compile Include="GameRules\ReorderBallonsStrategyGravityOff.cs" />
+    <Compile Include="GameRules\ReorderBallonsStrategyGravityOn.cs" />
+    <Compile Include="GameRules\ReorderBalloonsStrategy.cs" />
     <Compile Include="RandomProvider.cs" />
     <Compile Include="UI\ConsoleRenderer.cs" />
     <Compile Include="UI\FieldDrawer.cs" />
@@ -65,7 +70,6 @@
     <Compile Include="GameField\GameField.cs" />
     <Compile Include="GameField\Field.cs" />
     <Compile Include="GameField\IGameField.cs" />
-    <Compile Include="GameRules\PopBaloons.cs" />
     <Compile Include="InputHandler\IInputHandler.cs" />
     <Compile Include="InputHandler\InputHanlder.cs" />
     <Compile Include="Logic\CheckConditionLegalMove.cs" />
