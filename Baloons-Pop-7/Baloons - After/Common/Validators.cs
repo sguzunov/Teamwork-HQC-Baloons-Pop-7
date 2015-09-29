@@ -1,5 +1,5 @@
 ﻿
-namespace Baloons.Common
+namespace Balloons.Common
 {
     using System;
 

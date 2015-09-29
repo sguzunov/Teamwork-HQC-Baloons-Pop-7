@@ -11,6 +11,8 @@
 
         public static void Add(int score,string name)
         {
+            Validator.CheckIfNameIsEmpty(name);
+            Validator.CheckLenghtOfName(name);
             statistics.Add(score,name);
         }
         internal static void Show()
