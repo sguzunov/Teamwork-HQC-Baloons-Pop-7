@@ -1,13 +1,15 @@
-﻿
-namespace Balloons.ConsoleUI
+﻿namespace Balloons.ConsoleUI
 {
     using System;
 
     public class ChangeBaloonColor
     {
-        public static char DrawBaloonsInColor(string currentNumberToChange)
+        public static char DrawBalloonsInColor(string currentNumberToChange)
         {
             char symbol = '\u00A4';
+            //// other chars
+            //// smiling face = \u263b
+
             switch (currentNumberToChange)
             {
                 case "1":
@@ -28,6 +30,7 @@ namespace Balloons.ConsoleUI
                 default:
                     break;
             }
+
             return symbol;
         }
     }
