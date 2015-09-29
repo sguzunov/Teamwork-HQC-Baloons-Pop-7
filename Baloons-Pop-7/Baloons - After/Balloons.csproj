@@ -51,6 +51,7 @@
     <Compile Include="Commands\StatisticsCommand.cs" />
     <Compile Include="Common\GameConstants.cs" />
     <Compile Include="Common\GameMessages.cs" />
+    <Compile Include="Common\GameMode.cs" />
     <Compile Include="Common\GameType.cs" />
     <Compile Include="Common\Validators.cs" />
     <Compile Include="Facade.cs" />
@@ -62,7 +63,9 @@
     <Compile Include="GameRules\ReorderBallonsStrategyGravityOff.cs" />
     <Compile Include="GameRules\ReorderBallonsStrategyGravityOn.cs" />
     <Compile Include="GameRules\ReorderBalloonsStrategy.cs" />
+    <Compile Include="Helpers\ConsoleHelper.cs" />
     <Compile Include="RandomProvider.cs" />
+    <Compile Include="UI\ChangeBaloonColor.cs" />
     <Compile Include="UI\ConsoleRenderer.cs" />
     <Compile Include="UI\FieldDrawer.cs" />
     <Compile Include="UI\IRenderer.cs" />
@@ -79,17 +82,13 @@
     <Compile Include="GamePlayer\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerator.cs" />
-    <Compile Include="ScoreBoard.cs" />
+    <Compile Include="GameScore\ScoreBoard.cs" />
     <Compile Include="StartBaloons.cs" />
-    <Compile Include="UI\ChangeBalloonColor.cs" />
-    <Compile Include="UI\StartMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

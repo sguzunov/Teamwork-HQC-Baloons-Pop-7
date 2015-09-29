@@ -1,16 +1,19 @@
-﻿namespace Balloons.ConsoleUI
+﻿namespace Balloons.Helpers
 {
     using System;
 
-    public class ChangeBaloonColor
+    public class ConsoleHelper
     {
-        public static char DrawBalloonsInColor(string currentNumberToChange)
+        public static void CentraliseCursor(int textLength)
         {
-            char symbol = '\u00A4';
-            //// other chars
-            //// smiling face = \u263b
+            int leftPosition = (Console.WindowWidth / 2) - (textLength / 2);
+            int topPosition = Console.CursorTop;
+            Console.SetCursorPosition(leftPosition, topPosition);
+        }
 
-            switch (currentNumberToChange)
+        public static void ChangeForegroundColorDependingOnSymbol(string symbol)
+        {
+            switch (symbol)
             {
                 case "1":
                     Console.ForegroundColor = ConsoleColor.Blue;
@@ -27,11 +30,12 @@
                 case "5":
                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     break;
-                default:
+                case ".":
+                    Console.ForegroundColor = ConsoleColor.Red;
                     break;
+                default:
+                    throw new InvalidOperationException("This symbol does not exists!");
             }
-
-            return symbol;
         }
     }
 }

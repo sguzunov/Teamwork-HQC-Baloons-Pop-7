@@ -1,13 +1,16 @@
 ﻿namespace Balloons.UI
 {
     using Balloons.GameField;
+    using Balloons.GameScore;
 
     public interface IRenderer
     {
         void RenderGameField(IGameField field);
 
-        void RenderStartMenu();
+        void RenderMenu();
 
-        void RenderGameScoreBoard();
+        void RenderCommands();
+
+        void RenderGameScoreBoard(ScoreBoard scoreboard);
     }
 }
