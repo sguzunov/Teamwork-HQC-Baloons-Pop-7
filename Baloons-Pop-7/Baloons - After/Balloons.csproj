@@ -81,7 +81,7 @@
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="ScoreBoard.cs" />
     <Compile Include="StartBaloons.cs" />
-    <Compile Include="UI\ChangeBaloonColor.cs" />
+    <Compile Include="UI\ChangeBalloonColor.cs" />
     <Compile Include="UI\StartMenu.cs" />
   </ItemGroup>
   <ItemGroup>
