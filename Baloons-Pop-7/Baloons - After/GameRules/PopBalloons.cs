@@ -33,7 +33,7 @@
 
         internal static bool IsPopValid(int index, int boundValue)
         {
-            if ((index >= 0) && (index <= boundValue))
+            if ((index >= 0) && (index < boundValue))
             {                
                 return true;
             }
