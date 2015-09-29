@@ -3,7 +3,7 @@ namespace Balloons.ConsoleUI
 {
     using System;
 
-    class PrintMenu
+    public class ChangeBaloonColor
     {
         public static char DrawBaloonsInColor(string currentNumberToChange)
         {
