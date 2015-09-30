@@ -2,7 +2,7 @@
 {
     internal class Memory
     {
-        public Memory(string[,] gameField, int moves,int filledCells)
+        public Memory(string[,] gameField, int moves, int filledCells)
         {
             this.GameField = gameField;
             this.Moves = moves;

@@ -1,10 +1,8 @@
 ﻿namespace Balloons.Commands
 {
-    using Balloons.Common;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using Helpers;
+
+    using Balloons.Common;
 
     public class RemoveBallonsCommand
     {

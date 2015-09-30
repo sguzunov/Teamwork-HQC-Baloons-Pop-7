@@ -13,7 +13,7 @@
         }
 
         public Memory RestoreMemory()
-        {          
+        {
             var restoreSave = saves.Pop();
             return restoreSave;
         }
