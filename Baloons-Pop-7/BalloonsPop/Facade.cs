@@ -8,11 +8,11 @@
     {
         public static void StartGame()
         {
-            //IRenderer renderer = new ConsoleRenderer();
-            //IInputHandler inputHandler = new InputHandler.InputHandler();
-            //IBalloonsEngine engine = new BalloonsGameEngine(renderer, inputHandler);
+            IRenderer renderer = new ConsoleRenderer();
+            IInputHandler inputHandler = new ConsoleInputHandler();
+            IBalloonsEngine engine = new BalloonsGameEngine(renderer, inputHandler);
 
-            //engine.InitializeGame();
+            engine.InitializeGame();
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class ConsoleInputHandler
+    public class ConsoleInputHandler : IInputHandler
     {
         private readonly string[] validCommands = new string[]
             {
@@ -17,7 +17,7 @@
 
         public ConsoleInputHandler()
         {
-  
+
         }
 
         /// <summary>

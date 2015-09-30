@@ -41,10 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\ExitCommand.cs" />
-    <Compile Include="Commands\RestartCommand.cs" />
-    <Compile Include="Commands\StartCommand.cs" />
-    <Compile Include="Commands\StatisticsCommand.cs" />
     <Compile Include="Commands\UndoCommand.cs" />
     <Compile Include="Common\GameConstants.cs" />
     <Compile Include="Common\GameMessages.cs" />
@@ -66,11 +62,9 @@
     <Compile Include="GameScore\ScoreBoard.cs" />
     <Compile Include="Helpers\ConsoleHelper.cs" />
     <Compile Include="Helpers\Sound.cs" />
-    <Compile Include="InputHandler\InputHandler.cs" />
+    <Compile Include="InputHandler\ConsoleInputHandler.cs" />
     <Compile Include="InputHandler\IInputHandler.cs" />
     <Compile Include="Logic\CheckConditionLegalMove.cs" />
-    <Compile Include="Logic\InvalidCommand.cs" />
-    <Compile Include="Logic\InvalidMove.cs" />
     <Compile Include="Logic\Memory.cs" />
     <Compile Include="Logic\MemoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

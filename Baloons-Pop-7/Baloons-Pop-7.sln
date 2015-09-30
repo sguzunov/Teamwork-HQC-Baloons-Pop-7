@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B4ED4D73-D9FD-42F3-B3C5-003488B613C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalloonsPop", "BalloonsPop\BalloonsPop.csproj", "{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balloons", "BalloonsPop\Balloons.csproj", "{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

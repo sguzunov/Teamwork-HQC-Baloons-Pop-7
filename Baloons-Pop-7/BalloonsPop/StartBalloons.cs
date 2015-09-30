@@ -16,7 +16,7 @@
 
     public class StartBalloons
     {
-         
+
         //private static int moves = 0;
         //private static MemoryManager gameMemory = new MemoryManager();
         //private static bool isUndo = false;
@@ -26,19 +26,21 @@
         {
             //StartCommand.Start();
 
-            // creating game field...
-            IGameField field = GameFieldFactory.CreateGameField(GameType.Hard);
-            field.Fill();
-            var renderer = new ConsoleRenderer();
-            renderer.RenderGameField(field);
-            Console.Write(GameMessages.CELL_INPUT_MESSAGE);
+            //// creating game field...
+            //IGameField field = GameFieldFactory.CreateGameField(GameType.Hard);
+            //field.Fill();
+            //var renderer = new ConsoleRenderer();
+            //renderer.RenderGameField(field);
+            //Console.Write(GameMessages.CELL_INPUT_MESSAGE);
 
-            /// input handler
-            var inputHandler = new ConsoleInputHandler();
-            string input = inputHandler.ReadInput();
-            string parsedInput = inputHandler.ParseInput(input);
-            Console.WriteLine(input);
-            Console.WriteLine(parsedInput);
+            //var inputHandler = new ConsoleInputHandler();
+            //string input = inputHandler.ReadInput();
+            //string parsedInput = inputHandler.ParseInput(input);
+            //Console.WriteLine(input);
+            //Console.WriteLine(parsedInput);
+
+            Facade.StartGame();
+
         }
 
         //private static void ReadTheIput()
