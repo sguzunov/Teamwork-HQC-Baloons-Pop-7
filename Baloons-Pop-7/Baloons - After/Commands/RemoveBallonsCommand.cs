@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Helpers;
 
     public class RemoveBallonsCommand
     {
@@ -31,6 +32,8 @@
                     gameField[row, col] = currentGameField.Dequeue();
                     row--;
                 }
+
+                Helpers.Sound.PlayGameSound();
 
                 currentGameField.Clear();
             }

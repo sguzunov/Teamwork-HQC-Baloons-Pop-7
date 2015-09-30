@@ -8,7 +8,7 @@
         private int columns;
         private string[,] field;
 
-        /// <remarks>The number of rows must be less than 10 and the number of columns must not be bigger than 10 because the UI goes wrong.</remarks>
+        /// <remarks>The number of rows must be less than 10 and the number of columns must not be bigger than 10 because UI breaks.</remarks>
         public GameField(int rows, int columns)
         {
             this.Rows = rows;

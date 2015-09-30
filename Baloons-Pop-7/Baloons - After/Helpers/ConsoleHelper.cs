@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Balloons.ConsoleUI
+﻿namespace Balloons.Helpers
 {
-    public class ChangeBaloonColor
+    using System;
+
+    public class ConsoleHelper
     {
-        public static char DrawBalloonsInColor(string currentNumberToChange)
+        public static void CentraliseCursor(int textLength)
         {
+            int leftPosition = (Console.WindowWidth / 2) - (textLength / 2);
+            int topPosition = Console.CursorTop;
+            Console.SetCursorPosition(leftPosition, topPosition);
+        }
 
-            char symbol = '\u00A4';
-            //// other chars
-            //// smiling face = \u263b
-
-            switch (currentNumberToChange)
+        public static void ChangeForegroundColorDependingOnSymbol(string symbol)
+        {
+            switch (symbol)
             {
                 case "1":
                     Console.ForegroundColor = ConsoleColor.Blue;
@@ -38,8 +36,6 @@ namespace Balloons.ConsoleUI
                 default:
                     throw new InvalidOperationException("This symbol does not exists!");
             }
-
-            return symbol;
         }
     }
 }
