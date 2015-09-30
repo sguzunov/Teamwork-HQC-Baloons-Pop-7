@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class ConsoleInputHandler : IInputHandler
+    public class ConsoleInputHandler
     {
         private readonly string[] validCommands = new string[]
             {
@@ -15,6 +15,11 @@
                 "undo"
             };
 
+        public ConsoleInputHandler()
+        {
+  
+        }
+
         /// <summary>
         /// This method reads the input from the console
         /// </summary>
@@ -23,7 +28,7 @@
         {
             string userInput = Console.ReadLine();
 
-            if (!this.IsValidInput(userInput))
+            if (IsValidInput(userInput))
             {
                 return string.Empty;
             }

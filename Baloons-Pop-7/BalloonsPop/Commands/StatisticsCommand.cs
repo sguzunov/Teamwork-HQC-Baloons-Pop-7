@@ -17,13 +17,13 @@
         }
         internal static void Show()
         {
-            var position = GameConstants.FIRST_STATISTIC_POSITION;
+            var position = 0;
 
             Console.WriteLine();
             Console.WriteLine("Scoreboard:");
             foreach (KeyValuePair<int, string> statistic in statistics)
             {
-                if (position == GameConstants.LAST_STATISTIC_POSITION )
+                if (position == 5 )
                 {
                     break;
                 }

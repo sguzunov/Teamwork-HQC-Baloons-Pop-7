@@ -15,9 +15,9 @@
 
             Queue<string> currentGameField = new Queue<string>();
 
-            for (col = 0; col < GameConstants.HEIGHT_OF_FIELD; col++)
+            for (col = 0; col < gameField.Columns; col++)
             {
-                for (row = 0; row < GameConstants.WIDTH_OF_FIELD; row++)
+                for (row = 0; row < gameField.Rows; row++)
                 {
                     if (gameField[row, col] != ".")
                     {

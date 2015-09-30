@@ -7,7 +7,7 @@
     {
         internal static bool IsLegalMove(int i, int j, GameField gameField)
         {
-            if ((i < 0) || (j < 0) || (j > GameConstants.HEIGHT_OF_FIELD - 1) || (i > GameConstants.WIDTH_OF_FIELD - 1))
+            if ((i < 0) || (j < 0) || (j > gameField.Rows - 1) || (i > gameField.Columns - 1))
             {
                 return false;
             }
