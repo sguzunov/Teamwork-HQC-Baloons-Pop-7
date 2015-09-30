@@ -64,6 +64,7 @@
     <Compile Include="GameRules\ReorderBallonsStrategyGravityOn.cs" />
     <Compile Include="GameRules\ReorderBalloonsStrategy.cs" />
     <Compile Include="Helpers\ConsoleHelper.cs" />
+    <Compile Include="Helpers\Sound.cs" />
     <Compile Include="RandomProvider.cs" />
     <Compile Include="UI\ChangeBaloonColor.cs" />
     <Compile Include="UI\ConsoleRenderer.cs" />
