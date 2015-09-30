@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BalloonsPop</RootNamespace>
+    <AssemblyName>BalloonsPop</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\RestartCommand.cs" />
+    <Compile Include="Commands\StartCommand.cs" />
+    <Compile Include="Commands\StatisticsCommand.cs" />
+    <Compile Include="Commands\UndoCommand.cs" />
+    <Compile Include="Common\GameConstants.cs" />
+    <Compile Include="Common\GameMessages.cs" />
+    <Compile Include="Common\GameMode.cs" />
+    <Compile Include="Common\GameType.cs" />
+    <Compile Include="Common\Validators.cs" />
+    <Compile Include="Facade.cs" />
+    <Compile Include="GameEngine\BalloonsGameEngine.cs" />
+    <Compile Include="GameEngine\IBalloonsEngine.cs" />
+    <Compile Include="GameFieldFactory\GameFieldFactory.cs" />
+    <Compile Include="GameFieldFactory\GameField.cs" />
+    <Compile Include="GameFieldFactory\IGameField.cs" />
+    <Compile Include="GamePlayer\IPlayer.cs" />
+    <Compile Include="GamePlayer\Player.cs" />
+    <Compile Include="GameRules\PopBalloons.cs" />
+    <Compile Include="GameRules\ReorderBallonsStrategyFly.cs" />
+    <Compile Include="GameRules\ReorderBallonsStrategyDefault.cs" />
+    <Compile Include="GameRules\ReorderBalloonsStrategy.cs" />
+    <Compile Include="GameScore\ScoreBoard.cs" />
+    <Compile Include="Helpers\ConsoleHelper.cs" />
+    <Compile Include="Helpers\Sound.cs" />
+    <Compile Include="InputHandler\InputHandler.cs" />
+    <Compile Include="InputHandler\IInputHandler.cs" />
+    <Compile Include="Logic\CheckConditionLegalMove.cs" />
+    <Compile Include="Logic\InvalidCommand.cs" />
+    <Compile Include="Logic\InvalidMove.cs" />
+    <Compile Include="Logic\Memory.cs" />
+    <Compile Include="Logic\MemoryManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomProvider.cs" />
+    <Compile Include="StartBalloons.cs" />
+    <Compile Include="UI\ChangeBalloonColor.cs" />
+    <Compile Include="UI\ConsoleRenderer.cs" />
+    <Compile Include="UI\IRenderer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
