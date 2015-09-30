@@ -6,7 +6,9 @@
     public class PopBalloons
     {
         private static int clearedCells = 0;
-        private static int filledCells = GameConstants.FILLED_CELLS;
+        public static  int filledCells = GameConstants.FILLED_CELLS;
+
+        
 
         // this method should be renamed to Pop???
         internal static void Clear(int row, int col, string activeCell)

@@ -49,6 +49,7 @@
     <Compile Include="Commands\RestartCommand.cs" />
     <Compile Include="Commands\StartCommand.cs" />
     <Compile Include="Commands\StatisticsCommand.cs" />
+    <Compile Include="Commands\UndoCommand.cs" />
     <Compile Include="Common\GameConstants.cs" />
     <Compile Include="Common\GameMessages.cs" />
     <Compile Include="Common\GameType.cs" />
@@ -61,6 +62,8 @@
     <Compile Include="GameRules\ReorderBallonsStrategyGravityOff.cs" />
     <Compile Include="GameRules\ReorderBallonsStrategyGravityOn.cs" />
     <Compile Include="GameRules\ReorderBalloonsStrategy.cs" />
+    <Compile Include="Logic\Memory.cs" />
+    <Compile Include="Logic\MemoryManager.cs" />
     <Compile Include="RandomProvider.cs" />
     <Compile Include="UI\ConsoleRenderer.cs" />
     <Compile Include="UI\FieldDrawer.cs" />
