@@ -7,7 +7,7 @@ namespace Balloons.Helpers
     {
         public static void PlayGameSound()
         {
-            Console.Beep(2000, 300);
+            Console.Beep(2000, 30);
         }
 
     }
