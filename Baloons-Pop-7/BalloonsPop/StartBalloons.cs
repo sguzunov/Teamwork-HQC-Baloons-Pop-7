@@ -31,13 +31,34 @@
             //field.Fill();
             //var renderer = new ConsoleRenderer();
             //renderer.RenderGameField(field);
-            //Console.Write(GameMessages.CELL_INPUT_MESSAGE);
+            //Console.Write(GameMessages.CELL_NPUT_MESSAGE);
 
             //var inputHandler = new ConsoleInputHandler();
             //string input = inputHandler.ReadInput();
             //string parsedInput = inputHandler.ParseInput(input);
             //Console.WriteLine(input);
             //Console.WriteLine(parsedInput);
+
+            // creating game field...
+
+            var field = new GameField.GameField(9,9);
+            //field.CreateGameField(GameType.Hard);
+            field.Fill();
+            var renderer = new ConsoleRenderer();
+            renderer.RenderGameField(field);
+
+
+            /// input handler
+            var inputHandler = new ConsoleInputHandler();
+            string input = string.Empty;
+            while (input != "end")
+            {
+                Console.Write(GameMessages.CELL_INPUT_MESSAGE);
+                input = inputHandler.ReadInput();
+                string parsedInput = inputHandler.ParseInput(input, field);
+                Console.WriteLine("Input: " + input);
+                Console.WriteLine("Parsed Input: " + parsedInput);
+            }
 
             Facade.StartGame();
 

@@ -8,6 +8,6 @@
 
         bool IsValidInput(string command);
 
-        string ParseInput(string userInput);
+        string ParseInput(string userInput, GameField.IGameField field);
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace Balloons.InputHandler
 {
     using System;
+    using Balloons.GameField;
 
     public class ConsoleInputHandler : IInputHandler
     {
@@ -14,11 +15,6 @@
                 "top",
                 "undo"
             };
-
-        public ConsoleInputHandler()
-        {
-
-        }
 
         /// <summary>
         /// This method reads the input from the console
@@ -55,12 +51,27 @@
             return validCommand;
         }
 
+        internal static bool IsPositionValid(int row, int col, IGameField gameField)
+        {
+            bool validRow = (row >= 0) && (row < gameField.Rows);
+            bool validColumn = (col >= 0) && (col < gameField.Columns);
+
+            if (validRow && validColumn)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Parse the user input
         /// </summary>
         /// <param name="userInput"></param>
         /// <returns>command that can be interpreted by the engine</returns>
-        public string ParseInput(string userInput)
+        public string ParseInput(string userInput, IGameField gameField)
         {
             var inputSplit = userInput.ToLower().Split(' ');
 
@@ -79,9 +90,18 @@
                     command = string.Empty;
                 }
             }
-            else if (int.TryParse(inputSplit[0].ToString(), out row) && int.TryParse(inputSplit[1].ToString(), out col))
+            else if (inputSplit.Length == 2 &&
+                int.TryParse(inputSplit[0].ToString(), out row) &&
+                int.TryParse(inputSplit[1].ToString(), out col))
             {
-                command = "pop " + row.ToString() + " " + col.ToString();
+                if (IsPositionValid(row, col, gameField))
+                {
+                    command = "pop " + row.ToString() + " " + col.ToString();
+                }
+                else
+                {
+                    command = "pop invalid";
+                }
             }
             else
             {
