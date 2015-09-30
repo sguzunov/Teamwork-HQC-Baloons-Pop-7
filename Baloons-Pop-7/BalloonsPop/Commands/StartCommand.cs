@@ -6,6 +6,8 @@
     using Balloons.GameField;
     using Balloons.InputHandler;
     using Balloons.ConsoleUI;
+    using Balloons.Common;
+    using Balloons.GameFieldFactories;
 
     public class StartCommand
     {
@@ -13,12 +15,12 @@
         {
             Console.WriteLine();
 
-            Console.WriteLine(GameMessages.INITIAL_GAME_MESSAGE);
+            // just testing
+            var difficulty = GameType.Easy;
 
-            Field.gameField = Field.InitialGameField(GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
-            FieldDrawer.Draw(Field.gameField, GameConstants.WIDTH_OF_FIELD, GameConstants.HEIGHT_OF_FIELD);
+            IGameField field = GameFieldFactory.CreateGameField(difficulty);
+            Console.WriteLine(field[0,0]);
 
-            InputHanlder.GameLogic(InputHanlder.userInput);
         }
     }
 }

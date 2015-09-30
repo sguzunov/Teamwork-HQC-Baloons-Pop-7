@@ -9,7 +9,7 @@
     {
         private const string TypeErrorMessage = "The game type does not exists!";
 
-        public IGameField CreateGameField(GameType type)
+        public static IGameField CreateGameField(GameType type)
         {
             switch (type)
             {

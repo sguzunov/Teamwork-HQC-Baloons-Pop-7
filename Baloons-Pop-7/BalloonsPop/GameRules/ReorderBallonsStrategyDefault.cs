@@ -4,10 +4,11 @@
 
     using Balloons.Common;
     using Balloons.GameRules;
+    using GameField;
 
     public class ReorderBallonsStrategyDefault : ReorderBalloonsStrategy
     {
-        public override void ReorderBalloons(string[,] gameField)
+        public override void ReorderBalloons(GameField gameField)
         {
             int row;
             int col;

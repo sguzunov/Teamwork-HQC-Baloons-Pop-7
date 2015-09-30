@@ -11,19 +11,19 @@
 
        
         // this method should be renamed to Pop???
-        internal static void Pop(int row, int col, string activeCell)
+        internal static void Pop(int row, int col, string activeCell, GameField field)
         {
-            bool validPop = IsPopValid(row, GameConstants.WIDTH_OF_FIELD) && IsPopValid(col, GameConstants.HEIGHT_OF_FIELD);
+            bool validPop = IsPopValid(row, field.Rows) && IsPopValid(col, field.Columns);
 
-            if (validPop && (Field.gameField[row, col] == activeCell))
+            if (validPop && (field[row, col] == activeCell))
             {
-                Field.gameField[row, col] = ".";
+                field[row, col] = ".";
                 clearedCells++;
 
-                Pop(row - 1, col, activeCell); // Up
-                Pop(row + 1, col, activeCell); // Down
-                Pop(row, col + 1, activeCell); // Left
-                Pop(row, col - 1, activeCell); // Right
+                Pop(row - 1, col, activeCell, field); // Up
+                Pop(row + 1, col, activeCell, field); // Down
+                Pop(row, col + 1, activeCell, field); // Left
+                Pop(row, col - 1, activeCell, field); // Right
             }
             else
             {

@@ -5,7 +5,7 @@
 
     class CheckConditionLegalMove
     {
-        internal static bool IsLegalMove(int i, int j)
+        internal static bool IsLegalMove(int i, int j, GameField gameField)
         {
             if ((i < 0) || (j < 0) || (j > GameConstants.HEIGHT_OF_FIELD - 1) || (i > GameConstants.WIDTH_OF_FIELD - 1))
             {
@@ -14,7 +14,7 @@
 
             else
             {
-                return (Field.gameField[i, j] != ".");
+                return (gameField[i, j] != ".");
             }
         }
     }
