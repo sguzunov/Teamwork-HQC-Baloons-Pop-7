@@ -46,7 +46,6 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\InvalidPopCommand.cs" />
     <Compile Include="Commands\InvalidCommand.cs" />
-    <Compile Include="Commands\Invoker.cs" />
     <Compile Include="Commands\PopBalloonsCommand.cs" />
     <Compile Include="Commands\ShowScoreboardCommand.cs" />
     <Compile Include="Commands\StartCommand.cs" />
