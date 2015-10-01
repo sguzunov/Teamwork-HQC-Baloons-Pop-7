@@ -3,9 +3,12 @@
     using System;
     using Balloons.GameField;
     using BalloonsPop.Commands;
+    using Balloons.Common;
 
     public class ConsoleInputHandler : IInputHandler
     {
+        const int PopCommandLength = 2;
+
         private readonly string[] validCommands = new string[]
             {
                 "help",
@@ -13,10 +16,77 @@
                 "exit",
                 "restart",
                 "top",
-                "undo"
+                "undo",
+            };
+
+        private readonly string[] validModes = new string[]
+            {
+                "fly",
+                "default"
+            };
+
+        private readonly string[] validTypes = new string[]
+            {
+                "easy",
+                "hard"
             };
 
         ICommand cmd = null;
+
+        public GameMode SetMode()
+        {
+            GameMode gameMode = GameMode.Invalid;
+
+            string input = string.Empty;
+            string parsedInput = string.Empty;
+
+            do
+            {
+                Console.WriteLine("Choose a mode: please type 'default' or 'fly': ");
+                input = ReadInput();
+                parsedInput = ParseInput(input, this.validModes);
+
+                if (parsedInput == "fly")
+                {
+                    gameMode = GameMode.Fly;
+                }
+                else if (parsedInput == "default")
+                {
+                    gameMode = GameMode.Default;
+                }
+            }
+            while ((gameMode == GameMode.Invalid));
+        
+            return gameMode;        
+	    }
+
+        public GameType SetType()
+        {
+            GameType gameType = GameType.Invalid;
+
+            string input = string.Empty;
+            string parsedInput = string.Empty;
+
+            do
+            {
+                Console.WriteLine("Choose difficulty: please type 'easy' or 'hard': ");
+                input = ReadInput();
+                parsedInput = ParseInput(input, this.validTypes);
+
+                if (parsedInput == "easy")
+                {
+                    gameType = GameType.Easy;
+                }
+                else if (parsedInput == "hard")
+                {
+                    gameType = GameType.Hard;
+                }
+
+            }
+            while ((gameType == GameType.Invalid));       
+
+            return gameType;
+        }
 
         /// <summary>
         /// This method reads the input from the console
@@ -28,11 +98,11 @@
 
             if (IsValidInput(userInput))
             {
-                return string.Empty;
+                return userInput;                
             }
             else
             {
-                return userInput;
+                return string.Empty;
             }
         }
 
@@ -45,7 +115,7 @@
         {
             bool validCommand = true;
 
-            if (command != string.Empty)
+            if (string.IsNullOrWhiteSpace(command))
             {
                 validCommand = false;
             }
@@ -53,7 +123,7 @@
             return validCommand;
         }
 
-        internal static bool IsPositionValid(int row, int col, IGameField gameField)
+        public bool IsPositionValid(int row, int col, IGameField gameField)
         {
             bool validRow = (row >= 0) && (row < gameField.Rows);
             bool validColumn = (col >= 0) && (col < gameField.Columns);
@@ -68,33 +138,28 @@
             }
         }
 
+
         /// <summary>
         /// Parse the user input
         /// </summary>
         /// <param name="userInput"></param>
         /// <returns>command that can be interpreted by the engine</returns>
         public string ParseInput(string userInput, IGameField gameField)
-        {
-            var inputSplit = userInput.ToLower().Split(' ');
-
+        {                       
+            string command;
+            string[] commandArray = userInput.Split(' ');
+            int userInputLength = commandArray.Length;
             int row;
             int col;
-            string command;
 
-            if (inputSplit.Length == 1)
+            if (CheckIfValid(userInput, this.validCommands))
             {
-                if (Array.IndexOf(this.validCommands, inputSplit[0]) >= 0)
-                {
-                    command = inputSplit[0];
-                }
-                else
-                {
-                    command = string.Empty;
-                }
+                command = commandArray[0];
             }
-            else if (inputSplit.Length == 2 &&
-                int.TryParse(inputSplit[0].ToString(), out row) &&
-                int.TryParse(inputSplit[1].ToString(), out col))
+                // maybe a bool variable should be pulled out
+            else if (userInputLength == PopCommandLength &&
+                int.TryParse(commandArray[0].ToString(), out row) &&
+                int.TryParse(commandArray[1].ToString(), out col))
             {
                 if (IsPositionValid(row, col, gameField))
                 {
@@ -113,6 +178,24 @@
             return command;
         }
 
+        public string ParseInput(string userInput, string[] commands)
+        {
+            string command;
+            string[] commandArray = userInput.Split(' ');
+            int userInputLength = commandArray.Length;
+
+            if ((CheckIfValid(userInput, commands)))
+            {                
+                command = commandArray[0];
+            }
+            else
+            {
+                command = string.Empty;
+            }
+
+            return command;
+        }
+    
         // this is the invoker class (command pattern)
         public ICommand GetCommand(string action)
         {
@@ -154,9 +237,30 @@
                     cmd = new InvalidPopCommand();
                     break;
                 default:
+                    cmd = new InvalidCommand();
                     break;
             }
             return cmd;
+        }
+
+        public bool CheckIfValid(string input, string[] commands)
+        {
+            string[] inputSplit = input.ToLower().Split(' ');
+            bool validCommand = false;
+
+            if (inputSplit.Length == 1)
+            {
+                if (Array.IndexOf(commands, inputSplit[0]) >= 0)
+                {
+                    validCommand = true;
+                }
+                else
+                {
+                    validCommand = false;
+                }
+            }
+
+            return validCommand;
         }
     }
 }

@@ -42,17 +42,22 @@
 
             // creating game field...
 
-            var field = new GameField.GameField(9,9);
-            //field.CreateGameField(GameType.Hard);
-            field.Fill();
-            var renderer = new ConsoleRenderer();
-            renderer.RenderGameField(field);
+
 
 
             /// input handler
             var inputHandler = new ConsoleInputHandler();
             string input = string.Empty;
-            while (input != "end")
+
+            GameMode mode = inputHandler.SetMode();
+            GameType type = inputHandler.SetType();
+            IGameField field = GameFieldFactory.CreateGameField(type);
+            field.Fill();
+
+            var renderer = new ConsoleRenderer();
+            renderer.RenderGameField(field);
+
+            while (true)
             {
                 Console.Write(GameMessages.CELL_INPUT_MESSAGE);
                 input = inputHandler.ReadInput();
@@ -63,6 +68,10 @@
                 ICommand command = inputHandler.GetCommand(parsedInput);
                 command.Execute();
             }
+
+            
+
+
 
             //Facade.StartGame();
 
