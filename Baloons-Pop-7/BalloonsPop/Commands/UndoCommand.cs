@@ -1,7 +1,8 @@
-﻿namespace Balloons.Commands
+﻿namespace BalloonsPop.Commands
 {
     using Balloons.Logic;
-    public class UndoCommand
+
+    public class UndoCommand : ICommand
     {
         internal static void Save(string[,] gameField, MemoryManager gameMemory, int moves, int filledCells)
         {
@@ -19,6 +20,16 @@
         internal static void ClearMemory(MemoryManager gameMemory)
         {
             gameMemory.Clear();
+        }
+
+        public string Name
+        {
+            get { return "undo"; }
+        }
+
+        public void Execute()
+        {
+            System.Console.WriteLine("Implement the execute method"); ;
         }
     }
 }

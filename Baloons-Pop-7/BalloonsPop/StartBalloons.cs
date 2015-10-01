@@ -13,6 +13,7 @@
     using Balloons.Logic;
     using Balloons.GameRules;
     using Balloons.InputHandler;
+    using BalloonsPop.Commands;
 
     public class StartBalloons
     {
@@ -58,9 +59,12 @@
                 string parsedInput = inputHandler.ParseInput(input, field);
                 Console.WriteLine("Input: " + input);
                 Console.WriteLine("Parsed Input: " + parsedInput);
+
+                ICommand command = inputHandler.GetCommand(parsedInput);
+                command.Execute();
             }
 
-            Facade.StartGame();
+            //Facade.StartGame();
 
         }
 

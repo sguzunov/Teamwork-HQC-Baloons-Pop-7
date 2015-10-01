@@ -41,6 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\HelpCommand.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\InvalidPopCommand.cs" />
+    <Compile Include="Commands\InvalidCommand.cs" />
+    <Compile Include="Commands\Invoker.cs" />
+    <Compile Include="Commands\PopBalloonsCommand.cs" />
+    <Compile Include="Commands\ShowScoreboardCommand.cs" />
+    <Compile Include="Commands\StartCommand.cs" />
     <Compile Include="Commands\UndoCommand.cs" />
     <Compile Include="Common\GameConstants.cs" />
     <Compile Include="Common\GameMessages.cs" />

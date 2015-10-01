@@ -2,19 +2,21 @@
 {
     using System;
     using Balloons.GameField;
+    using BalloonsPop.Commands;
 
     public class ConsoleInputHandler : IInputHandler
     {
         private readonly string[] validCommands = new string[]
             {
-                "save",
-                "restore",
                 "help",
+                "start",
                 "exit",
                 "restart",
                 "top",
                 "undo"
             };
+
+        ICommand cmd = null;
 
         /// <summary>
         /// This method reads the input from the console
@@ -109,6 +111,52 @@
             }
 
             return command;
+        }
+
+        // this is the invoker class (command pattern)
+        public ICommand GetCommand(string action)
+        {
+            string command = action.Split(' ')[0];
+
+            switch (command)
+            {
+                case "exit":
+                    cmd = new ExitCommand();
+                    break;
+                case "top":
+                    cmd = new ShowScoreboardCommand();
+                    break;
+                case "undo":
+                    cmd = new UndoCommand();
+                    break;
+                case "help":
+                    cmd = new HelpCommand();
+                    break;
+                case "start":
+                    cmd = new StartCommand();
+                    break;
+                case "restart":
+                    cmd = new StartCommand();
+                    break;
+
+                case "pop":
+                    if (action.Split(' ')[1] == "invalid")
+                    {
+                        cmd = new InvalidCommand();
+                    }
+                    else
+                    {
+                        cmd = new PopBalloonsCommand();
+                    }
+                    break;
+
+                case "":
+                    cmd = new InvalidPopCommand();
+                    break;
+                default:
+                    break;
+            }
+            return cmd;
         }
     }
 }
