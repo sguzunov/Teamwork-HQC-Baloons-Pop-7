@@ -1,4 +1,4 @@
-﻿namespace BalloonsPop.Commands
+﻿namespace Balloons.Commands
 {
     using Balloons.Logic;
 

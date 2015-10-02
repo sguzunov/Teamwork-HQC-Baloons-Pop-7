@@ -1,4 +1,4 @@
-﻿namespace Balloons.GameField
+﻿namespace Balloons.FieldFactory.Field
 {
     using System;
 

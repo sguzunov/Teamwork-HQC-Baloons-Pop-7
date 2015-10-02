@@ -1,13 +1,13 @@
 ﻿namespace Balloons.InputHandler
 {
-    using System;
+    using Balloons.Common;
 
     public interface IInputHandler
     {
         string ReadInputCommand();
 
-        string ReadGameMode();
+        GameMode GetGameMode();
 
-        string ReadGameDifficulty();
+        GameDifficulty GetGameDifficulty();
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Balloons.InputHandler
 {
     using System;
-    using Balloons.GameField;
-    using BalloonsPop.Commands;
+    using Balloons.FieldFactory.Field;
+    using Balloons.Commands;
     using Balloons.Common;
     using Balloons.Helpers;
     using System.Threading;
@@ -17,16 +17,17 @@
             throw new NotImplementedException();
         }
 
-        public string ReadGameMode()
+        public GameMode GetGameMode()
         {
             while (true)
             {
                 Console.Write("Select a game mode: please type 'default' or 'fly': ");
-                string gameMode = Console.ReadLine().Trim().ToLower();
+                string gameModeAsString = Console.ReadLine().Trim().ToLower();
 
-                bool isValidGameMode = Validator.CheckIfValidGameMode(gameMode);
+                bool isValidGameMode = Validator.CheckIfValidGameMode(gameModeAsString);
                 if (isValidGameMode)
                 {
+                    var gameMode = EnumUtils.GetGameModeFromString(gameModeAsString);
                     return gameMode;
                 }
                 else
@@ -36,16 +37,19 @@
             }
         }
 
-        public string ReadGameDifficulty()
+        public GameDifficulty GetGameDifficulty()
         {
             while (true)
             {
                 Console.Write("Select a game difficulty: please type 'easy' or 'hard': ");
-                string gameDifficulty = Console.ReadLine().Trim().ToLower();
+                string gameDifficultyAsString = Console.ReadLine().Trim().ToLower();
 
-                bool isValidGameDifficulty = Validator.CheckIfValidGameDifficulty(gameDifficulty);
+                bool isValidGameDifficulty = Validator.CheckIfValidGameDifficulty(gameDifficultyAsString);
                 if (isValidGameDifficulty)
                 {
+                    ConsoleHelper.ClearConsole();
+
+                    var gameDifficulty = EnumUtils.GetGameDifficultyFromString(gameDifficultyAsString);
                     return gameDifficulty;
                 }
                 else

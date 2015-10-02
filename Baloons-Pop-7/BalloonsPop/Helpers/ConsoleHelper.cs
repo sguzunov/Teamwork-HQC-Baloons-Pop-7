@@ -57,5 +57,10 @@
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, currentLine);
         }
+
+        public static void ClearConsole()
+        {
+            Console.Clear();
+        }
     }
 }

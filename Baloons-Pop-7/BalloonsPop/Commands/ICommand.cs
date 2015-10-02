@@ -1,4 +1,4 @@
-﻿namespace BalloonsPop.Commands
+﻿namespace Balloons.Commands
 {
     public interface ICommand
     {

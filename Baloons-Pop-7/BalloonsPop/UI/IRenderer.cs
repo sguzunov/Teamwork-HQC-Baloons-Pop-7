@@ -1,6 +1,6 @@
 ﻿namespace Balloons.UI
 {
-    using Balloons.GameField;
+    using Balloons.FieldFactory.Field;
     using Balloons.GameScore;
 
     public interface IRenderer

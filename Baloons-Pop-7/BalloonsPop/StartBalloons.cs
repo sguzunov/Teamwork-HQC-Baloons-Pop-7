@@ -1,19 +1,18 @@
 ﻿namespace Balloons
 {
     using System;
+    using System.Linq;
 
     using Balloons.Commands;
-    using System.Linq;
-    using Balloons.GameField;
+    using Balloons.FieldFactory;
     using Balloons.UI;
     using Balloons.GamePlayer;
-    using Balloons.GameFieldFactories;
+    using Balloons.FieldFactory.Field;
     using Balloons.Common;
     using System.Text;
     using Balloons.Logic;
     using Balloons.GameRules;
     using Balloons.InputHandler;
-    using BalloonsPop.Commands;
 
     public class StartBalloons
     {
@@ -72,7 +71,7 @@
 
 
             Facade.StartGame();
-           
+
         }
 
         //private static void ReadTheIput()

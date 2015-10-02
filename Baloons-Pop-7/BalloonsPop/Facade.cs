@@ -3,6 +3,7 @@
     using Balloons.UI;
     using Balloons.InputHandler;
     using Balloons.GameEngine;
+    using Balloons.FieldFactory;
 
     public static class Facade
     {
@@ -10,7 +11,9 @@
         {
             IRenderer renderer = new ConsoleRenderer();
             IInputHandler inputHandler = new ConsoleInputHandler();
-            IBalloonsEngine engine = new BalloonsGameEngine(renderer, inputHandler);
+            IFieldFactory fieldFactory = new GameFieldFactory();
+
+            IBalloonsEngine engine = new BalloonsGameEngine(renderer, inputHandler, fieldFactory);
 
             engine.InitializeGame();
         }

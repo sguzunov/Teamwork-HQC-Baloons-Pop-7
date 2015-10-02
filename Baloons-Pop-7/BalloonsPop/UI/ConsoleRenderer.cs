@@ -4,7 +4,7 @@
     using System.Linq;
 
     using Balloons.Common;
-    using Balloons.GameField;
+    using Balloons.FieldFactory.Field;
     using Balloons.GameScore;
     using Balloons.Helpers;
 

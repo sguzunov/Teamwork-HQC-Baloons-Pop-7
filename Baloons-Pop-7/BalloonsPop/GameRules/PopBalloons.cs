@@ -1,8 +1,8 @@
 ﻿namespace Balloons.GameRules
 {
     using Balloons.Common;
-    using Balloons.GameField;
-    using Balloons.GameFieldFactories;
+    using Balloons.FieldFactory;
+    using Balloons.FieldFactory.Field;
 
     public class PopBalloons
     {

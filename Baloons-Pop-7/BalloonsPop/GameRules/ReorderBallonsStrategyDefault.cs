@@ -4,7 +4,7 @@
 
     using Balloons.Common;
     using Balloons.GameRules;
-    using GameField;
+    using Balloons.FieldFactory.Field;
 
     public class ReorderBallonsStrategyDefault : ReorderBalloonsStrategy
     {

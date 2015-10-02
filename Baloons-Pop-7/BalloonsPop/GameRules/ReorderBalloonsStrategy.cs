@@ -1,6 +1,6 @@
 ﻿namespace Balloons.GameRules
 {
-    using Balloons.GameField;
+    using Balloons.FieldFactory.Field;
 
     public abstract class ReorderBalloonsStrategy
     {

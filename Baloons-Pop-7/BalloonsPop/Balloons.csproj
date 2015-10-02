@@ -59,11 +59,14 @@
     <Compile Include="Common\GameType.cs" />
     <Compile Include="Common\Validators.cs" />
     <Compile Include="Facade.cs" />
-    <Compile Include="GameEngine\BalloonsGameEngine.cs" />
+    <Compile Include="GameEngine\BalloonsGameEngine.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="GameEngine\IBalloonsEngine.cs" />
-    <Compile Include="GameFieldFactory\GameFieldFactory.cs" />
-    <Compile Include="GameFieldFactory\GameField.cs" />
-    <Compile Include="GameFieldFactory\IGameField.cs" />
+    <Compile Include="FieldFactory\GameFieldFactory.cs" />
+    <Compile Include="FieldFactory\Field\GameField.cs" />
+    <Compile Include="FieldFactory\IFieldFactory.cs" />
+    <Compile Include="FieldFactory\Field\IGameField.cs" />
     <Compile Include="GamePlayer\IPlayer.cs" />
     <Compile Include="GamePlayer\Player.cs" />
     <Compile Include="GameRules\PopBalloons.cs" />

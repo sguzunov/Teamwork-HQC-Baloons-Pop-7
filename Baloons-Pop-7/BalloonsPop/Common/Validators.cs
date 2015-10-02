@@ -1,6 +1,7 @@
 ﻿namespace Balloons.Common
 {
     using System;
+    using System.Linq;
 
     public static class Validator
     {
@@ -33,16 +34,19 @@
             }
 
             var modes = EnumUtils.GetEnumValues<GameMode>();
-            foreach (var mode in modes)
-            {
-                var modeAsString = mode.ToString().ToLower();
-                if (gameMode == modeAsString)
-                {
-                    return true;
-                }
-            }
 
-            return false;
+            var isValidMode = modes.Any(m => m.ToString().ToLower() == gameMode);
+
+            //foreach (var mode in modes)
+            //{
+            //    var modeAsString = mode.ToString().ToLower();
+            //    if (gameMode == modeAsString)
+            //    {
+            //        return true;
+            //    }
+            //}
+
+            return isValidMode;
         }
 
         public static bool CheckIfValidGameDifficulty(string gameDifficulty)
@@ -53,16 +57,19 @@
             }
 
             var difficulties = EnumUtils.GetEnumValues<GameDifficulty>();
-            foreach (var difficulty in difficulties)
-            {
-                var dificultyAsString = difficulty.ToString().ToLower();
-                if (gameDifficulty == dificultyAsString)
-                {
-                    return true;
-                }
-            }
 
-            return false;
+            var isValidDifficulty = difficulties.Any(d => d.ToString().ToLower() == gameDifficulty);
+
+            //foreach (var difficulty in difficulties)
+            //{
+            //    var dificultyAsString = difficulty.ToString().ToLower();
+            //    if (gameDifficulty == dificultyAsString)
+            //    {
+            //        return true;
+            //    }
+            //}
+
+            return isValidDifficulty;
         }
     }
 }

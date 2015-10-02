@@ -1,7 +1,7 @@
 ﻿namespace Balloons.Logic
 {
     using Balloons.Common;
-    using Balloons.GameField;
+    using Balloons.FieldFactory.Field;
 
     class CheckConditionLegalMove
     {
