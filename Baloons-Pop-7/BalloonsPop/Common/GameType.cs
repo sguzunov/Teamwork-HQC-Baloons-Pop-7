@@ -1,8 +1,7 @@
 ﻿namespace Balloons.Common
 {
-    public enum GameType
+    public enum GameDifficulty
     {
-        Invalid,
         Easy,
         Hard
     }

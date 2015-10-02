@@ -1,6 +1,7 @@
 ﻿namespace Balloons.Helpers
 {
     using System;
+    using System.Threading;
 
     public class ConsoleHelper
     {
@@ -36,6 +37,25 @@
                 default:
                     throw new InvalidOperationException("This symbol does not exists!");
             }
+        }
+
+        public static void DisplayInputErrorMessage(string message)
+        {
+            ClearConsoleLine();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Thread.Sleep(500);
+            ClearConsoleLine();
+        }
+
+        private static void ClearConsoleLine()
+        {
+            var currentLine = Console.CursorTop - 1;
+
+            Console.SetCursorPosition(0, currentLine);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLine);
         }
     }
 }

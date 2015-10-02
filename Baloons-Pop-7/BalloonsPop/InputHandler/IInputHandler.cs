@@ -4,10 +4,10 @@
 
     public interface IInputHandler
     {
-        string ReadInput();
+        string ReadInputCommand();
 
-        bool IsValidInput(string command);
+        string ReadGameMode();
 
-        string ParseInput(string userInput, GameField.IGameField field);
+        string ReadGameDifficulty();
     }
 }

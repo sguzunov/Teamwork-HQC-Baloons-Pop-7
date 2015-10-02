@@ -50,6 +50,9 @@
     <Compile Include="Commands\ShowScoreboardCommand.cs" />
     <Compile Include="Commands\StartCommand.cs" />
     <Compile Include="Commands\UndoCommand.cs" />
+    <Compile Include="Common\EnumUtils.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Common\GameConstants.cs" />
     <Compile Include="Common\GameMessages.cs" />
     <Compile Include="Common\GameMode.cs" />

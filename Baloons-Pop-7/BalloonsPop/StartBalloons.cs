@@ -46,35 +46,33 @@
 
 
             /// input handler
-            var inputHandler = new ConsoleInputHandler();
-            string input = string.Empty;
+            //var inputHandler = new ConsoleInputHandler();
+            //string input = string.Empty;
 
-            GameMode mode = inputHandler.SetMode();
-            GameType type = inputHandler.SetType();
-            IGameField field = GameFieldFactory.CreateGameField(type);
-            field.Fill();
+            //GameMode mode = inputHandler.SetMode();
+            //GameType type = inputHandler.SetType();
+            //IGameField field = GameFieldFactory.CreateGameField(type);
+            //field.Fill();
 
-            var renderer = new ConsoleRenderer();
-            renderer.RenderGameField(field);
+            //var renderer = new ConsoleRenderer();
+            //renderer.RenderGameField(field);
 
-            while (true)
-            {
-                Console.Write(GameMessages.CELL_INPUT_MESSAGE);
-                input = inputHandler.ReadInput();
-                string parsedInput = inputHandler.ParseInput(input, field);
-                Console.WriteLine("Input: " + input);
-                Console.WriteLine("Parsed Input: " + parsedInput);
+            //while (true)
+            //{
+            //    Console.Write(GameMessages.CELL_INPUT_MESSAGE);
+            //    input = inputHandler.ReadInput();
+            //    string parsedInput = inputHandler.ParseInput(input, field);
+            //    Console.WriteLine("Input: " + input);
+            //    Console.WriteLine("Parsed Input: " + parsedInput);
 
-                ICommand command = inputHandler.GetCommand(parsedInput);
-                command.Execute();
-            }
-
-            
+            //    ICommand command = inputHandler.GetCommand(parsedInput);
+            //    command.Execute();
+            //}
 
 
 
-            //Facade.StartGame();
-
+            Facade.StartGame();
+           
         }
 
         //private static void ReadTheIput()

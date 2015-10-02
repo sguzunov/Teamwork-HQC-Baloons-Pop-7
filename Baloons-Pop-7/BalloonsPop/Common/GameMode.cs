@@ -2,7 +2,6 @@
 {
     public enum GameMode
     {
-        Invalid,
         Default,
         Fly
     }

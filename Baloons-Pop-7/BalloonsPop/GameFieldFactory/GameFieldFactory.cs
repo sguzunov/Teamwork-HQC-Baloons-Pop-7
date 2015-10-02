@@ -9,17 +9,17 @@
     {
         private const string TypeErrorMessage = "The game type does not exists!";
 
-        public static IGameField CreateGameField(GameType type)
+        public static IGameField CreateGameField(GameDifficulty type)
         {
             switch (type)
             {
-                case GameType.Easy:
+                case GameDifficulty.Easy:
                     {
                         IGameField field = new GameField(GameConstants.EasyGameFieldRows, GameConstants.EasyGameFieldColumns);
                         return field;
                     }
 
-                case GameType.Hard:
+                case GameDifficulty.Hard:
                     {
                         IGameField field = new GameField(GameConstants.HardGameFieldRows, GameConstants.HardGameFieldColumns);
                         return field;

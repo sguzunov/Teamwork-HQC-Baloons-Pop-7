@@ -24,16 +24,20 @@
 
         public void InitializeGame()
         {
-            // TODO : When have restart command ask pool
+            // TODO : When have restart command ask pool.
+            // TODO : Read game mode.
+            // TODO : Read game difficulty.
 
-            this.field = new GameField(5, 10);
-            this.field.Fill();
-            this.renderer.RenderGameField(this.field);
+            this.renderer.RenderMenu();
+            var mode = this.inputHandler.ReadGameMode();
+            var diff = this.inputHandler.ReadGameDifficulty();
+            Console.WriteLine(mode);
+            Console.WriteLine(diff);
         }
 
         public void StartGame()
         {
-            // TODO: 
+
         }
 
         public void IsGameFinished()
