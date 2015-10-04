@@ -67,7 +67,7 @@
 
                 for (int column = 0; column < columns; column++)
                 {
-                    string symbol = field[row, column];
+                    string symbol = field[row, column].Symbol;
                     if (symbol == ".")
                     {
                         ConsoleHelper.ChangeForegroundColorDependingOnSymbol(symbol);

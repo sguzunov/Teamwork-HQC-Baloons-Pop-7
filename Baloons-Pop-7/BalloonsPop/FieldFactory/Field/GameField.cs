@@ -2,18 +2,20 @@
 {
     using System;
 
+    using Balloons.Cell;
+
     public class GameField : IGameField
     {
         private int rows;
         private int columns;
-        public string[,] field;
+        private Balloon[,] field;
 
         /// <remarks>The number of rows must be less than 10 and the number of columns must not be bigger than 10 because UI breaks.</remarks>
         public GameField(int rows, int columns)
         {
             this.Rows = rows;
             this.Columns = columns;
-            this.field = new string[this.Rows, this.Columns];
+            this.field = new Balloon[this.Rows, this.Columns];
         }
 
         public int Rows
@@ -52,7 +54,7 @@
             }
         }
 
-        public string this[int row, int column]
+        public Balloon this[int row, int column]
         {
             get
             {
@@ -87,13 +89,13 @@
 
         public void Fill()
         {
-            for (int row = 0; row < this.Rows; row++)
-            {
-                for (int column = 0; column < this.Columns; column++)
-                {
-                    this.field[row, column] = RandomProvider.GetRandomNumber(1, 5).ToString();
-                }
-            }
+            //for (int row = 0; row < this.Rows; row++)
+            //{
+            //    for (int column = 0; column < this.Columns; column++)
+            //    {
+            //        this.field[row, column] = RandomProvider.GetRandomNumber(1, 5).ToString();
+            //    }
+            //}
         }
 
         private bool IsValidRow(int row)

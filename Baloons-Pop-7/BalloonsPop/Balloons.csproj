@@ -41,6 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cell\IBalloon.cs" />
+    <Compile Include="Cell\BalloonOne.cs" />
+    <Compile Include="Cell\BalloonFour.cs" />
+    <Compile Include="Cell\BalloonPoped.cs" />
+    <Compile Include="Cell\BalloonsFactory.cs" />
+    <Compile Include="Cell\BalloonThree.cs" />
+    <Compile Include="Cell\BalloonTwo.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
@@ -50,6 +57,7 @@
     <Compile Include="Commands\ShowScoreboardCommand.cs" />
     <Compile Include="Commands\StartCommand.cs" />
     <Compile Include="Commands\UndoCommand.cs" />
+    <Compile Include="Common\BalloonsColors.cs" />
     <Compile Include="Common\EnumUtils.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -78,7 +86,6 @@
     <Compile Include="Helpers\Sound.cs" />
     <Compile Include="InputHandler\ConsoleInputHandler.cs" />
     <Compile Include="InputHandler\IInputHandler.cs" />
-    <Compile Include="Logic\CheckConditionLegalMove.cs" />
     <Compile Include="Logic\Memory.cs" />
     <Compile Include="Logic\MemoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
