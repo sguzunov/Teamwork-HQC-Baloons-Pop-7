@@ -4,6 +4,6 @@
 
     public abstract class ReorderBalloonsStrategy
     {
-        public abstract void ReorderBalloons(GameField gameField);
+        public abstract void ReorderBalloons(IGameField gameField);
     }
 }

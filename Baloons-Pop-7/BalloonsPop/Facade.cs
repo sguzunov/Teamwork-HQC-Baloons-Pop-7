@@ -4,6 +4,7 @@
     using Balloons.InputHandler;
     using Balloons.GameEngine;
     using Balloons.FieldFactory;
+    using Balloons.GameRules;
 
     public static class Facade
     {
@@ -16,6 +17,7 @@
             IBalloonsEngine engine = new BalloonsGameEngine(renderer, inputHandler, fieldFactory);
 
             engine.InitializeGame();
+            engine.StartGame();
         }
     }
 }
