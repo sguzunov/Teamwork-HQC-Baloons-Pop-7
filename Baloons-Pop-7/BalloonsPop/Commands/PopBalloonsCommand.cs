@@ -1,5 +1,6 @@
 ﻿namespace Balloons.Commands
 {
+    using Balloons.Cell;
     using Balloons.Common;
     using Balloons.FieldFactory;
     using Balloons.FieldFactory.Field;
@@ -17,9 +18,9 @@
         {
             bool validPop = IsPopValid(row, field.Rows) && IsPopValid(col, field.Columns);
             //string activeCell = field[row, col];
-            if (validPop && (field[row, col] == activeCell))
+            if (validPop && (field[row, col].Symbol == activeCell))
             {
-                field[row, col] = ".";
+                field[row, col] = new BalloonPoped();
                 clearedCells++;
 
                 Pop(row - 1, col, activeCell, field); // Up
@@ -74,7 +75,7 @@
             }
             else
             {
-                Pop(context.ActiveRow, context.ActiveCol, context.GameField[context.ActiveRow, context.ActiveCol], context.GameField);
+                Pop(context.ActiveRow, context.ActiveCol, context.GameField[context.ActiveRow, context.ActiveCol].Symbol, context.GameField);
             }
         }
     }

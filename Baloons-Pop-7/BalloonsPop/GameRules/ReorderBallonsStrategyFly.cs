@@ -5,6 +5,7 @@
     using Balloons.Common;
     using Balloons.GameRules;
     using Balloons.FieldFactory.Field;
+    using Cell;
 
     public class ReorderBallonsStrategyFly : ReorderBalloonsStrategy
     {
@@ -13,16 +14,16 @@
             int row;
             int col;
 
-            Queue<string> currentGameField = new Queue<string>();
+            Queue<Balloon> currentGameField = new Queue<Balloon>();
 
             for (col = gameField.Columns - 1; col >= 0; col--)
             {
                 for (row = gameField.Rows - 1; row >= 0; row--)
                 {
-                    if (gameField[row, col] != ".")
+                    if (!(gameField[row, col] is BalloonPoped))
                     {
                         currentGameField.Enqueue(gameField[row, col]);
-                        gameField[row, col] = ".";
+                        gameField[row, col] = new BalloonPoped();
                     }
                 }
 

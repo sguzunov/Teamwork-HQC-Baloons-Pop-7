@@ -89,13 +89,34 @@
 
         public void Fill()
         {
-            //for (int row = 0; row < this.Rows; row++)
-            //{
-            //    for (int column = 0; column < this.Columns; column++)
-            //    {
-            //        this.field[row, column] = RandomProvider.GetRandomNumber(1, 5).ToString();
-            //    }
-            //}
+            int random;
+            for (int row = 0; row < this.Rows; row++)
+            {
+                for (int column = 0; column < this.Columns; column++)
+                {
+                    random = RandomProvider.GetRandomNumber(1, 5);
+                    
+                    switch (random)
+	                {
+                        case 1: 
+                            this.field[row, column] = new BalloonOne();
+                            break;
+                        case 2:
+                            this.field[row, column] = new BalloonTwo();
+                            break;
+                        case 3:
+                            this.field[row, column] = new BalloonThree();
+                            break;
+                        case 4:
+                            this.field[row, column] = new BalloonFour();
+                            break;
+		                default:
+                            this.field[row, column] = new BalloonFour();
+                         break;
+	                }
+                    
+                }
+            }
         }
 
         private bool IsValidRow(int row)

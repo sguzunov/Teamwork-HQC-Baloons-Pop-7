@@ -71,12 +71,12 @@
                     if (symbol == ".")
                     {
                         ConsoleHelper.ChangeForegroundColorDependingOnSymbol(symbol);
-                        Console.Write(field[row, column] + " ");
+                        Console.Write(field[row, column].Symbol + " ");
                     }
                     else
                     {
                         ConsoleHelper.ChangeForegroundColorDependingOnSymbol(symbol);
-                        Console.Write(field[row, column] + " ");
+                        Console.Write(field[row, column].Symbol + " ");
                     }
                 }
 
