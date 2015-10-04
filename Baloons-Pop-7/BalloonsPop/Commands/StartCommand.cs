@@ -9,7 +9,7 @@
             get { return "start"; }
         }
 
-        public void Execute()
+        public void Execute(CommandContext context)
         {
             Console.WriteLine("From here we should start the game");
         }

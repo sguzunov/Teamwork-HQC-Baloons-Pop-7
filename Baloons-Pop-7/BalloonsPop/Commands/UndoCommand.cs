@@ -17,6 +17,7 @@
             var memory = gameMemory.RestoreMemory();
             return memory;
         }
+        
         internal static void ClearMemory(MemoryManager gameMemory)
         {
             gameMemory.Clear();
@@ -27,7 +28,7 @@
             get { return "undo"; }
         }
 
-        public void Execute()
+        public void Execute(CommandContext context)
         {
             System.Console.WriteLine("Implement the execute method"); ;
         }

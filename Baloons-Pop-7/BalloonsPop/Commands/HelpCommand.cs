@@ -9,7 +9,7 @@
             get { return "help"; }
         }
 
-        public void Execute()
+        public void Execute(CommandContext context)
         {
             Console.WriteLine("Implement the help command: some message");
         }

@@ -4,7 +4,7 @@
 
     public class ExitCommand : ICommand
     {
-        public void Execute()
+        public void Execute(CommandContext context)
         {
             Console.WriteLine("Exit command");
             Environment.Exit(15);

@@ -9,7 +9,7 @@
             get { return "invalid pop"; }
         }
 
-        public void Execute()
+        public void Execute(CommandContext context)
         {
             Console.WriteLine("Invalid pop!");
         }

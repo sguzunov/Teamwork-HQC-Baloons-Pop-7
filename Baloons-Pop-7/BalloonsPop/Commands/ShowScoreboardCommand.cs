@@ -9,7 +9,7 @@
             get { return "top"; }
         }
 
-        public void Execute()
+        public void Execute(CommandContext context)
         {
             Console.WriteLine("The ShowScoreboard command should be implemented here");
         }
