@@ -14,6 +14,7 @@
         private const string FieldLeftBorderSymbol = "{0} | ";
         private const string FieldRigthBorderSymbol = "| ";
         private const string Indent = "   ";
+        private const string PlayersTemplateString = "{0}. {1} won {2} points";
 
         public void RenderGameField(IGameField field)
         {
@@ -51,7 +52,7 @@
             var topPlayers = scoreboard.GetSortedPlayers;
             for (int i = 0; i < topPlayers.Count; i++)
             {
-                Console.WriteLine("{0}. {1} won {2} points", i + 1, topPlayers[i].Name, topPlayers[i].Points);
+                Console.WriteLine(PlayersTemplateString, i + 1, topPlayers[i].Name, topPlayers[i].Points);
             }
         }
 
@@ -68,16 +69,10 @@
                 for (int column = 0; column < columns; column++)
                 {
                     string symbol = field[row, column].Symbol;
-                    if (symbol == ".")
-                    {
-                        ConsoleHelper.ChangeForegroundColorDependingOnSymbol(symbol);
-                        Console.Write(field[row, column].Symbol + " ");
-                    }
-                    else
-                    {
-                        ConsoleHelper.ChangeForegroundColorDependingOnSymbol(symbol);
-                        Console.Write(field[row, column].Symbol + " ");
-                    }
+                    BalloonsColors symbolColor = field[row, column].Color;
+
+                    ConsoleHelper.ChangeForegroundColorDependingOnSymbol(symbolColor);
+                    Console.Write(field[row, column].Symbol + " ");
                 }
 
                 Console.ForegroundColor = ConsoleColor.Gray;

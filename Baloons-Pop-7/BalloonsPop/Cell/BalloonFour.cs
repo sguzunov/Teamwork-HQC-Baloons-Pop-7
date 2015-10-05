@@ -8,7 +8,6 @@
         {
             base.Symbol = "4";
             base.Color = BalloonsColors.Yellow;
-            base.Status = true;
         }
     }
 }

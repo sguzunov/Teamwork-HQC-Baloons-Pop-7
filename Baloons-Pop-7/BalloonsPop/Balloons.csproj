@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cell\IBalloon.cs" />
+    <Compile Include="Cell\Balloon.cs" />
     <Compile Include="Cell\BalloonOne.cs" />
     <Compile Include="Cell\BalloonFour.cs" />
     <Compile Include="Cell\BalloonPoped.cs" />

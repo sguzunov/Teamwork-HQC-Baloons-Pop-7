@@ -6,6 +6,9 @@
 
     public class GameField : IGameField
     {
+        private const string RowPositionErrorMessage = "Invalid row position!";
+        private const string ColumnPositionErrorMessage = "Invalid column position!";
+
         private int rows;
         private int columns;
         private Balloon[,] field;
@@ -60,12 +63,12 @@
             {
                 if (!this.IsValidRow(row))
                 {
-                    throw new IndexOutOfRangeException("Invalid row position!");
+                    throw new IndexOutOfRangeException(RowPositionErrorMessage);
                 }
 
                 if (!this.IsValidColumn(column))
                 {
-                    throw new IndexOutOfRangeException("Invalid column position!");
+                    throw new IndexOutOfRangeException(ColumnPositionErrorMessage);
                 }
 
                 return this.field[row, column];
@@ -75,12 +78,12 @@
             {
                 if (!this.IsValidRow(row))
                 {
-                    throw new IndexOutOfRangeException("Invalid row position!");
+                    throw new IndexOutOfRangeException(RowPositionErrorMessage);
                 }
 
                 if (!this.IsValidColumn(column))
                 {
-                    throw new IndexOutOfRangeException("Invalid column position!");
+                    throw new IndexOutOfRangeException(ColumnPositionErrorMessage);
                 }
 
                 this.field[row, column] = value;
@@ -95,10 +98,10 @@
                 for (int column = 0; column < this.Columns; column++)
                 {
                     random = RandomProvider.GetRandomNumber(1, 5);
-                    
+
                     switch (random)
-	                {
-                        case 1: 
+                    {
+                        case 1:
                             this.field[row, column] = new BalloonOne();
                             break;
                         case 2:
@@ -110,11 +113,11 @@
                         case 4:
                             this.field[row, column] = new BalloonFour();
                             break;
-		                default:
+                        default:
                             this.field[row, column] = new BalloonFour();
-                         break;
-	                }
-                    
+                            break;
+                    }
+
                 }
             }
         }

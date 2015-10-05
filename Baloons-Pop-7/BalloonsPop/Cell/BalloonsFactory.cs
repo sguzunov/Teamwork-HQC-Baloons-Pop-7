@@ -21,27 +21,27 @@ namespace Balloons.Cell
             {
                 case "1":
                     {
-                        balloon = balloons[symbol];
+                        balloon = new BalloonOne();
                         break;
                     }
                 case "2":
                     {
-                        balloon = balloons[symbol];
+                        balloon = new BalloonTwo();
                         break;
                     }
                 case "3":
                     {
-                        balloon = balloons[symbol];
+                        balloon = new BalloonThree();
                         break;
                     }
                 case "4":
                     {
-                        balloon = balloons[symbol];
+                        balloon = new BalloonFour();
                         break;
                     }
                 case ".":
                     {
-                        balloon = balloons[symbol];
+                        balloon = new BalloonPoped();
                         break;
                     }
                 default:

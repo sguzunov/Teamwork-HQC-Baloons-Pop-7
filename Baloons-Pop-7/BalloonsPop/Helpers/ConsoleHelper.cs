@@ -1,10 +1,14 @@
-﻿namespace Balloons.Helpers
+﻿using Balloons.Common;
+
+namespace Balloons.Helpers
 {
     using System;
     using System.Threading;
 
     public class ConsoleHelper
     {
+        private const string ColorErrorMessage = "This balloon color does not exists ";
+
         public static void CentraliseCursor(int textLength)
         {
             int leftPosition = (Console.WindowWidth / 2) - (textLength / 2);
@@ -12,30 +16,27 @@
             Console.SetCursorPosition(leftPosition, topPosition);
         }
 
-        public static void ChangeForegroundColorDependingOnSymbol(string symbol)
+        public static void ChangeForegroundColorDependingOnSymbol(BalloonsColors color)
         {
-            switch (symbol)
+            switch (color)
             {
-                case "1":
+                case BalloonsColors.Blue:
                     Console.ForegroundColor = ConsoleColor.Blue;
                     break;
-                case "2":
+                case BalloonsColors.White:
                     Console.ForegroundColor = ConsoleColor.White;
                     break;
-                case "3":
+                case BalloonsColors.Green:
                     Console.ForegroundColor = ConsoleColor.Green;
                     break;
-                case "4":
+                case BalloonsColors.Yellow:
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     break;
-                case "5":
-                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                    break;
-                case ".":
+                case BalloonsColors.Red:
                     Console.ForegroundColor = ConsoleColor.Red;
                     break;
                 default:
-                    throw new InvalidOperationException("This symbol does not exists!");
+                    throw new InvalidOperationException(ColorErrorMessage);
             }
         }
 

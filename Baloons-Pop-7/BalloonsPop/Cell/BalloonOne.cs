@@ -8,7 +8,6 @@
         {
             this.Symbol = "1";
             this.Color = BalloonsColors.Blue;
-            this.Status = true;
         }
     }
 }
