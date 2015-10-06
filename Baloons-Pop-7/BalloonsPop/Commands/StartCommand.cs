@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class StartCommand : ICommand
+    public class StartCommand// : ICommand
     {
         public string Name
         {

@@ -7,7 +7,7 @@
     using Balloons.UI;
     using System;
 
-    public class PopBalloonsCommand : ICommand
+    public class PopBalloonsCommand //: ICommand
     {
         private static int clearedCells = 0;
         public static int filledCells = GameConstants.FILLED_CELLS;

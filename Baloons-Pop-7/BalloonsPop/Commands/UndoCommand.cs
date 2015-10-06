@@ -2,7 +2,7 @@
 {
     using Balloons.Logic;
 
-    public class UndoCommand : ICommand
+    public class UndoCommand// : ICommand
     {
         internal static void Save(string[,] gameField, MemoryManager gameMemory, int moves, int filledCells)
         {

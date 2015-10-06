@@ -2,17 +2,23 @@
 {
     using System;
 
+    using Balloons.UI;
+
     public class ExitCommand : ICommand
     {
-        public void Execute(CommandContext context)
+        private readonly IRenderer renderer;
+
+        public ExitCommand(IRenderer renderer)
         {
-            Console.WriteLine("Exit command");
-            Environment.Exit(15);
+            this.renderer = renderer;
+            this.Name = "exit";
         }
 
-        public string Name
+        public string Name { get; private set; }
+
+        public void Execute()
         {
-            get { return "exit"; }
+            // TODO : Logic for shutting down cmd.
         }
     }
 }

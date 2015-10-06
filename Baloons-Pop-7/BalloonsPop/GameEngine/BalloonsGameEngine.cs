@@ -94,9 +94,9 @@
                     activeCol = int.Parse(parsedInput.Split(' ')[2]);
                 }
 
-                ICommand command = GetCommand(parsedInput);
+               // ICommand command = GetCommand(parsedInput);
                 CommandContext context = new CommandContext(this.field, activeRow, activeCol);
-                command.Execute(context);
+              //  command.Execute(context);
                 strategy.ReorderBalloons(this.field);
 
                 this.renderer.RenderGameField(this.field);
@@ -104,53 +104,54 @@
             }
         }
 
-        public ICommand GetCommand(string action)
-        {
-            string command = action.Split(' ')[0];
-            ICommand cmd = null;
-            //CommandContext ctx = null;
+        // This method is comented because the logic for getting ICommand is changed and this leads to exception.
+       // public ICommand GetCommand(string action)
+        //{
+            //string command = action.Split(' ')[0];
+            //ICommand cmd = null;
+            ////CommandContext ctx = null;
 
-            switch (command)
-            {
-                case "exit":
-                    cmd = new ExitCommand();
-                    break;
-                case "top":
-                    cmd = new ShowScoreboardCommand();
-                    break;
-                case "undo":
-                    cmd = new UndoCommand();
-                    break;
-                case "help":
-                    cmd = new HelpCommand();
-                    break;
-                case "start":
-                    cmd = new StartCommand();
-                    break;
-                case "restart":
-                    cmd = new StartCommand();
-                    break;
+            //switch (command)
+            //{
+            //    case "exit":
+            //        cmd = new ExitCommand();
+            //        break;
+            //    case "top":
+            //        cmd = new ShowScoreboardCommand();
+            //        break;
+            //    case "undo":
+            //        cmd = new UndoCommand();
+            //        break;
+            //    case "help":
+            //        cmd = new HelpCommand();
+            //        break;
+            //    case "start":
+            //        cmd = new StartCommand();
+            //        break;
+            //    case "restart":
+            //        cmd = new StartCommand();
+            //        break;
 
-                case "pop":
-                    if (action.Split(' ')[1] == "invalid")
-                    {
-                        cmd = new InvalidCommand();
-                    }
-                    else
-                    {
-                        cmd = new PopBalloonsCommand();
-                    }
-                    break;
+            //    case "pop":
+            //        if (action.Split(' ')[1] == "invalid")
+            //        {
+            //            cmd = new InvalidCommand();
+            //        }
+            //        else
+            //        {
+            //            cmd = new PopBalloonsCommand();
+            //        }
+            //        break;
 
-                case "":
-                    cmd = new InvalidPopCommand();
-                    break;
-                default:
-                    cmd = new InvalidCommand();
-                    break;
-            }
-            return cmd;
-        }
+            //    case "":
+            //        cmd = new InvalidPopCommand();
+            //        break;
+            //    default:
+            //        cmd = new InvalidCommand();
+            //        break;
+            //}
+            //return cmd;
+        //}
 
         public void IsGameFinished()
         {

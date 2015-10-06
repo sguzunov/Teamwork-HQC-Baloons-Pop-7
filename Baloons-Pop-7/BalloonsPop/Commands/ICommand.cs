@@ -4,6 +4,6 @@
     {
         string Name { get; }
 
-        void Execute(CommandContext context);
-    } 
+        void Execute();
+    }
 }
