@@ -7,7 +7,7 @@ namespace Balloons.FieldFactory.Field
 
     public class Fill : IFill
     {
-        public void Fill(int Rows, int Columns, Balloon[,] field)
+        public void Fills(int Rows, int Columns, Balloon[,] field)
         {
             int random;
             for (int row = 0; row < Rows; row++)

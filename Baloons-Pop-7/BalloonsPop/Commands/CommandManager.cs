@@ -2,7 +2,6 @@
 {
     using System;
 
-    using Balloons.Commands;
     using Balloons.FieldFactory.Field;
     using Balloons.UI;
     using System.Collections.Generic;
@@ -11,28 +10,33 @@
     public class CommandManager : ICommandManager
     {
         private readonly IDictionary<string, ICommand> commands = new Dictionary<string, ICommand>();
-        private readonly CommandManagerContext context = new CommandManagerContext();
+        //private readonly CommandManagerContext context = new CommandManagerContext();
+        private IRenderer renderer;
+        private IGameField field;
 
-        public CommandManager()
+        public CommandManager(IRenderer renderer, IGameField field)
         {
-            commands.Add("top", new TopScoresCommand(this.context.Renderer));
-            commands.Add("save", new SaveCommand(this.context.Field));
-            commands.Add("restore", new RestoreCommand(this.context.Field));
-            commands.Add("exit", new ExitCommand(this.context.Renderer));
-            commands.Add("help", new HelpCommand(this.context.Renderer));
+            this.renderer = renderer;
+            this.field = field;
+
+            commands.Add("top", new TopScoresCommand(this.renderer));
+            commands.Add("save", new SaveCommand(this.field));
+            commands.Add("restore", new RestoreCommand(this.field));
+            commands.Add("exit", new ExitCommand(this.renderer));
+            commands.Add("help", new HelpCommand(this.renderer));
         }
 
-        public CommandManager Renderer(IRenderer renderer)
-        {
-            this.context.Renderer = renderer;
-            return this;
-        }
+        //public ICommandManager Renderer(IRenderer renderer)
+        //{
+        //    this.context.Renderer = renderer;
+        //    return this;
+        //}
 
-        public CommandManager Field(IGameField field)
-        {
-            this.context.Field = field;
-            return this;
-        }
+        //public ICommandManager Field(IGameField field)
+        //{
+        //    this.context.Field = field;
+        //    return this;
+        //}
 
         public ICommand GetCommand(string commandName)
         {

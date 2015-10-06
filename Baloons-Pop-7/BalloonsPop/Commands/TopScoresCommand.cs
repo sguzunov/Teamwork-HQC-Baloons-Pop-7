@@ -20,6 +20,7 @@
         public void Execute()
         {
             // TODO : Needs refactoring. The method is coupled to Scoreboard.
+            Console.WriteLine("Tuk sym");
             this.renderer.RenderGameScoreBoard(ScoreBoard.Instance);
         }
     }

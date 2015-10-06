@@ -71,7 +71,6 @@
 
 
             Facade.StartGame();
-
         }
 
         //private static void ReadTheIput()
