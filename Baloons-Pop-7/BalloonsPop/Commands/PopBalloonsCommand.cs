@@ -14,8 +14,8 @@
         private readonly int activeRow;
         private readonly int activeCol;
 
-        private static int clearedCells = 0;
-        public static int filledCells = GameConstants.FILLED_CELLS;
+        //private static int clearedCells = 0;
+        //public static int filledCells = GameConstants.FILLED_CELLS;
 
         public PopBalloonsCommand(IRenderer renderer, IGameField gameField, int activeRow, int activeCol)
         {
@@ -31,6 +31,7 @@
         public void Execute()
         {
             //this.renderer.RenderCommands();
+            //this.renderer.RenderGameField(this.gameField);
 
             if (this.gameField == null)
             {
@@ -49,19 +50,19 @@
             if (validPop && (field[row, col].Symbol == activeCell))
             {
                 field[row, col] = new BalloonPoped();
-                clearedCells++;
+                //clearedCells++;
 
                 Pop(row - 1, col, activeCell, field); // Up
                 Pop(row + 1, col, activeCell, field); // Down
                 Pop(row, col + 1, activeCell, field); // Left
                 Pop(row, col - 1, activeCell, field); // Right
             }
-            else
-            {
-                filledCells -= clearedCells;
-                clearedCells = 0;
-                return;
-            }
+            //else
+            //{
+            //    filledCells -= clearedCells;
+            //    clearedCells = 0;
+            //    return;
+            //}
         }
 
         internal bool IsPopValid(int index, int boundValue)

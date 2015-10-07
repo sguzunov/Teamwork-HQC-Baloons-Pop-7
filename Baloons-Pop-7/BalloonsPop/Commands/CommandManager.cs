@@ -30,6 +30,7 @@
             commands.Add("exit", new ExitCommand(this.renderer));
             commands.Add("help", new HelpCommand(this.renderer));
             commands.Add("pop", new PopBalloonsCommand(this.renderer, this.field, this.activeRow, this.activeCol));
+            Console.WriteLine("into the const {0}", this.activeRow);
         }
 
         public ICommand GetCommand(IList<string> commandName)
@@ -39,10 +40,12 @@
             if (hasCommand)
             {
                 
-                if (commandName.Count == 3)
+                if (commandName.Count > 2)
                 {
                     this.activeRow = int.Parse(commandName[1]);
                     this.activeCol = int.Parse(commandName[2]);
+                    commands.Remove("pop");
+                    commands.Add("pop", new PopBalloonsCommand(this.renderer, this.field, this.activeRow, this.activeCol));
                 }
 
                 return this.commands[commandName[0]];
