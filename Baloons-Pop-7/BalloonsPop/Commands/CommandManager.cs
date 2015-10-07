@@ -35,8 +35,16 @@
         public ICommand GetCommand(IList<string> commandName)
         {
             bool hasCommand = this.CheckIfCommandExists(commandName);
+
             if (hasCommand)
             {
+                
+                if (commandName.Count == 3)
+                {
+                    this.activeRow = int.Parse(commandName[1]);
+                    this.activeCol = int.Parse(commandName[2]);
+                }
+
                 return this.commands[commandName[0]];
             }
             else
