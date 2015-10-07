@@ -30,14 +30,15 @@ namespace Balloons.GameEngine
         private ICommandManager commandManger;
         private IPlayer player;
 
-
         public void ReorderBallons()
         {
             strategy.ReorderBalloons(this.field);
         }
 
-        public BalloonsGameEngine(IRenderer renderer, IInputHandler inputHandler,
-            IFieldFactory fieldFactory, GameMode mode, GameDifficulty difficulty,
+        public BalloonsGameEngine(IRenderer renderer,
+            IInputHandler inputHandler,
+            IFieldFactory fieldFactory,
+            GameMode mode, GameDifficulty difficulty,
             IPlayer player)
         {
             this.renderer = renderer;
@@ -71,7 +72,7 @@ namespace Balloons.GameEngine
                 var command = this.commandManger.GetCommand(inputCommand);
 
                 // This will be uncommented when commands logic is fully finished
-                // command.Execute();
+                command.Execute();
                 // TODO : Logic for reordering goes here!!!
                 this.renderer.RenderGameField(this.field);
 

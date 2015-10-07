@@ -1,7 +1,8 @@
 ﻿namespace Balloons.UI
 {
     using Balloons.FieldFactory.Field;
-    using Balloons.GameScore;
+    using System.Collections.Generic;
+    using Balloons.GamePlayer;
 
     public interface IRenderer
     {
@@ -9,8 +10,10 @@
 
         void RenderMenu();
 
-        void RenderCommands();
+        void RenderCommands(string[] commands);
 
-        void RenderGameScoreBoard(ScoreBoard scoreboard);
+        void RenderGameTopPlayers(IList<IPlayer> players);
+
+        void RenderGameMessage(string message);
     }
 }

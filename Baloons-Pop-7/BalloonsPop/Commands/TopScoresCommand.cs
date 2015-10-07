@@ -1,8 +1,8 @@
-﻿namespace Balloons.Commands
+﻿
+namespace Balloons.Commands
 {
-    using System;
-
     using Balloons.GameScore;
+    using Balloons.Common;
     using Balloons.UI;
 
     public class TopScoresCommand : ICommand
@@ -19,9 +19,17 @@
 
         public void Execute()
         {
-            // TODO : Needs refactoring. The method is coupled to Scoreboard.
-            Console.WriteLine("Tuk sym");
-            this.renderer.RenderGameScoreBoard(ScoreBoard.Instance);
+            var topPlayers = ScoreBoard.Instance.GetSortedPlayers;
+
+            if (topPlayers.Count > 0)
+            {
+                this.renderer.RenderGameMessage(GameMessages.TopScoresMessage);
+                this.renderer.RenderGameTopPlayers(topPlayers);
+            }
+            else
+            {
+                this.renderer.RenderGameMessage(GameMessages.EmptyScoreBoardMessage);
+            }
         }
     }
 }

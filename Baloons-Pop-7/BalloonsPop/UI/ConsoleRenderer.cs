@@ -2,11 +2,12 @@
 {
     using System;
     using System.Linq;
+    using System.Collections.Generic;
 
     using Balloons.Common;
     using Balloons.FieldFactory.Field;
-    using Balloons.GameScore;
     using Balloons.Helpers;
+    using Balloons.GamePlayer;
 
     public class ConsoleRenderer : IRenderer
     {
@@ -40,18 +41,28 @@
             Console.WriteLine(GameMessages.InitialGameMessage);
         }
 
-        public void RenderCommands()
+        public void RenderCommands(string[] commands)
         {
-            this.PrintCommands(GameMessages.CommandsMessages);
+            int commandMaxLength = commands.Max(m => m.Length);
+            for (int i = 0; i < commands.Length; i++)
+            {
+                ConsoleHelper.CentraliseCursor(commandMaxLength);
+                Console.WriteLine(commands[i]);
+            }
         }
 
-        public void RenderGameScoreBoard(ScoreBoard scoreboard)
+        public void RenderGameTopPlayers(IList<IPlayer> players)
         {
-            var topPlayers = scoreboard.GetSortedPlayers;
-            for (int i = 0; i < topPlayers.Count; i++)
+            for (int i = 0; i < players.Count; i++)
             {
-                Console.WriteLine(PlayersTemplateString, i + 1, topPlayers[i].Name, topPlayers[i].Points);
+                Console.WriteLine(PlayersTemplateString, i + 1, players[i].Name, players[i].Points);
             }
+        }
+
+        public void RenderGameMessage(string message)
+        {
+            ConsoleHelper.CentraliseCursor(message.Length);
+            Console.WriteLine(message);
         }
 
         private void PrintMatrix(IGameField field)

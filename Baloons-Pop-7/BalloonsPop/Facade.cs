@@ -1,13 +1,11 @@
-﻿using Balloons.Common;
-using Balloons.GamePlayer;
-
-namespace Balloons
+﻿namespace Balloons
 {
     using Balloons.UI;
     using Balloons.InputHandler;
     using Balloons.GameEngine;
     using Balloons.FieldFactory;
-    using Balloons.GameRules;
+    using Balloons.Common;
+    using Balloons.GamePlayer;
 
     public static class Facade
     {
@@ -20,7 +18,7 @@ namespace Balloons
 
             // Printing initial screen goes here.
             renderer.RenderMenu();
-            renderer.RenderCommands();
+            renderer.RenderCommands(GameMessages.CommandsMessages);
 
             // Getting mode and difficulty goes here.
             GameMode gameMode = inputHandler.GetGameMode();

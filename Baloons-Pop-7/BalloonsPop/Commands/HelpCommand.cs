@@ -1,8 +1,7 @@
-﻿using Balloons.UI;
-
-namespace Balloons.Commands
+﻿namespace Balloons.Commands
 {
-    using System;
+    using Balloons.Common;
+    using Balloons.UI;
 
     public class HelpCommand : ICommand
     {
@@ -18,8 +17,7 @@ namespace Balloons.Commands
 
         public void Execute()
         {
-            // TODO : Check if it is better RenderCommand to get command from method params
-            this.renderer.RenderCommands();
+            this.renderer.RenderCommands(GameMessages.CommandsMessages);
         }
     }
 }

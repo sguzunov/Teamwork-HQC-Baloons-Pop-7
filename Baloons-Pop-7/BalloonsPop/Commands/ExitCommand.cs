@@ -3,6 +3,7 @@
     using System;
 
     using Balloons.UI;
+    using Balloons.Common;
 
     public class ExitCommand : ICommand
     {
@@ -18,7 +19,8 @@
 
         public void Execute()
         {
-            // TODO : Logic for shutting down cmd.
+            this.renderer.RenderGameMessage(GameMessages.EndGameMessage);
+            Environment.Exit(0);
         }
     }
 }
