@@ -72,32 +72,12 @@ namespace Balloons.GameEngine
             {
                 IList<string> inputCommand = this.inputHandler.ReadInputCommand();
                 IList<string> parsedCommand = this.inputHandler.ParseInput(inputCommand, this.field);
-                //this.commandManger = new CommandManager(this.renderer, this.field, this.activeRow, this.activeCol);
 
                 Console.WriteLine(parsedCommand[0]);
                 var command = this.commandManger.GetCommand(parsedCommand);
 
-                //this.activeRow = int.Parse(parsedCommand[1]);
-                //this.activeCol = int.Parse(parsedCommand[2]);
-                int count = 0;
-
-                Console.WriteLine(this.activeCol);
-                Console.WriteLine(this.activeRow);
-                Console.WriteLine(this.field[this.activeRow, this.activeCol].Symbol);
-
                 command.Execute();
-                for (int i = 0; i < this.field.Rows; i++)
-                {
-                    for (int j = 0; j < this.field.Columns; j++)
-                    {
-                        if (this.field[i, j].Symbol == ".")
-                        {
-                            count++;
-                        }
-                    }
-                }
 
-                Console.WriteLine("count {0}", count);
                 //TODO : Logic for reordering goes here!!!
                 this.renderer.RenderGameField(this.field);
 

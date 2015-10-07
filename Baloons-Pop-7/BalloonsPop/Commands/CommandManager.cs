@@ -10,7 +10,6 @@
     public class CommandManager : ICommandManager
     {
         private readonly IDictionary<string, ICommand> commands = new Dictionary<string, ICommand>();
-        //private readonly CommandManagerContext context = new CommandManagerContext();
         private IRenderer renderer;
         private IGameField field;
         private int activeRow;
