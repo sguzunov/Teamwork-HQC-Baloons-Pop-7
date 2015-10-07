@@ -42,7 +42,7 @@
         {
             bool validPop = IsPopValid(row, field.Rows) && IsPopValid(col, field.Columns);
 
-            if (validPop && (field[row, col].Symbol == activeCell))
+            if (validPop && (field[row, col].Symbol == activeCell) && (field[row, col].Symbol != "."))
             {
                 field[row, col] = new BalloonPoped();
 
