@@ -1,4 +1,7 @@
-﻿namespace Balloons
+﻿using Balloons.Common;
+using Balloons.GamePlayer;
+
+namespace Balloons
 {
     using Balloons.UI;
     using Balloons.InputHandler;
@@ -13,9 +16,17 @@
             IRenderer renderer = new ConsoleRenderer();
             IInputHandler inputHandler = new ConsoleInputHandler();
             IFieldFactory fieldFactory = new GameFieldFactory();
+            IPlayer player = new Player();
 
-            IBalloonsEngine engine = new BalloonsGameEngine(renderer, inputHandler, fieldFactory);
+            // Printing initial screen goes here.
+            renderer.RenderMenu();
+            renderer.RenderCommands();
 
+            // Getting mode and difficulty goes here.
+            GameMode gameMode = inputHandler.GetGameMode();
+            GameDifficulty gameDifficulty = inputHandler.GetGameDifficulty();
+
+            IBalloonsEngine engine = new BalloonsGameEngine(renderer, inputHandler, fieldFactory, gameMode, gameDifficulty, player);
             engine.InitializeGame();
             engine.StartGame();
         }

@@ -38,8 +38,6 @@
         {
             ConsoleHelper.CentraliseCursor(GameMessages.InitialGameMessage.Length);
             Console.WriteLine(GameMessages.InitialGameMessage);
-
-            this.PrintCommands(GameMessages.CommandsMessages);
         }
 
         public void RenderCommands()

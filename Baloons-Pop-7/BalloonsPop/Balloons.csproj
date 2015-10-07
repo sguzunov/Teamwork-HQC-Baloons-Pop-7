@@ -48,6 +48,7 @@
     <Compile Include="Cell\BalloonsFactory.cs" />
     <Compile Include="Cell\BalloonThree.cs" />
     <Compile Include="Cell\BalloonTwo.cs" />
+    <Compile Include="Cell\IBalloonsFactory.cs" />
     <Compile Include="Commands\CommandContext.cs" />
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\CommandManagerContext.cs" />
@@ -71,8 +72,8 @@
     <Compile Include="Common\GameType.cs" />
     <Compile Include="Common\Validators.cs" />
     <Compile Include="Facade.cs" />
-    <Compile Include="FieldFactory\Field\Fill.cs" />
-    <Compile Include="FieldFactory\Field\IFill.cs" />
+    <Compile Include="FieldFactory\Field\Filler.cs" />
+    <Compile Include="FieldFactory\Field\IFiller.cs" />
     <Compile Include="GameEngine\BalloonsGameEngine.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>

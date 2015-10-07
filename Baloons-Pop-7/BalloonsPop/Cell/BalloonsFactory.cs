@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Balloons.Cell
+﻿namespace Balloons.Cell
 {
-    public class BalloonsFactory
+    using System;
+    using System.Collections.Generic;
+
+    public class BalloonsFactory : IBalloonsFactory
     {
         private const string BalloonSymbolErrorMessage = "Ballon with {0} symbol does not exists.";
 

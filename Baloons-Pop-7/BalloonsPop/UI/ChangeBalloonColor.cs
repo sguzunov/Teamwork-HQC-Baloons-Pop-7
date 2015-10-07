@@ -12,6 +12,7 @@ namespace Balloons.ConsoleUI
         {
 
             char symbol = '\u00A4';
+            char symbol1 = '\u0298';
             //// other chars
             //// smiling face = \u263b
 

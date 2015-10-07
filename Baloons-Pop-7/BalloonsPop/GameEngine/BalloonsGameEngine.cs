@@ -1,4 +1,8 @@
-﻿namespace Balloons.GameEngine
+﻿using Balloons.Cell;
+using Balloons.GamePlayer;
+using Balloons.GameScore;
+
+namespace Balloons.GameEngine
 {
     using System;
     using System.Collections.Generic;
@@ -23,7 +27,8 @@
         private GameMode gameMode;
         private GameDifficulty gameDifficulty;
         private ReorderBalloonsStrategy strategy;
-        private ICommandManager manager;
+        private ICommandManager commandManger;
+        private IPlayer player;
 
 
         public void ReorderBallons()
@@ -31,78 +36,88 @@
             strategy.ReorderBalloons(this.field);
         }
 
-        public BalloonsGameEngine(IRenderer renderer, IInputHandler inputHandler, IFieldFactory fieldFactory)
+        public BalloonsGameEngine(IRenderer renderer, IInputHandler inputHandler,
+            IFieldFactory fieldFactory, GameMode mode, GameDifficulty difficulty,
+            IPlayer player)
         {
             this.renderer = renderer;
             this.inputHandler = inputHandler;
             this.fieldFactory = fieldFactory;
-            this.strategy = strategy;
+            this.gameMode = mode;
+            this.gameDifficulty = difficulty;
+            this.commandManger = new CommandManager(this.renderer, this.field); // Not sure if good!!!
+            this.player = player;
         }
 
         public void InitializeGame()
         {
-            // TODO : When have restart command ask pool.
-
-            this.renderer.RenderMenu();
-
-            this.gameMode = this.inputHandler.GetGameMode();
-            this.gameDifficulty = this.inputHandler.GetGameDifficulty();
-
-            // Three contexts following different strategies
-            if (this.gameMode == GameMode.Fly)
-            {
-                this.strategy = new ReorderBallonsStrategyFly();
-            }
-            else
-            {
-                this.strategy = new ReorderBallonsStrategyDefault();
-            }
+            // TODO : Needs logic for GAME MODE
 
             this.field = this.fieldFactory.CreateGameField(this.gameDifficulty);
-            //this.field.Fill();
 
-            //this.renderer.RenderGameField(this.field);
+            // Needs refactoring
+            var filler = new Filler(new BalloonsFactory());
+            this.field.Filler = filler;
+            this.field.Fill();
 
-
+            this.renderer.RenderGameField(this.field);
         }
 
         public void StartGame()
         {
-
-            var inputHandler = new ConsoleInputHandler();
-            string input;
-            string parsedInput;
-
             while (true)
             {
-                Console.Write(GameMessages.CELL_INPUT_MESSAGE);
-                input = inputHandler.ReadInput();
-                parsedInput = inputHandler.ParseInput(input, field);
-                Console.WriteLine("Input: " + input);
-                Console.WriteLine("Parsed Input: " + parsedInput);
+                var inputCommand = this.inputHandler.ReadInputCommand();
+                var command = this.commandManger.GetCommand(inputCommand);
 
-                int activeRow,
-                    activeCol;
-
-                if (parsedInput.Split(' ').Length < 3)
-                {
-                    activeRow = 0;
-                    activeCol = 0;
-                }
-                else
-                {
-                    activeRow = int.Parse(parsedInput.Split(' ')[1]);
-                    activeCol = int.Parse(parsedInput.Split(' ')[2]);
-                }
-
-                // ICommand command = GetCommand(parsedInput);
-                CommandContext context = new CommandContext(this.field, activeRow, activeCol);
-                //  command.Execute(context);
-                strategy.ReorderBalloons(this.field);
-
+                // This will be uncommented when commands logic is fully finished
+                // command.Execute();
+                // TODO : Logic for reordering goes here!!!
                 this.renderer.RenderGameField(this.field);
 
+                if (this.IsGameFinished())
+                {
+                    // Ask player for name and sets points
+                    this.player.Name = "Pesho";
+                    this.player.Points = 15;
+                    ScoreBoard.Instance.AddPlayer(this.player);
+                }
             }
+
+            //var inputHandler = new ConsoleInputHandler();
+            //string input;
+            //string parsedInput;
+
+            //while (true)
+            //{
+            //    Console.Write(GameMessages.CELL_INPUT_MESSAGE);
+            //    input = inputHandler.ReadInput();
+            //    parsedInput = inputHandler.ParseInput(input, field);
+            //    Console.WriteLine("Input: " + input);
+            //    Console.WriteLine("Parsed Input: " + parsedInput);
+
+            //    int activeRow,
+            //        activeCol;
+
+            //    if (parsedInput.Split(' ').Length < 3)
+            //    {
+            //        activeRow = 0;
+            //        activeCol = 0;
+            //    }
+            //    else
+            //    {
+            //        activeRow = int.Parse(parsedInput.Split(' ')[1]);
+            //        activeCol = int.Parse(parsedInput.Split(' ')[2]);
+            //    }
+
+            //    // ICommand command = GetCommand(parsedInput);
+            //    CommandContext context = new CommandContext(this.field, activeRow, activeCol);
+            //    //  command.Execute(context);
+            //    strategy.ReorderBalloons(this.field);
+
+            //    this.renderer.RenderGameField(this.field);
+
+            //}
         }
 
         // This method is comented because the logic for getting ICommand is changed and this leads to exception.
@@ -154,9 +169,10 @@
         //return cmd;
         //}
 
-        public void IsGameFinished()
+        public bool IsGameFinished()
         {
-            throw new NotImplementedException();
+            // TODO : Logic for finished game goes here!!!
+            return false;
         }
     }
 }

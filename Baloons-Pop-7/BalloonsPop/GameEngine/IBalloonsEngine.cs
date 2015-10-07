@@ -6,6 +6,6 @@
 
         void StartGame();
 
-        void IsGameFinished();
+        bool IsGameFinished();
     }
 }

@@ -14,7 +14,17 @@
 
         public string ReadInputCommand()
         {
-            throw new NotImplementedException();
+            Console.Write("Enter a command ('top', 'save', 'restore', 'help', 'exit'): ");
+            string input = Console.ReadLine();
+
+            if (Validator.CheckIfStringIsNullOrWhiteSpace(input))
+            {
+                throw new ArgumentException("Input command cannot be null or empty space.");
+            }
+
+            string command = input.Trim().ToLower();
+
+            return command;
         }
 
         public GameMode GetGameMode()
@@ -22,8 +32,14 @@
             while (true)
             {
                 Console.Write("Select a game mode: please type 'default' or 'fly': ");
-                string gameModeAsString = Console.ReadLine().Trim().ToLower();
+                string input = Console.ReadLine();
 
+                if (Validator.CheckIfStringIsNullOrWhiteSpace(input))
+                {
+                    throw new ArgumentException("Input game mode cannot be null or empty space.");
+                }
+
+                string gameModeAsString = input.Trim().ToLower();
                 bool isValidGameMode = Validator.CheckIfValidGameMode(gameModeAsString);
                 if (isValidGameMode)
                 {
@@ -42,8 +58,14 @@
             while (true)
             {
                 Console.Write("Select a game difficulty: please type 'easy' or 'hard': ");
-                string gameDifficultyAsString = Console.ReadLine().Trim().ToLower();
+                string input = Console.ReadLine();
 
+                if (Validator.CheckIfStringIsNullOrWhiteSpace(input))
+                {
+                    throw new ArgumentException("Input game difficulty cannot be null or empty space.");
+                }
+
+                string gameDifficultyAsString = input.Trim().ToLower();
                 bool isValidGameDifficulty = Validator.CheckIfValidGameDifficulty(gameDifficultyAsString);
                 if (isValidGameDifficulty)
                 {
@@ -96,14 +118,12 @@
         /// <returns>bool value indicating if the command is valid</returns>
         public bool IsValidInput(string command)
         {
-            bool validCommand = true;
-
             if (string.IsNullOrWhiteSpace(command))
             {
-                validCommand = false;
+                return false;
             }
 
-            return validCommand;
+            return true;
         }
 
         public bool IsPositionValid(int row, int col, IGameField gameField)
@@ -178,54 +198,6 @@
 
             return command;
         }
-
-        // this is the invoker class (command pattern)
-        //public ICommand GetCommand(string action)
-        //{
-        //    string command = action.Split(' ')[0];
-        //    CommandContext ctx = null;
-
-        //    switch (command)
-        //    {
-        //        case "exit":
-        //            cmd = new ExitCommand();
-        //            break;
-        //        case "top":
-        //            cmd = new ShowScoreboardCommand();
-        //            break;
-        //        case "undo":
-        //            cmd = new UndoCommand();
-        //            break;
-        //        case "help":
-        //            cmd = new HelpCommand();
-        //            break;
-        //        case "start":
-        //            cmd = new StartCommand();
-        //            break;
-        //        case "restart":
-        //            cmd = new StartCommand();
-        //            break;
-
-        //        case "pop":
-        //            if (action.Split(' ')[1] == "invalid")
-        //            {
-        //                cmd = new InvalidCommand();
-        //            }
-        //            else
-        //            {
-        //                cmd = new PopBalloonsCommand();
-        //            }
-        //            break;
-
-        //        case "":
-        //            cmd = new InvalidPopCommand();
-        //            break;
-        //        default:
-        //            cmd = new InvalidCommand();
-        //            break;
-        //    }
-        //    return cmd;
-        //}
 
         public bool CheckIfValid(string input, string[] commands)
         {
