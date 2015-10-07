@@ -29,16 +29,17 @@ namespace Balloons.GameEngine
         private ReorderBalloonsStrategy strategy;
         private ICommandManager commandManger;
         private IPlayer player;
+        private int activeRow;
+        private int activeCol;
+
 
         public void ReorderBallons()
         {
             strategy.ReorderBalloons(this.field);
         }
 
-        public BalloonsGameEngine(IRenderer renderer,
-            IInputHandler inputHandler,
-            IFieldFactory fieldFactory,
-            GameMode mode, GameDifficulty difficulty,
+        public BalloonsGameEngine(IRenderer renderer, IInputHandler inputHandler,
+            IFieldFactory fieldFactory, GameMode mode, GameDifficulty difficulty,
             IPlayer player)
         {
             this.renderer = renderer;
@@ -46,7 +47,7 @@ namespace Balloons.GameEngine
             this.fieldFactory = fieldFactory;
             this.gameMode = mode;
             this.gameDifficulty = difficulty;
-            this.commandManger = new CommandManager(this.renderer, this.field); // Not sure if good!!!
+            this.commandManger = new CommandManager(this.renderer, this.field, activeRow = 0, activeCol = 0); // Not sure if good!!!
             this.player = player;
         }
 
@@ -68,10 +69,11 @@ namespace Balloons.GameEngine
         {
             while (true)
             {
-                var inputCommand = this.inputHandler.ReadInputCommand();
-                var command = this.commandManger.GetCommand(inputCommand);
+                IList<string> inputCommand = this.inputHandler.ReadInputCommand();
+                IList<string> parsedCommand = this.inputHandler.ParseInput(inputCommand, this.field);
+                Console.WriteLine(parsedCommand[0]);
+                var command = this.commandManger.GetCommand(parsedCommand);
 
-                // This will be uncommented when commands logic is fully finished
                 command.Execute();
                 // TODO : Logic for reordering goes here!!!
                 this.renderer.RenderGameField(this.field);
