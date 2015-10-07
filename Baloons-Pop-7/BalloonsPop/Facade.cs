@@ -24,6 +24,7 @@
             GameMode gameMode = inputHandler.GetGameMode();
             GameDifficulty gameDifficulty = inputHandler.GetGameDifficulty();
 
+
             IBalloonsEngine engine = new BalloonsGameEngine(renderer, inputHandler, fieldFactory, gameMode, gameDifficulty, player);
             engine.InitializeGame();
             engine.StartGame();

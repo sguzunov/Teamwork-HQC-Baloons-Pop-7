@@ -52,7 +52,14 @@ namespace Balloons.GameEngine
 
         public void InitializeGame()
         {
-            // TODO : Needs logic for GAME MODE
+            if (this.gameMode == GameMode.Fly)
+            {
+                this.strategy = new ReorderBallonsStrategyFly();
+            }
+            else
+            {
+                this.strategy = new ReorderBallonsStrategyDefault();
+            }
 
             this.field = this.fieldFactory.CreateGameField(this.gameDifficulty);
 
@@ -77,7 +84,7 @@ namespace Balloons.GameEngine
                 var command = this.commandManger.GetCommand(parsedCommand);
 
                 command.Execute();
-
+                ReorderBallons();
                 //TODO : Logic for reordering goes here!!!
                 this.renderer.RenderGameField(this.field);
 
