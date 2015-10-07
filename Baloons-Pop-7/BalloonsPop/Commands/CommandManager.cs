@@ -13,37 +13,31 @@
         //private readonly CommandManagerContext context = new CommandManagerContext();
         private IRenderer renderer;
         private IGameField field;
+        private int activeRow;
+        private int activeCol;
 
-        public CommandManager(IRenderer renderer, IGameField field)
+
+        public CommandManager(IRenderer renderer, IGameField field, int activeRow, int activeCol)
         {
             this.renderer = renderer;
             this.field = field;
+            this.activeRow = activeRow;
+            this.activeCol = activeCol;
 
             commands.Add("top", new TopScoresCommand(this.renderer));
             commands.Add("save", new SaveCommand(this.field));
             commands.Add("restore", new RestoreCommand(this.field));
             commands.Add("exit", new ExitCommand(this.renderer));
             commands.Add("help", new HelpCommand(this.renderer));
+            commands.Add("pop", new PopBalloonsCommand(this.renderer, this.field, this.activeRow, this.activeCol));
         }
 
-        //public ICommandManager Renderer(IRenderer renderer)
-        //{
-        //    this.context.Renderer = renderer;
-        //    return this;
-        //}
-
-        //public ICommandManager Field(IGameField field)
-        //{
-        //    this.context.Field = field;
-        //    return this;
-        //}
-
-        public ICommand GetCommand(string commandName)
+        public ICommand GetCommand(IList<string> commandName)
         {
             bool hasCommand = this.CheckIfCommandExists(commandName);
             if (hasCommand)
             {
-                return this.commands[commandName];
+                return this.commands[commandName[0]];
             }
             else
             {
@@ -51,9 +45,9 @@
             }
         }
 
-        private bool CheckIfCommandExists(string commandName)
+        private bool CheckIfCommandExists(IList<string> commandName)
         {
-            return this.commands.Any(c => c.Value.Name == commandName);
+            return this.commands.Any(c => c.Value.Name == commandName[0]);
         }
     }
 }

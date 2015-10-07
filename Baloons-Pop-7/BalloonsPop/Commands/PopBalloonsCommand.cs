@@ -1,23 +1,51 @@
 ﻿namespace Balloons.Commands
 {
-    using Balloons.Cell;
-    using Balloons.Common;
-    using Balloons.FieldFactory;
-    using Balloons.FieldFactory.Field;
-    using Balloons.UI;
     using System;
 
-    public class PopBalloonsCommand //: ICommand
+    using Balloons.Cell;
+    using Balloons.Common;
+    using Balloons.FieldFactory.Field;
+    using Balloons.UI;
+
+    public class PopBalloonsCommand : ICommand
     {
+        private readonly IRenderer renderer;
+        private readonly IGameField gameField;
+        private readonly int activeRow;
+        private readonly int activeCol;
+
         private static int clearedCells = 0;
         public static int filledCells = GameConstants.FILLED_CELLS;
 
+        public PopBalloonsCommand(IRenderer renderer, IGameField gameField, int activeRow, int activeCol)
+        {
+            this.renderer = renderer;
+            this.gameField = gameField;
+            this.activeRow = activeRow;
+            this.activeCol = activeCol;
+            this.Name = "pop";
+        }
 
-        // this method should be renamed to Pop???
+        public string Name { get; private set; }
+
+        public void Execute()
+        {
+            //this.renderer.RenderCommands();
+
+            if (this.gameField == null)
+            {
+                throw new ArgumentNullException("gamefield");
+            }
+            else
+            {
+                Pop(this.activeRow, this.activeCol, this.gameField[this.activeRow, this.activeCol].Symbol, this.gameField);
+            }
+        }
+
         private void Pop(int row, int col, string activeCell, IGameField field)
         {
             bool validPop = IsPopValid(row, field.Rows) && IsPopValid(col, field.Columns);
-            //string activeCell = field[row, col];
+
             if (validPop && (field[row, col].Symbol == activeCell))
             {
                 field[row, col] = new BalloonPoped();
@@ -45,37 +73,6 @@
             else
             {
                 return false;
-            }
-        }
-
-        // this method should be removed from here
-        internal static bool IsFinished()
-        {
-            if (filledCells == 0)
-            {
-                filledCells = GameConstants.FILLED_CELLS;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public string Name
-        {
-            get { return "pop"; }
-        }
-
-        public void Execute(CommandContext context)
-        {
-            if (context.GameField == null)
-            {
-                throw new ArgumentNullException("board");
-            }
-            else
-            {
-                Pop(context.ActiveRow, context.ActiveCol, context.GameField[context.ActiveRow, context.ActiveCol].Symbol, context.GameField);
             }
         }
     }
