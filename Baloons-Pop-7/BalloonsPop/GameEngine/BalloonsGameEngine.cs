@@ -79,21 +79,43 @@ namespace Balloons.GameEngine
             {
                 IList<string> inputCommand = this.inputHandler.ReadInputCommand();
                 IList<string> parsedCommand = this.inputHandler.ParseInput(inputCommand, this.field);
-
-                Console.WriteLine(parsedCommand[0]);
-                var command = this.commandManger.GetCommand(parsedCommand);
-
-                command.Execute();
-                ReorderBallons();
-                //TODO : Logic for reordering goes here!!!
-                this.renderer.RenderGameField(this.field);
-
-                if (this.IsGameFinished(this.field))
+                try
                 {
-                    // Ask player for name and sets points
-                    this.player.Name = "Pesho";
-                    this.player.Points = 15;
-                    ScoreBoard.Instance.AddPlayer(this.player);
+                    var command = this.commandManger.GetCommand(parsedCommand);
+
+                    command.Execute();
+                    ReorderBallons();
+                    this.renderer.RenderGameField(this.field);
+
+                    if (this.IsGameFinished(this.field))
+                    {
+                        Console.Write("Please enter your name:");
+                        this.player.Name = Console.ReadLine();
+                        this.player.Points = 15;
+                        ScoreBoard.Instance.AddPlayer(this.player);
+                        ICommand showScore = new TopScoresCommand(this.renderer);
+                        showScore.Execute();
+                        Console.Write("Do you want to play again? (type yes/no)");
+                        string input = Console.ReadLine().ToLower();
+
+                        switch (input)
+                        {
+                            case "yes":
+                                Facade.StartGame();
+                                break;
+                            case "no":
+                                Environment.Exit(5);
+                                break;
+                            default: Console.Write("Invalid Input. Please type yes or no: ");
+                                input = Console.ReadLine();
+                                break;
+                        }
+                    }
+                }
+                catch (InvalidOperationException)
+                {
+                    this.renderer.RenderGameField(this.field);
+                    Console.WriteLine("Invalid command entered");
                 }
             }
         }
