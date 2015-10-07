@@ -29,7 +29,6 @@
             commands.Add("exit", new ExitCommand(this.renderer));
             commands.Add("help", new HelpCommand(this.renderer));
             commands.Add("pop", new PopBalloonsCommand(this.renderer, this.field, this.activeRow, this.activeCol));
-            Console.WriteLine("into the const {0}", this.activeRow);
         }
 
         public ICommand GetCommand(IList<string> commandName)

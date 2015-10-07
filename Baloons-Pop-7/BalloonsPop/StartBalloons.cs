@@ -16,15 +16,8 @@
 
     public class StartBalloons
     {
-
-        //private static int moves = 0;
-        //private static MemoryManager gameMemory = new MemoryManager();
-        //private static bool isUndo = false;
-        //public static StringBuilder userInput = new StringBuilder();
-
         public static void Main(string[] args)
-        {
-           
+        {          
             Facade.StartGame();
         }
 

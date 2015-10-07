@@ -49,7 +49,6 @@
     <Compile Include="Cell\BalloonThree.cs" />
     <Compile Include="Cell\BalloonTwo.cs" />
     <Compile Include="Cell\IBalloonsFactory.cs" />
-    <Compile Include="Commands\CommandContext.cs" />
     <Compile Include="Commands\CommandManager.cs" />
     <Compile Include="Commands\CommandManagerContext.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
@@ -60,13 +59,11 @@
     <Compile Include="Commands\RestoreCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Commands\TopScoresCommand.cs" />
-    <Compile Include="Commands\StartCommand.cs" />
     <Compile Include="Commands\UndoCommand.cs" />
     <Compile Include="Common\BalloonsColors.cs" />
     <Compile Include="Common\EnumUtils.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Common\GameConstants.cs" />
     <Compile Include="Common\GameMessages.cs" />
     <Compile Include="Common\GameMode.cs" />
     <Compile Include="Common\GameType.cs" />

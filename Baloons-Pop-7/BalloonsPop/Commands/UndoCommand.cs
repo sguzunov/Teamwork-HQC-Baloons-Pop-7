@@ -28,7 +28,7 @@
             get { return "undo"; }
         }
 
-        public void Execute(CommandContext context)
+        public void Execute()
         {
             System.Console.WriteLine("Implement the execute method"); ;
         }
