@@ -47,7 +47,6 @@ namespace Balloons.GameEngine
             this.fieldFactory = fieldFactory;
             this.gameMode = mode;
             this.gameDifficulty = difficulty;
-            this.commandManger = new CommandManager(this.renderer, this.field, activeRow = 0, activeCol = 0); // Not sure if good!!!
             this.player = player;
         }
 
@@ -63,6 +62,8 @@ namespace Balloons.GameEngine
             this.field.Fill();
 
             this.renderer.RenderGameField(this.field);
+
+            this.commandManger = new CommandManager(this.renderer, this.field, this.activeRow, this.activeCol);
         }
 
         public void StartGame()
@@ -71,14 +72,36 @@ namespace Balloons.GameEngine
             {
                 IList<string> inputCommand = this.inputHandler.ReadInputCommand();
                 IList<string> parsedCommand = this.inputHandler.ParseInput(inputCommand, this.field);
+                //this.commandManger = new CommandManager(this.renderer, this.field, this.activeRow, this.activeCol);
+
                 Console.WriteLine(parsedCommand[0]);
                 var command = this.commandManger.GetCommand(parsedCommand);
 
+                //this.activeRow = int.Parse(parsedCommand[1]);
+                //this.activeCol = int.Parse(parsedCommand[2]);
+                int count = 0;
+
+                Console.WriteLine(this.activeCol);
+                Console.WriteLine(this.activeRow);
+                Console.WriteLine(this.field[this.activeRow, this.activeCol].Symbol);
+
                 command.Execute();
-                // TODO : Logic for reordering goes here!!!
+                for (int i = 0; i < this.field.Rows; i++)
+                {
+                    for (int j = 0; j < this.field.Columns; j++)
+                    {
+                        if (this.field[i, j].Symbol == ".")
+                        {
+                            count++;
+                        }
+                    }
+                }
+
+                Console.WriteLine("count {0}", count);
+                //TODO : Logic for reordering goes here!!!
                 this.renderer.RenderGameField(this.field);
 
-                if (this.IsGameFinished())
+                if (this.IsGameFinished(this.field))
                 {
                     // Ask player for name and sets points
                     this.player.Name = "Pesho";
@@ -86,96 +109,31 @@ namespace Balloons.GameEngine
                     ScoreBoard.Instance.AddPlayer(this.player);
                 }
             }
-
-            //var inputHandler = new ConsoleInputHandler();
-            //string input;
-            //string parsedInput;
-
-            //while (true)
-            //{
-            //    Console.Write(GameMessages.CELL_INPUT_MESSAGE);
-            //    input = inputHandler.ReadInput();
-            //    parsedInput = inputHandler.ParseInput(input, field);
-            //    Console.WriteLine("Input: " + input);
-            //    Console.WriteLine("Parsed Input: " + parsedInput);
-
-            //    int activeRow,
-            //        activeCol;
-
-            //    if (parsedInput.Split(' ').Length < 3)
-            //    {
-            //        activeRow = 0;
-            //        activeCol = 0;
-            //    }
-            //    else
-            //    {
-            //        activeRow = int.Parse(parsedInput.Split(' ')[1]);
-            //        activeCol = int.Parse(parsedInput.Split(' ')[2]);
-            //    }
-
-            //    // ICommand command = GetCommand(parsedInput);
-            //    CommandContext context = new CommandContext(this.field, activeRow, activeCol);
-            //    //  command.Execute(context);
-            //    strategy.ReorderBalloons(this.field);
-
-            //    this.renderer.RenderGameField(this.field);
-
-            //}
         }
 
-        // This method is comented because the logic for getting ICommand is changed and this leads to exception.
-        // public ICommand GetCommand(string action)
-        //{
-        //string command = action.Split(' ')[0];
-        //ICommand cmd = null;
-        ////CommandContext ctx = null;
 
-        //switch (command)
-        //{
-        //    case "exit":
-        //        cmd = new ExitCommand();
-        //        break;
-        //    case "top":
-        //        cmd = new ShowScoreboardCommand();
-        //        break;
-        //    case "undo":
-        //        cmd = new UndoCommand();
-        //        break;
-        //    case "help":
-        //        cmd = new HelpCommand();
-        //        break;
-        //    case "start":
-        //        cmd = new StartCommand();
-        //        break;
-        //    case "restart":
-        //        cmd = new StartCommand();
-        //        break;
-
-        //    case "pop":
-        //        if (action.Split(' ')[1] == "invalid")
-        //        {
-        //            cmd = new InvalidCommand();
-        //        }
-        //        else
-        //        {
-        //            cmd = new PopBalloonsCommand();
-        //        }
-        //        break;
-
-        //    case "":
-        //        cmd = new InvalidPopCommand();
-        //        break;
-        //    default:
-        //        cmd = new InvalidCommand();
-        //        break;
-        //}
-        //return cmd;
-        //}
-
-        public bool IsGameFinished()
+        public bool IsGameFinished(IGameField field)
         {
-            // TODO : Logic for finished game goes here!!!
-            return false;
+            bool allPoped = false;
+            int count = 0;
+
+            for (int i = 0; i < field.Rows; i++)
+            {
+                for (int j = 0; j < field.Columns; j++)
+                {
+                    if (field[i, j].Symbol == ".")
+                    {
+                        count++;
+                    }
+                }
+            }
+
+            if (count == field.Columns * field.Rows)
+            {
+                allPoped = true;
+            }
+
+            return allPoped;
         }
     }
 }

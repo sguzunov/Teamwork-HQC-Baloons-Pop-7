@@ -1,4 +1,5 @@
-﻿namespace Balloons.GameEngine
+﻿using Balloons.FieldFactory.Field;
+namespace Balloons.GameEngine
 {
     public interface IBalloonsEngine
     {
@@ -6,6 +7,6 @@
 
         void StartGame();
 
-        bool IsGameFinished();
+        bool IsGameFinished(IGameField gameField);
     }
 }
