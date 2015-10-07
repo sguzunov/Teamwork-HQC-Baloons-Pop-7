@@ -6,26 +6,12 @@
     using Balloons.Common;
     using Balloons.Helpers;
     using System.Threading;
+    using System.Collections.Generic;
 
     public class ConsoleInputHandler : IInputHandler
     {
         private const string GameModeErrorMessage = "Invalid game mode!";
         private const string GameDifficultyErrorMessage = "Invalid game difficulty!";
-
-        public string ReadInputCommand()
-        {
-            Console.Write("Enter a command ('top', 'save', 'restore', 'help', 'exit'): ");
-            string input = Console.ReadLine();
-
-            if (Validator.CheckIfStringIsNullOrWhiteSpace(input))
-            {
-                throw new ArgumentException("Input command cannot be null or empty space.");
-            }
-
-            string command = input.Trim().ToLower();
-
-            return command;
-        }
 
         public GameMode GetGameMode()
         {
@@ -83,39 +69,58 @@
 
         const int PopCommandLength = 2;
 
-        private readonly string[] validCommands = new string[]
-            {
-                "help",
-                "start",
-                "exit",
-                "restart",
-                "top",
-                "undo",
-            };
-
-        /// <summary>
-        /// This method reads the input from the console
-        /// </summary>
-        /// <returns>command as string</returns>
-        public string ReadInput()
+        public IList<string> ReadInputCommand()
         {
+            IList<string> commandList = new List<string>();
+
+            Console.Write("Enter a command ('top', 'save', 'restore', 'help', 'exit'): ");
             string userInput = Console.ReadLine();
 
             if (IsValidInput(userInput))
             {
-                return userInput;
+                string[] splittedCommands = userInput.ToLower().Split(' ');
+                foreach (var c in splittedCommands)
+                {
+                    commandList.Add(c);
+                }
             }
             else
             {
-                return string.Empty;
+                commandList.Add("invalid");
             }
+
+            return commandList;
         }
 
-        /// <summary>
-        /// Check if the command is valid, i.e. if it is not empty
-        /// </summary>
-        /// <param name="command">string result of the method Read()</param>
-        /// <returns>bool value indicating if the command is valid</returns>
+        public IList<string> ParseInput(IList<string> command, IGameField gameField)
+        {
+            IList<string> parsedCommand = command;
+            int userInputLength = command.Count;
+            Console.WriteLine(userInputLength);
+            int row;
+            int col;
+
+            if (userInputLength == PopCommandLength &&
+                int.TryParse(command[0].ToString(), out row) &&
+                int.TryParse(command[1].ToString(), out col))
+            {
+                if (IsPositionValid(row, col, gameField))
+                {
+                    parsedCommand.Clear();
+                    parsedCommand.Add("pop");
+                    parsedCommand.Add((row - 1).ToString());
+                    parsedCommand.Add((col - 1).ToString());
+                }
+                else
+                {
+                    parsedCommand.Add("invalid");
+                    parsedCommand.Add("pop");
+                }
+            }
+
+            return parsedCommand;
+        }
+
         public bool IsValidInput(string command)
         {
             if (string.IsNullOrWhiteSpace(command))
@@ -141,82 +146,5 @@
             }
         }
 
-
-        /// <summary>
-        /// Parse the user input
-        /// </summary>
-        /// <param name="userInput"></param>
-        /// <returns>command that can be interpreted by the engine</returns>
-        public string ParseInput(string userInput, IGameField gameField)
-        {
-            string command;
-            string[] commandArray = userInput.Split(' ');
-            int userInputLength = commandArray.Length;
-            int row;
-            int col;
-
-            if (CheckIfValid(userInput, this.validCommands))
-            {
-                command = commandArray[0];
-            }
-            // maybe a bool variable should be pulled out
-            else if (userInputLength == PopCommandLength &&
-                int.TryParse(commandArray[0].ToString(), out row) &&
-                int.TryParse(commandArray[1].ToString(), out col))
-            {
-                if (IsPositionValid(row, col, gameField))
-                {
-                    command = "pop " + (row - 1).ToString() + " " + (col - 1).ToString();
-                }
-                else
-                {
-                    command = "pop invalid";
-                }
-            }
-            else
-            {
-                command = string.Empty;
-            }
-
-            return command;
-        }
-
-        public string ParseInput(string userInput, string[] commands)
-        {
-            string command;
-            string[] commandArray = userInput.Split(' ');
-            int userInputLength = commandArray.Length;
-
-            if ((CheckIfValid(userInput, commands)))
-            {
-                command = commandArray[0];
-            }
-            else
-            {
-                command = string.Empty;
-            }
-
-            return command;
-        }
-
-        public bool CheckIfValid(string input, string[] commands)
-        {
-            string[] inputSplit = input.ToLower().Split(' ');
-            bool validCommand = false;
-
-            if (inputSplit.Length == 1)
-            {
-                if (Array.IndexOf(commands, inputSplit[0]) >= 0)
-                {
-                    validCommand = true;
-                }
-                else
-                {
-                    validCommand = false;
-                }
-            }
-
-            return validCommand;
-        }
     }
 }
