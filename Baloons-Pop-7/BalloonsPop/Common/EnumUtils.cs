@@ -18,15 +18,6 @@
 
             var gameMode = modes.FirstOrDefault(m => m.ToString().ToLower() == modeAsString);
 
-            //foreach (var mode in modes)
-            //{
-            //    var modeConvertedToString = mode.ToString().ToLower();
-            //    if (modeAsString == modeConvertedToString)
-            //    {
-            //        gameMode = mode;
-            //    }
-            //}
-
             return gameMode;
         }
 
@@ -35,15 +26,6 @@
             var difficulties = GetEnumValues<GameDifficulty>();
 
             var difficulty = difficulties.FirstOrDefault(d => d.ToString().ToLower() == difficultyAsString);
-
-            //foreach (var difficulty in difficulties)
-            //{
-            //    var difficultyConvertedToString = difficulty.ToString().ToLower();
-            //    if (difficultyAsString == difficultyConvertedToString)
-            //    {
-            //        return difficulty;
-            //    }
-            //}
 
             return difficulty;
         }

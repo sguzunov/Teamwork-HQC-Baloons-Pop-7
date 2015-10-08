@@ -1,11 +1,11 @@
 ﻿namespace Balloons
 {
-    using Balloons.UI;
-    using Balloons.InputHandler;
-    using Balloons.GameEngine;
-    using Balloons.FieldFactory;
     using Balloons.Common;
+    using Balloons.FieldFactory;
+    using Balloons.GameEngine;
     using Balloons.GamePlayer;
+    using Balloons.InputHandler;
+    using Balloons.UI;
 
     public static class Facade
     {
@@ -23,7 +23,6 @@
             // Getting mode and difficulty goes here.
             GameMode gameMode = inputHandler.GetGameMode();
             GameDifficulty gameDifficulty = inputHandler.GetGameDifficulty();
-
 
             IBalloonsEngine engine = new BalloonsGameEngine(renderer, inputHandler, fieldFactory, gameMode, gameDifficulty, player);
             engine.InitializeGame();

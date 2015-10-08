@@ -1,14 +1,14 @@
 ﻿namespace Balloons.UI
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
 
     using Balloons.Common;
     using Balloons.FieldFactory.Field;
-    using Balloons.Helpers;
     using Balloons.GamePlayer;
-
+    using Balloons.Helpers;
+    
     public class ConsoleRenderer : IRenderer
     {
         private const char TopAndBottomBorderSymbol = '-';

@@ -1,12 +1,11 @@
 ﻿namespace Balloons.InputHandler
 {
     using System;
-    using Balloons.FieldFactory.Field;
-    using Balloons.Commands;
-    using Balloons.Common;
-    using Balloons.Helpers;
-    using System.Threading;
     using System.Collections.Generic;
+
+    using Balloons.Common;
+    using Balloons.FieldFactory.Field;
+    using Balloons.Helpers;
 
     public class ConsoleInputHandler : IInputHandler
     {
@@ -145,6 +144,5 @@
                 return false;
             }
         }
-
     }
 }

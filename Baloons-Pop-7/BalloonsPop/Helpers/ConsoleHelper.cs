@@ -1,9 +1,9 @@
-﻿using Balloons.Common;
-
-namespace Balloons.Helpers
+﻿namespace Balloons.Helpers
 {
     using System;
     using System.Threading;
+
+    using Balloons.Common;
 
     public class ConsoleHelper
     {
@@ -50,6 +50,11 @@ namespace Balloons.Helpers
             ClearConsoleLine();
         }
 
+        public static void ClearConsole()
+        {
+            Console.Clear();
+        }
+
         private static void ClearConsoleLine()
         {
             var currentLine = Console.CursorTop - 1;
@@ -57,11 +62,6 @@ namespace Balloons.Helpers
             Console.SetCursorPosition(0, currentLine);
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, currentLine);
-        }
-
-        public static void ClearConsole()
-        {
-            Console.Clear();
         }
     }
 }

@@ -84,7 +84,9 @@
     <Compile Include="GameRules\ReorderBallonsStrategyFly.cs" />
     <Compile Include="GameRules\ReorderBallonsStrategyDefault.cs" />
     <Compile Include="GameRules\ReorderBalloonsStrategy.cs" />
-    <Compile Include="GameScore\ScoreBoard.cs" />
+    <Compile Include="GameScore\ScoreBoard.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Helpers\ConsoleHelper.cs" />
     <Compile Include="Helpers\Sound.cs" />
     <Compile Include="InputHandler\ConsoleInputHandler.cs" />
@@ -94,7 +96,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomProvider.cs" />
     <Compile Include="StartBalloons.cs" />
-    <Compile Include="UI\ChangeBalloonColor.cs" />
     <Compile Include="UI\ConsoleRenderer.cs" />
     <Compile Include="UI\IRenderer.cs" />
   </ItemGroup>

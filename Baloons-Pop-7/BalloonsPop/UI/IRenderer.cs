@@ -1,7 +1,8 @@
 ﻿namespace Balloons.UI
 {
-    using Balloons.FieldFactory.Field;
     using System.Collections.Generic;
+
+    using Balloons.FieldFactory.Field;
     using Balloons.GamePlayer;
 
     public interface IRenderer

@@ -11,7 +11,8 @@
         private const int MaxPossiblePlayers = 5;
         private const string PlayerNullErrorMessage = "New player cannot be null.";
 
-        private readonly static object syncLock = new object();
+        private static readonly object SyncLock = new object();
+
         private static ScoreBoard instance;
         private readonly IList<IPlayer> listOfPlayers;
 
@@ -26,7 +27,7 @@
             {
                 if (instance == null)
                 {
-                    lock (syncLock)
+                    lock (SyncLock)
                     {
                         if (instance == null)
                         {

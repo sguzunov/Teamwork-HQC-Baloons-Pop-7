@@ -1,6 +1,7 @@
-﻿using Balloons.FieldFactory.Field;
-namespace Balloons.GameEngine
+﻿namespace Balloons.GameEngine
 {
+    using Balloons.FieldFactory.Field;
+
     public interface IBalloonsEngine
     {
         void InitializeGame();

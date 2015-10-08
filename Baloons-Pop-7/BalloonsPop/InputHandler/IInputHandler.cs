@@ -1,8 +1,9 @@
 ﻿namespace Balloons.InputHandler
 {
+    using System.Collections.Generic;
+
     using Balloons.Common;
     using Balloons.FieldFactory.Field;
-    using System.Collections.Generic;
 
     public interface IInputHandler
     {

@@ -68,8 +68,6 @@ namespace Balloons.GameEngine
             this.field.Filler = filler;
             this.field.Fill();
 
-            this.renderer.RenderGameField(this.field);
-
             this.commandManger = new CommandManager(this.renderer, this.field, this.activeRow, this.activeCol);
         }
 
@@ -77,6 +75,8 @@ namespace Balloons.GameEngine
         {
             while (true)
             {
+                this.renderer.RenderGameField(this.field);
+
                 IList<string> inputCommand = this.inputHandler.ReadInputCommand();
                 IList<string> parsedCommand = this.inputHandler.ParseInput(inputCommand, this.field);
                 try
@@ -85,7 +85,6 @@ namespace Balloons.GameEngine
 
                     command.Execute();
                     ReorderBallons();
-                    this.renderer.RenderGameField(this.field);
 
                     if (this.IsGameFinished(this.field))
                     {
@@ -123,26 +122,20 @@ namespace Balloons.GameEngine
 
         public bool IsGameFinished(IGameField field)
         {
-            bool allPoped = false;
-            int count = 0;
-
-            for (int i = 0; i < field.Rows; i++)
+            int rows = field.Rows;
+            int columns = field.Columns;
+            for (int row = 0; row < rows; row++)
             {
-                for (int j = 0; j < field.Columns; j++)
+                for (int column = 0; column < columns; column++)
                 {
-                    if (field[i, j].Symbol == ".")
+                    if (field[row, column].Symbol != ".")
                     {
-                        count++;
+                        return false;
                     }
                 }
             }
 
-            if (count == field.Columns * field.Rows)
-            {
-                allPoped = true;
-            }
-
-            return allPoped;
+            return true;
         }
     }
 }

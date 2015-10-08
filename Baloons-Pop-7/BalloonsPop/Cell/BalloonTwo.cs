@@ -6,8 +6,8 @@
     {
         public BalloonTwo()
         {
-            base.Symbol = "2";
-            base.Color = BalloonsColors.White;
+            this.Symbol = "2";
+            this.Color = BalloonsColors.White;
         }
     }
 }

@@ -11,9 +11,9 @@
 
         public Balloon GetBalloon(string symbol)
         {
-            if (balloons.ContainsKey(symbol))
+            if (this.balloons.ContainsKey(symbol))
             {
-                return balloons[symbol];
+                return this.balloons[symbol];
             }
 
             Balloon balloon;
@@ -24,26 +24,31 @@
                         balloon = new BalloonOne();
                         break;
                     }
+
                 case "2":
                     {
                         balloon = new BalloonTwo();
                         break;
                     }
+
                 case "3":
                     {
                         balloon = new BalloonThree();
                         break;
                     }
+
                 case "4":
                     {
                         balloon = new BalloonFour();
                         break;
                     }
+
                 case ".":
                     {
                         balloon = new BalloonPoped();
                         break;
                     }
+
                 default:
                     {
                         throw new ArgumentException(string.Format(BalloonSymbolErrorMessage, symbol));

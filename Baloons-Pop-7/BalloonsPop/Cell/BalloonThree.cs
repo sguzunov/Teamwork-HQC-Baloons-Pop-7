@@ -6,8 +6,8 @@
     {
         public BalloonThree()
         {
-            base.Symbol = "3";
-            base.Color = BalloonsColors.Green;
+            this.Symbol = "3";
+            this.Color = BalloonsColors.Green;
         }
     }
 }
