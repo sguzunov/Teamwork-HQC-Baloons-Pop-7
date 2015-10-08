@@ -65,6 +65,7 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Common\GameMessages.cs" />
+    <Compile Include="Common\AnotherRound.cs" />
     <Compile Include="Common\GameMode.cs" />
     <Compile Include="Common\GameType.cs" />
     <Compile Include="Common\Validators.cs" />

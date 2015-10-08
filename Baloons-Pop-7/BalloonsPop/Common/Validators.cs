@@ -31,6 +31,19 @@
             return isValidDifficulty;
         }
 
+        public static bool CheckIfValidAnswer(string answer)
+        {
+            if (answer == null)
+            {
+                return false;
+            }
+
+            var answers = EnumUtils.GetEnumValues<AnotherRound>();
+            var isValidAnswer = answers.Any(m => m.ToString().ToLower() == answer);
+
+            return isValidAnswer;
+        }
+
         public static bool CheckIfStringIsNullOrWhiteSpace(string context)
         {
             if (string.IsNullOrWhiteSpace(context))

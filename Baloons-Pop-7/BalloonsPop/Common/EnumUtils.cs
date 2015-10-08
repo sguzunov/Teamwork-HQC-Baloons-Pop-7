@@ -29,5 +29,14 @@
 
             return difficulty;
         }
+
+        public static AnotherRound GetPlayAgainAnswerFromString(string playAgainAsString)
+        {
+            var answers = GetEnumValues<AnotherRound>();
+
+            var playAgain = answers.FirstOrDefault(d => d.ToString().ToLower() == playAgainAsString);
+
+            return playAgain;
+        }
     }
 }

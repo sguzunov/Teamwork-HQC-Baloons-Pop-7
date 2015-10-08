@@ -14,5 +14,7 @@
         GameMode GetGameMode();
 
         GameDifficulty GetGameDifficulty();
+
+        AnotherRound GetPlayAgainResponse();
     }
 }

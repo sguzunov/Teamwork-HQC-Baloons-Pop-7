@@ -11,6 +11,7 @@
     {
         private const string GameModeErrorMessage = "Invalid game mode!";
         private const string GameDifficultyErrorMessage = "Invalid game difficulty!";
+        private const string PlayAgainAnswerErrorMessage = "Invalid answer!";
 
         public GameMode GetGameMode()
         {
@@ -18,12 +19,6 @@
             {
                 Console.Write("Select a game mode: please type 'default' or 'fly': ");
                 string input = Console.ReadLine();
-
-                if (Validator.CheckIfStringIsNullOrWhiteSpace(input))
-                {
-                    throw new ArgumentException("Input game mode cannot be null or empty space.");
-                }
-
                 string gameModeAsString = input.Trim().ToLower();
                 bool isValidGameMode = Validator.CheckIfValidGameMode(gameModeAsString);
                 if (isValidGameMode)
@@ -44,12 +39,6 @@
             {
                 Console.Write("Select a game difficulty: please type 'easy' or 'hard': ");
                 string input = Console.ReadLine();
-
-                if (Validator.CheckIfStringIsNullOrWhiteSpace(input))
-                {
-                    throw new ArgumentException("Input game difficulty cannot be null or empty space.");
-                }
-
                 string gameDifficultyAsString = input.Trim().ToLower();
                 bool isValidGameDifficulty = Validator.CheckIfValidGameDifficulty(gameDifficultyAsString);
                 if (isValidGameDifficulty)
@@ -62,6 +51,26 @@
                 else
                 {
                     ConsoleHelper.DisplayInputErrorMessage(GameDifficultyErrorMessage);
+                }
+            }
+        }
+
+        public AnotherRound GetPlayAgainResponse()
+        {
+            while (true)
+            {
+                Console.Write("Do you want to play again? Please type 'yes' or 'no': ");
+                string input = Console.ReadLine();
+                string answerAsString = input.Trim().ToLower();
+                bool isValidAnswer = Validator.CheckIfValidAnswer(answerAsString);
+                if (isValidAnswer)
+                {
+                    var answer = EnumUtils.GetPlayAgainAnswerFromString(answerAsString);
+                    return answer;
+                }
+                else
+                {
+                    ConsoleHelper.DisplayInputErrorMessage(PlayAgainAnswerErrorMessage);
                 }
             }
         }

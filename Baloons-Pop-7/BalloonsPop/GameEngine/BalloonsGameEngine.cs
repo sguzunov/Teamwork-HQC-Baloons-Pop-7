@@ -73,6 +73,8 @@ namespace Balloons.GameEngine
 
         public void StartGame()
         {
+            var moves = 0;
+
             while (true)
             {
                 this.renderer.RenderGameField(this.field);
@@ -84,31 +86,35 @@ namespace Balloons.GameEngine
                     var command = this.commandManger.GetCommand(parsedCommand);
 
                     command.Execute();
+                    if (command.Name == "pop")
+                    {
+                        moves++;
+                    }
+
                     ReorderBallons();
 
                     if (this.IsGameFinished(this.field))
                     {
+                        var points = ((this.field.Rows * this.field.Columns) - moves)*100;
+                        this.renderer.RenderGameField(this.field);
                         Console.Write("Please enter your name:");
                         this.player.Name = Console.ReadLine();
-                        this.player.Points = 15;
+                        this.player.Points = points;
                         ScoreBoard.Instance.AddPlayer(this.player);
                         ICommand showScore = new TopScoresCommand(this.renderer);
                         showScore.Execute();
-                        Console.Write("Do you want to play again? (type yes/no)");
-                        string input = Console.ReadLine().ToLower();
 
-                        switch (input)
+                        AnotherRound playAnotherRound = inputHandler.GetPlayAgainResponse();
+
+                        if (playAnotherRound == AnotherRound.Yes)
                         {
-                            case "yes":
-                                Facade.StartGame();
-                                break;
-                            case "no":
-                                Environment.Exit(5);
-                                break;
-                            default: Console.Write("Invalid Input. Please type yes or no: ");
-                                input = Console.ReadLine();
-                                break;
+                            Facade.StartGame();
                         }
+                        else
+	                    {
+                            ICommand exit = new ExitCommand(this.renderer);
+                            exit.Execute();
+	                    }
                     }
                 }
                 catch (InvalidOperationException)
@@ -119,7 +125,7 @@ namespace Balloons.GameEngine
             }
         }
 
-
+        // TODO: refractor this method using Linq
         public bool IsGameFinished(IGameField field)
         {
             int rows = field.Rows;
