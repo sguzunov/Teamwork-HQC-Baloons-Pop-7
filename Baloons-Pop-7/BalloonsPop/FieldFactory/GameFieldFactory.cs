@@ -7,8 +7,8 @@
 
     public class GameFieldFactory : IFieldFactory
     {
-        private const int EasyGameFieldRows = 2;
-        private const int EasyGameFieldColumns = 2;
+        private const int EasyGameFieldRows = 6;
+        private const int EasyGameFieldColumns = 6;
         private const int HardGameFieldRows = 9;
         private const int HardGameFieldColumns = 9;
         private const string TypeErrorMessage = "The game difficulty does not exists!";

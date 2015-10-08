@@ -1,22 +1,19 @@
-﻿using Balloons.Cell;
-using Balloons.GamePlayer;
-using Balloons.GameScore;
-
-namespace Balloons.GameEngine
+﻿namespace Balloons.GameEngine
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
-    using Balloons.UI;
-    using Balloons.InputHandler;
-    using Balloons.FieldFactory;
-    using Balloons.Common;
-    using Balloons.FieldFactory.Field;
+    using Balloons.Cell;
     using Balloons.Commands;
+    using Balloons.Common;
+    using Balloons.FieldFactory;
+    using Balloons.FieldFactory.Field;
+    using Balloons.GamePlayer;
     using Balloons.GameRules;
+    using Balloons.GameScore;
+    using Balloons.InputHandler;
+    using Balloons.Memory;
+    using Balloons.UI;
 
     public class BalloonsGameEngine : IBalloonsEngine
     {
@@ -28,18 +25,13 @@ namespace Balloons.GameEngine
         private GameDifficulty gameDifficulty;
         private ReorderBalloonsStrategy strategy;
         private ICommandManager commandManger;
+        private IFieldMemoryManager fieldMemoryManager;
         private IPlayer player;
         private int activeRow;
         private int activeCol;
 
-
-        public void ReorderBallons()
-        {
-            strategy.ReorderBalloons(this.field);
-        }
-
-        public BalloonsGameEngine(IRenderer renderer, IInputHandler inputHandler,
-            IFieldFactory fieldFactory, GameMode mode, GameDifficulty difficulty,
+        public BalloonsGameEngine(IRenderer renderer, IInputHandler inputHandler, IFieldFactory fieldFactory,
+            GameMode mode, GameDifficulty difficulty, IFieldMemoryManager fieldMemorizerManager,
             IPlayer player)
         {
             this.renderer = renderer;
@@ -48,6 +40,7 @@ namespace Balloons.GameEngine
             this.gameMode = mode;
             this.gameDifficulty = difficulty;
             this.player = player;
+            this.fieldMemoryManager = fieldMemorizerManager;
         }
 
         public void InitializeGame()
@@ -68,7 +61,7 @@ namespace Balloons.GameEngine
             this.field.Filler = filler;
             this.field.Fill();
 
-            this.commandManger = new CommandManager(this.renderer, this.field, this.activeRow, this.activeCol);
+            this.commandManger = new CommandManager(this.renderer, this.field, this.fieldMemoryManager, this.activeRow, this.activeCol);
         }
 
         public void StartGame()
@@ -95,7 +88,7 @@ namespace Balloons.GameEngine
 
                     if (this.IsGameFinished(this.field))
                     {
-                        var points = ((this.field.Rows * this.field.Columns) - moves)*100;
+                        var points = ((this.field.Rows * this.field.Columns) - moves) * 100;
                         this.renderer.RenderGameField(this.field);
                         Console.Write("Please enter your name:");
                         this.player.Name = Console.ReadLine();
@@ -111,10 +104,10 @@ namespace Balloons.GameEngine
                             Facade.StartGame();
                         }
                         else
-	                    {
+                        {
                             ICommand exit = new ExitCommand(this.renderer);
                             exit.Execute();
-	                    }
+                        }
                     }
                 }
                 catch (InvalidOperationException)
@@ -142,6 +135,11 @@ namespace Balloons.GameEngine
             }
 
             return true;
+        }
+
+        private void ReorderBallons()
+        {
+            strategy.ReorderBalloons(this.field);
         }
     }
 }

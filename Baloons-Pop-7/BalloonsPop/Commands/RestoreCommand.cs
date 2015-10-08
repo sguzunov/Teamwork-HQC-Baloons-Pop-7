@@ -1,15 +1,17 @@
 ﻿namespace Balloons.Commands
 {
     using Balloons.FieldFactory.Field;
-    using Balloons.Commands;
+    using Balloons.Memory;
 
     public class RestoreCommand : ICommand
     {
         private readonly IGameField field;
+        private readonly IFieldMemoryManager fieldMemorizerManager;
 
-        public RestoreCommand(IGameField field)
+        public RestoreCommand(IFieldMemoryManager fieldMemorizerManager, IGameField field)
         {
             this.field = field;
+            this.fieldMemorizerManager = fieldMemorizerManager;
             this.Name = "restore";
         }
 
@@ -17,7 +19,7 @@
 
         public void Execute()
         {
-            // TODO : Get saved matrix from memento.
+            this.fieldMemorizerManager.Undo(this.field);
         }
     }
 }

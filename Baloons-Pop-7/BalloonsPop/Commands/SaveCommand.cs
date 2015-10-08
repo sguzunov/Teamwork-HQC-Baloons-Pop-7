@@ -1,14 +1,17 @@
 ﻿namespace Balloons.Commands
 {
     using Balloons.FieldFactory.Field;
+    using Balloons.Memory;
 
     public class SaveCommand : ICommand
     {
         private readonly IGameField field;
+        private readonly IFieldMemoryManager fieldMemoryManager;
 
-        public SaveCommand(IGameField field)
+        public SaveCommand(IFieldMemoryManager fieldMemoryManager, IGameField field)
         {
             this.field = field;
+            this.fieldMemoryManager = fieldMemoryManager;
             this.Name = "save";
         }
 
@@ -16,7 +19,7 @@
 
         public void Execute()
         {
-            // TODO: Implement memento
+            this.fieldMemoryManager.Save(this.field);
         }
     }
 }

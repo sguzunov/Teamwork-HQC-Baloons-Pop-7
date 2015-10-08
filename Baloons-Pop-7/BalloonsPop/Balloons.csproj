@@ -50,7 +50,6 @@
     <Compile Include="Cell\BalloonTwo.cs" />
     <Compile Include="Cell\IBalloonsFactory.cs" />
     <Compile Include="Commands\CommandManager.cs" />
-    <Compile Include="Commands\CommandManagerContext.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
@@ -59,7 +58,6 @@
     <Compile Include="Commands\RestoreCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Commands\TopScoresCommand.cs" />
-    <Compile Include="Commands\UndoCommand.cs" />
     <Compile Include="Common\BalloonsColors.cs" />
     <Compile Include="Common\EnumUtils.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
@@ -71,7 +69,9 @@
     <Compile Include="Common\Validators.cs" />
     <Compile Include="Facade.cs" />
     <Compile Include="FieldFactory\Field\Filler.cs" />
+    <Compile Include="FieldFactory\Field\IField.cs" />
     <Compile Include="FieldFactory\Field\IFiller.cs" />
+    <Compile Include="FieldFactory\Field\IMemorable.cs" />
     <Compile Include="GameEngine\BalloonsGameEngine.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -92,8 +92,9 @@
     <Compile Include="Helpers\Sound.cs" />
     <Compile Include="InputHandler\ConsoleInputHandler.cs" />
     <Compile Include="InputHandler\IInputHandler.cs" />
-    <Compile Include="Logic\Memory.cs" />
-    <Compile Include="Logic\MemoryManager.cs" />
+    <Compile Include="Memory\FieldMemory.cs" />
+    <Compile Include="Memory\FieldMemoryManager.cs" />
+    <Compile Include="Memory\IFieldMemoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomProvider.cs" />
     <Compile Include="StartBalloons.cs" />

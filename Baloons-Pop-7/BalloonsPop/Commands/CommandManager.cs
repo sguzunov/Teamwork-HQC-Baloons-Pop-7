@@ -1,4 +1,6 @@
-﻿namespace Balloons.Commands
+﻿using Balloons.Memory;
+
+namespace Balloons.Commands
 {
     using System;
 
@@ -12,20 +14,23 @@
         private readonly IDictionary<string, ICommand> commands = new Dictionary<string, ICommand>();
         private IRenderer renderer;
         private IGameField field;
+        private IFieldMemoryManager fieldMemoryManager;
         private int activeRow;
         private int activeCol;
 
 
-        public CommandManager(IRenderer renderer, IGameField field, int activeRow, int activeCol)
+        public CommandManager(IRenderer renderer, IGameField field,
+            IFieldMemoryManager fieldMemoryManager, int activeRow, int activeCol)
         {
             this.renderer = renderer;
             this.field = field;
+            this.fieldMemoryManager = fieldMemoryManager;
             this.activeRow = activeRow;
             this.activeCol = activeCol;
 
             commands.Add("top", new TopScoresCommand(this.renderer));
-            commands.Add("save", new SaveCommand(this.field));
-            commands.Add("restore", new RestoreCommand(this.field));
+            commands.Add("save", new SaveCommand(this.fieldMemoryManager, this.field));
+            commands.Add("restore", new RestoreCommand(this.fieldMemoryManager, this.field));
             commands.Add("exit", new ExitCommand(this.renderer));
             commands.Add("help", new HelpCommand(this.renderer));
             commands.Add("pop", new PopBalloonsCommand(this.renderer, this.field, this.activeRow, this.activeCol));
@@ -37,7 +42,7 @@
 
             if (hasCommand)
             {
-                
+
                 if (commandName.Count > 2)
                 {
                     this.activeRow = int.Parse(commandName[1]);
