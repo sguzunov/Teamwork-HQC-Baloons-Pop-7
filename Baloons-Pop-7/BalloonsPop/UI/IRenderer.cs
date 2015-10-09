@@ -16,5 +16,7 @@
         void RenderGameTopPlayers(IList<IPlayer> players);
 
         void RenderGameMessage(string message);
+
+        void RenderGameErrorMessage(string message);
     }
 }

@@ -1,70 +1,77 @@
-﻿using Balloons.Cell;
-using Balloons.Memory;
-
-namespace Balloons.Commands
+﻿namespace Balloons.Commands
 {
     using System;
-
-    using Balloons.FieldFactory.Field;
-    using Balloons.UI;
     using System.Collections.Generic;
     using System.Linq;
 
+    using Balloons.Cell;
+    using Balloons.FieldFactory.Field;
+    using Balloons.Memory;
+    using Balloons.UI;
+
     public class CommandManager : ICommandManager
     {
-        private readonly IDictionary<string, ICommand> commands = new Dictionary<string, ICommand>();
-
-        private IRenderer renderer;
-        private IGameField field;
-        private IFieldMemoryManager fieldMemoryManager;
-        private IBalloonsFactory balloonsFactory;
-        private int activeRow;
-        private int activeCol;
-
-        public CommandManager(IRenderer renderer, IGameField field,
-            IFieldMemoryManager fieldMemoryManager, IBalloonsFactory balloonsFactory,
-            int activeRow, int activeCol)
+        public ICommand ProcessCommand(
+            string commandString,
+            IRenderer renderer,
+            IGameField field,
+            IFieldMemoryManager fieldMemoryManager,
+            IBalloonsFactory balloonsFactory)
         {
-            this.renderer = renderer;
-            this.field = field;
-            this.fieldMemoryManager = fieldMemoryManager;
-            this.balloonsFactory = balloonsFactory;
-            this.activeRow = activeRow;
-            this.activeCol = activeCol;
+            var commandParts = this.SplitCommandString(commandString);
+            string commandName = commandParts[0];
+            int rowPosition = 0;
+            int colPosition = 0;
 
-            commands.Add("top", new TopScoresCommand(this.renderer));
-            commands.Add("save", new SaveCommand(this.fieldMemoryManager, this.field));
-            commands.Add("restore", new RestoreCommand(this.fieldMemoryManager, this.field));
-            commands.Add("exit", new ExitCommand(this.renderer));
-            commands.Add("help", new HelpCommand(this.renderer));
-            commands.Add("pop", new PopBalloonsCommand(this.balloonsFactory, this.field, this.activeRow, this.activeCol));
+            if (commandParts.Length == 3)
+            {
+                rowPosition = commandParts[1] != null ? int.Parse(commandParts[1]) - 1 : 0;
+                colPosition = commandParts[2] != null ? int.Parse(commandParts[2]) - 1 : 0;
+            }
+
+            switch (commandName)
+            {
+                case "pop":
+                    {
+                        return new PopBalloonsCommand(balloonsFactory, field, rowPosition, colPosition);
+                    }
+
+                case "top":
+                    {
+                        return new TopScoresCommand(renderer);
+                    }
+
+                case "save":
+                    {
+                        return new SaveCommand(fieldMemoryManager, field);
+                    }
+
+                case "restore":
+                    {
+                        return new RestoreCommand(fieldMemoryManager, field);
+                    }
+
+                case "help":
+                    {
+                        return new HelpCommand(renderer);
+                    }
+
+                case "exit":
+                    {
+                        return new ExitCommand(renderer);
+                    }
+
+                default:
+                    {
+                        throw new InvalidOperationException("Invalid command request!");
+                    }
+            }
         }
 
-        public ICommand GetCommand(IList<string> commandName)
+        private string[] SplitCommandString(string commandString)
         {
-            bool hasCommand = this.CheckIfCommandExists(commandName);
-
-            if (hasCommand)
-            {
-                if (commandName.Count > 2)
-                {
-                    this.activeRow = int.Parse(commandName[1]);
-                    this.activeCol = int.Parse(commandName[2]);
-                    commands.Remove("pop");
-                    commands.Add("pop", new PopBalloonsCommand(this.balloonsFactory, this.field, this.activeRow, this.activeCol));
-                }
-
-                return this.commands[commandName[0]];
-            }
-            else
-            {
-                throw new InvalidOperationException("The game does now contain such a command!");
-            }
-        }
-
-        private bool CheckIfCommandExists(IList<string> commandName)
-        {
-            return this.commands.Any(c => c.Value.Name == commandName[0]);
+            var commandParts = commandString.Split(new char[] { ' ' });
+            return commandParts;
         }
     }
 }

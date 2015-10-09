@@ -8,7 +8,7 @@
     using Balloons.FieldFactory.Field;
     using Balloons.GamePlayer;
     using Balloons.Helpers;
-    
+
     public class ConsoleRenderer : IRenderer
     {
         private const char TopAndBottomBorderSymbol = '-';
@@ -63,6 +63,11 @@
         {
             ConsoleHelper.CentraliseCursor(message.Length);
             Console.WriteLine(message);
+        }
+
+        public void RenderGameErrorMessage(string message)
+        {
+            ConsoleHelper.DisplayInputErrorMessage(message);
         }
 
         private void PrintMatrix(IGameField field)

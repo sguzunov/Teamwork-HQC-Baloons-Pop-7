@@ -77,27 +77,12 @@
 
         const int PopCommandLength = 2;
 
-        public IList<string> ReadInputCommand()
+        public string ReadInputCommand()
         {
-            IList<string> commandList = new List<string>();
-
-            Console.Write("Enter a command ('top', 'save', 'restore', 'help', 'exit'): ");
-            string userInput = Console.ReadLine();
-
-            if (IsValidInput(userInput))
-            {
-                string[] splittedCommands = userInput.ToLower().Split(' ');
-                foreach (var c in splittedCommands)
-                {
-                    commandList.Add(c);
-                }
-            }
-            else
-            {
-                commandList.Add("invalid");
-            }
-
-            return commandList;
+            Console.Write("Enter a command ('pop {row} {col}', 'top', 'save', 'restore', 'help', 'exit'): ");
+            string userInput = Console.ReadLine().Trim().ToLower();
+            
+            return userInput;
         }
 
         public IList<string> ParseInput(IList<string> command, IGameField gameField)

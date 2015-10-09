@@ -21,8 +21,6 @@
         private ReorderBalloonsStrategy strategy;
         private ICommandManager commandManger;
         private IGameField field;
-        private int activeRow;
-        private int activeCol;
 
         //private IRenderer renderer;
         //private IInputHandler inputHandler;
@@ -109,13 +107,10 @@
             this.field = this.engineContext.FieldFactory.CreateGameField(this.engineContext.GameDifficulty);
 
             // Needs refactoring
-            var filler = new Filler(new BalloonsFactory());
+            var filler = new Filler(this.engineContext.BalloonsFactory);
             this.field.Filler = filler;
             this.field.Fill();
-
-            this.commandManger = new CommandManager(this.engineContext.Renderer, this.field,
-                this.engineContext.FieldMemoryManager, this.engineContext.BalloonsFactory,
-                this.activeRow, this.activeCol);
+            this.commandManger = new CommandManager();
         }
 
         public void StartGame()
@@ -126,11 +121,20 @@
             {
                 this.engineContext.Renderer.RenderGameField(this.field);
 
-                IList<string> inputCommand = this.engineContext.Input.ReadInputCommand();
-                IList<string> parsedCommand = this.engineContext.Input.ParseInput(inputCommand, this.field);
+                var commandInput = this.engineContext.Input.ReadInputCommand();
+
+
+
                 try
                 {
-                    var command = this.commandManger.GetCommand(parsedCommand);
+
+                    // Get command from manager and tries to execute
+                    var command = this.commandManger.ProcessCommand(
+                        commandInput,
+                        this.engineContext.Renderer,
+                        this.field,
+                        this.engineContext.FieldMemoryManager,
+                        this.engineContext.BalloonsFactory);
 
                     command.Execute();
                     if (command.Name == "pop")
@@ -138,7 +142,7 @@
                         moves++;
                     }
 
-                    ReorderBallons();
+                    ReorderBallons(this.field);
 
                     if (this.IsGameFinished(this.field))
                     {
@@ -164,10 +168,9 @@
                         }
                     }
                 }
-                catch (InvalidOperationException)
+                catch (Exception exception)
                 {
-                    this.engineContext.Renderer.RenderGameField(this.field);
-                    Console.WriteLine("Invalid command entered");
+                    this.engineContext.Renderer.RenderGameErrorMessage(exception.Message);
                 }
             }
         }
@@ -190,9 +193,9 @@
             return true;
         }
 
-        private void ReorderBallons()
+        private void ReorderBallons(IGameField field)
         {
-            strategy.ReorderBalloons(this.field);
+            strategy.ReorderBalloons(field);
         }
     }
 }
