@@ -121,5 +121,27 @@ namespace BalloonsPops
 
 22. Console sound is added 
 
-23. 
+23. Code is refactored according to StyleCop rules
+
+24. Removing new refactored code in new folder "src" / better explanation ? :/
+
+25. Command pattern is added in order to achieve easier architecture of the commands of the game
+
+26. Game mode and game difficulty are added to achieve more functionality 
+
+27. Flyweight pattern is used / where ?
+
+28. Added new abstract logic for commands and their taking - interface pattern for CommandManager
+
+29. Bridge design is used in method Fill(); (in case of future development of the game)
+
+30. Implemented TopScoresCommand, ExitCommand, HelpCommand, Pop
+
+31. InputHandler and command Manager are refactored
+
+32. Code is refactored again according to StyleCop rules, some unnecessary classes/code are removed
+
+33. Play again option is added
+
+34. Save and Restore commands, fluent interface are implemented
 
