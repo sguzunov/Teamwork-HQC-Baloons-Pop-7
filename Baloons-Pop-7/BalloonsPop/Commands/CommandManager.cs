@@ -25,10 +25,22 @@
             int rowPosition = -1;
             int colPosition = -1;
 
+            bool rowAndColumnPopulated = !(string.IsNullOrWhiteSpace(commandParts[1]) && string.IsNullOrWhiteSpace(commandParts[2]));
+            bool rowAsInteger = int.TryParse(commandParts[1], out rowPosition);
+            bool columnAsInteger = int.TryParse(commandParts[2], out colPosition);
+
             if (commandParts.Length == 3)
             {
-                rowPosition = commandParts[1] != null ? int.Parse(commandParts[1]) - 1 : InvalidRowAndColumnPosition;
-                colPosition = commandParts[2] != null ? int.Parse(commandParts[2]) - 1 : InvalidRowAndColumnPosition;
+                if (rowAndColumnPopulated)
+                {
+                    rowPosition--;
+                    colPosition--;
+                }
+                else
+                {
+                    rowPosition = InvalidRowAndColumnPosition;
+                    colPosition = InvalidRowAndColumnPosition;
+                }
             }
 
             switch (commandName)

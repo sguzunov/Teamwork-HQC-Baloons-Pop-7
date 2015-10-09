@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Baloons - Before", "Baloons - Before", "{125D9400-E9C1-4DE4-8ECE-2DBC40C777E8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Balloons - After", "Balloons - After", "{8F21A262-4621-4B39-AFA6-B6DB29AC7437}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baloons - Before", "Baloons - Before\Baloons - Before.csproj", "{540563AE-F21C-4A69-8FC5-53EA55E59EC4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balloons", "Baloons - After\Balloons.csproj", "{80F3A5C8-BC9B-4AEC-B0CF-5A2DFCABC1A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{20A083BF-83F4-4972-9C7C-A61AE883B31A}"
 	ProjectSection(SolutionItems) = preProject
@@ -32,10 +28,6 @@ Global
 		{540563AE-F21C-4A69-8FC5-53EA55E59EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{540563AE-F21C-4A69-8FC5-53EA55E59EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{540563AE-F21C-4A69-8FC5-53EA55E59EC4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80F3A5C8-BC9B-4AEC-B0CF-5A2DFCABC1A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80F3A5C8-BC9B-4AEC-B0CF-5A2DFCABC1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80F3A5C8-BC9B-4AEC-B0CF-5A2DFCABC1A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80F3A5C8-BC9B-4AEC-B0CF-5A2DFCABC1A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -46,7 +38,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{540563AE-F21C-4A69-8FC5-53EA55E59EC4} = {125D9400-E9C1-4DE4-8ECE-2DBC40C777E8}
-		{80F3A5C8-BC9B-4AEC-B0CF-5A2DFCABC1A5} = {8F21A262-4621-4B39-AFA6-B6DB29AC7437}
 		{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C} = {B4ED4D73-D9FD-42F3-B3C5-003488B613C3}
 	EndGlobalSection
 EndGlobal
