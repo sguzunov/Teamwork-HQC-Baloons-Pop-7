@@ -13,6 +13,7 @@
         private int rows;
         private int columns;
         private Balloon[,] fieldMatrix;
+        private IFiller filler;
 
         /// <remarks>The number of rows must be less than 10 and the number of columns must not be bigger than 10 because UI breaks.</remarks>
         public GameField(int rows, int columns)
@@ -22,7 +23,23 @@
             this.fieldMatrix = new Balloon[this.Rows, this.Columns];
         }
 
-        public IFiller Filler { get; set; }
+        public IFiller Filler
+        {
+            get
+            {
+                return this.filler;
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Game filler cannot be null");
+                }
+
+                this.filler = value;
+            }
+        }
 
         public int Rows
         {
@@ -87,6 +104,11 @@
                 if (!this.IsValidColumn(column))
                 {
                     throw new IndexOutOfRangeException(ColumnPositionErrorMessage);
+                }
+
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Field cell cannot have null balloon!");
                 }
 
                 this.fieldMatrix[row, column] = value;
