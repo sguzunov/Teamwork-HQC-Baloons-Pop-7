@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Baloons - Before", "Baloons - Before", "{125D9400-E9C1-4DE4-8ECE-2DBC40C777E8}"
 EndProject
@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 	ProjectSection(SolutionItems) = preProject
 		..\AssignmentDescription.md = ..\AssignmentDescription.md
 		..\..\..\..\Downloads\Baloons-Pops-Description.docx = ..\..\..\..\Downloads\Baloons-Pops-Description.docx
+		..\ProjectDocumentation.md = ..\ProjectDocumentation.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B4ED4D73-D9FD-42F3-B3C5-003488B613C3}"
