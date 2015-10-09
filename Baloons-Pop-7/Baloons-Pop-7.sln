@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B4ED4D73-D9F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balloons", "BalloonsPop\Balloons.csproj", "{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2DD6E308-971C-457F-90E2-679E347D5CD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBalloonsPopGame", "TestBalloonsPopGame\TestBalloonsPopGame.csproj", "{7DBCF179-ACDE-46E0-AA82-5E567342AD5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,10 @@ Global
 		{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DBCF179-ACDE-46E0-AA82-5E567342AD5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DBCF179-ACDE-46E0-AA82-5E567342AD5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DBCF179-ACDE-46E0-AA82-5E567342AD5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DBCF179-ACDE-46E0-AA82-5E567342AD5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +47,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{540563AE-F21C-4A69-8FC5-53EA55E59EC4} = {125D9400-E9C1-4DE4-8ECE-2DBC40C777E8}
 		{C8C0F3BE-3D8B-49DB-8FA7-836D43947A5C} = {B4ED4D73-D9FD-42F3-B3C5-003488B613C3}
+		{7DBCF179-ACDE-46E0-AA82-5E567342AD5E} = {2DD6E308-971C-457F-90E2-679E347D5CD1}
 	EndGlobalSection
 EndGlobal

@@ -1,8 +1,6 @@
 ﻿namespace Balloons.Commands
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
     using Balloons.Cell;
     using Balloons.FieldFactory.Field;
@@ -23,7 +21,7 @@
             var commandParts = this.SplitCommandString(commandString);
             string commandName = commandParts[0];
             int rowPosition = -1;
-            int colPosition=-1;
+            int colPosition = -1;
 
             if (commandParts.Length == 3)
             {
