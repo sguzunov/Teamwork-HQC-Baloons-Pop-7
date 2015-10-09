@@ -11,6 +11,8 @@
 
     public class CommandManager : ICommandManager
     {
+        private const int InvalidRowAndColumnPosition = -1;
+
         public ICommand ProcessCommand(
             string commandString,
             IRenderer renderer,
@@ -20,13 +22,13 @@
         {
             var commandParts = this.SplitCommandString(commandString);
             string commandName = commandParts[0];
-            int rowPosition = 0;
-            int colPosition = 0;
+            int rowPosition = -1;
+            int colPosition = -1;
 
             if (commandParts.Length == 3)
             {
-                rowPosition = commandParts[1] != null ? int.Parse(commandParts[1]) - 1 : 0;
-                colPosition = commandParts[2] != null ? int.Parse(commandParts[2]) - 1 : 0;
+                rowPosition = commandParts[1] != null ? int.Parse(commandParts[1]) - 1 : InvalidRowAndColumnPosition;
+                colPosition = commandParts[2] != null ? int.Parse(commandParts[2]) - 1 : InvalidRowAndColumnPosition;
             }
 
             switch (commandName)
