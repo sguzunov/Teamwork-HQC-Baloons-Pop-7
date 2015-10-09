@@ -84,9 +84,11 @@
     <Compile Include="FieldFactory\Field\IGameField.cs" />
     <Compile Include="GamePlayer\IPlayer.cs" />
     <Compile Include="GamePlayer\Player.cs" />
-    <Compile Include="GameRules\ReorderBallonsStrategyFly.cs" />
-    <Compile Include="GameRules\ReorderBallonsStrategyDefault.cs" />
-    <Compile Include="GameRules\ReorderBalloonsStrategy.cs" />
+    <Compile Include="ReorderStrategy\ReorderBallonsStrategyDefault.cs" />
+    <Compile Include="ReorderStrategy\ReorderBallonsStrategyFly.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="ReorderStrategy\ReorderBalloonsStrategy.cs" />
     <Compile Include="GameScore\ScoreBoard.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>

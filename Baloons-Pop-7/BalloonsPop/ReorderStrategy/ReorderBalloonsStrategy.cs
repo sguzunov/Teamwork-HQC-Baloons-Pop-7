@@ -1,4 +1,4 @@
-﻿namespace Balloons.GameRules
+﻿namespace Balloons.ReorderStrategy
 {
     using Balloons.FieldFactory.Field;
 

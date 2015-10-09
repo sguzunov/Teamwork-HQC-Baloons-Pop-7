@@ -9,11 +9,11 @@
     using Balloons.FieldFactory;
     using Balloons.FieldFactory.Field;
     using Balloons.GamePlayer;
-    using Balloons.GameRules;
     using Balloons.GameScore;
     using Balloons.InputHandler;
     using Balloons.Memory;
     using Balloons.UI;
+    using Balloons.ReorderStrategy;
 
     public class BalloonsGameEngine : IBalloonsEngine
     {
