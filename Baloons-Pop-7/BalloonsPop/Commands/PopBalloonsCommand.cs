@@ -5,19 +5,17 @@
     using Balloons.Cell;
     using Balloons.Common;
     using Balloons.FieldFactory.Field;
-    using Balloons.UI;
 
     public class PopBalloonsCommand : ICommand
     {
-        private readonly IRenderer renderer;
         private readonly IGameField gameField;
         private readonly int activeRow;
         private readonly int activeCol;
+        private IBalloonsFactory balloonsFactory;
 
-
-        public PopBalloonsCommand(IRenderer renderer, IGameField gameField, int activeRow, int activeCol)
+        public PopBalloonsCommand(IBalloonsFactory balloonsFactory, IGameField gameField, int activeRow, int activeCol)
         {
-            this.renderer = renderer;
+            this.balloonsFactory = balloonsFactory;
             this.gameField = gameField;
             this.activeRow = activeRow;
             this.activeCol = activeCol;
@@ -30,32 +28,38 @@
         {
             if (this.gameField == null)
             {
-                throw new ArgumentNullException("gamefield");
+                throw new ArgumentNullException("gameField");
             }
-            else
+
+            var activeCellSymbol = this.gameField[this.activeRow, this.activeCol].Symbol;
+            this.Pop(this.activeRow, this.activeCol, activeCellSymbol, this.gameField);
+        }
+
+        private void Pop(int activeRow, int activeCol, string activeCell, IGameField field)
+        {
+            bool isValidPop = this.IsPopValid(activeRow, field.Rows) && this.IsPopValid(activeCol, field.Columns);
+
+            if (isValidPop && (field[activeRow, activeCol].Symbol == activeCell) && (field[activeRow, activeCol].Symbol != GameConstants.PopedBalloonSymbol))
             {
-                Pop(this.activeRow, this.activeCol, this.gameField[this.activeRow, this.activeCol].Symbol, this.gameField);
+                field[activeRow, activeCol] = this.balloonsFactory.GetBalloon(GameConstants.PopedBalloonSymbol);
+
+                // Up
+                this.Pop(activeRow - 1, activeCol, activeCell, field);
+
+                // Down
+                this.Pop(activeRow + 1, activeCol, activeCell, field);
+
+                // Left
+                this.Pop(activeRow, activeCol + 1, activeCell, field);
+
+                // Right
+                this.Pop(activeRow, activeCol - 1, activeCell, field);
             }
         }
 
-        private void Pop(int row, int col, string activeCell, IGameField field)
+        private bool IsPopValid(int index, int boundValue)
         {
-            bool validPop = IsPopValid(row, field.Rows) && IsPopValid(col, field.Columns);
-
-            if (validPop && (field[row, col].Symbol == activeCell) && (field[row, col].Symbol != "."))
-            {
-                field[row, col] = new BalloonPoped();
-
-                Pop(row - 1, col, activeCell, field); // Up
-                Pop(row + 1, col, activeCell, field); // Down
-                Pop(row, col + 1, activeCell, field); // Left
-                Pop(row, col - 1, activeCell, field); // Right
-            }
-        }
-
-        internal bool IsPopValid(int index, int boundValue)
-        {
-            if ((index >= 0) && (index < boundValue))
+            if ((0 <= index) && (index < boundValue))
             {
                 return true;
             }

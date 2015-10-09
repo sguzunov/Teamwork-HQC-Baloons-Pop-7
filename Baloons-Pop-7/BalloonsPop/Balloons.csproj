@@ -62,6 +62,7 @@
     <Compile Include="Common\EnumUtils.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Common\GameConstants.cs" />
     <Compile Include="Common\GameMessages.cs" />
     <Compile Include="Common\AnotherRound.cs" />
     <Compile Include="Common\GameMode.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="GameEngine\BalloonsGameEngine.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="GameEngine\GameEngineContext.cs" />
     <Compile Include="GameEngine\IBalloonsEngine.cs" />
     <Compile Include="FieldFactory\GameFieldFactory.cs" />
     <Compile Include="FieldFactory\Field\GameField.cs" />

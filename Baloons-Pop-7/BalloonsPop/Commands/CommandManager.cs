@@ -1,4 +1,5 @@
-﻿using Balloons.Memory;
+﻿using Balloons.Cell;
+using Balloons.Memory;
 
 namespace Balloons.Commands
 {
@@ -12,19 +13,22 @@ namespace Balloons.Commands
     public class CommandManager : ICommandManager
     {
         private readonly IDictionary<string, ICommand> commands = new Dictionary<string, ICommand>();
+
         private IRenderer renderer;
         private IGameField field;
         private IFieldMemoryManager fieldMemoryManager;
+        private IBalloonsFactory balloonsFactory;
         private int activeRow;
         private int activeCol;
 
-
         public CommandManager(IRenderer renderer, IGameField field,
-            IFieldMemoryManager fieldMemoryManager, int activeRow, int activeCol)
+            IFieldMemoryManager fieldMemoryManager, IBalloonsFactory balloonsFactory,
+            int activeRow, int activeCol)
         {
             this.renderer = renderer;
             this.field = field;
             this.fieldMemoryManager = fieldMemoryManager;
+            this.balloonsFactory = balloonsFactory;
             this.activeRow = activeRow;
             this.activeCol = activeCol;
 
@@ -33,7 +37,7 @@ namespace Balloons.Commands
             commands.Add("restore", new RestoreCommand(this.fieldMemoryManager, this.field));
             commands.Add("exit", new ExitCommand(this.renderer));
             commands.Add("help", new HelpCommand(this.renderer));
-            commands.Add("pop", new PopBalloonsCommand(this.renderer, this.field, this.activeRow, this.activeCol));
+            commands.Add("pop", new PopBalloonsCommand(this.balloonsFactory, this.field, this.activeRow, this.activeCol));
         }
 
         public ICommand GetCommand(IList<string> commandName)
@@ -42,13 +46,12 @@ namespace Balloons.Commands
 
             if (hasCommand)
             {
-
                 if (commandName.Count > 2)
                 {
                     this.activeRow = int.Parse(commandName[1]);
                     this.activeCol = int.Parse(commandName[2]);
                     commands.Remove("pop");
-                    commands.Add("pop", new PopBalloonsCommand(this.renderer, this.field, this.activeRow, this.activeCol));
+                    commands.Add("pop", new PopBalloonsCommand(this.balloonsFactory, this.field, this.activeRow, this.activeCol));
                 }
 
                 return this.commands[commandName[0]];

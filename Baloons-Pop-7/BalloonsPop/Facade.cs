@@ -1,4 +1,6 @@
-﻿namespace Balloons
+﻿using Balloons.Cell;
+
+namespace Balloons
 {
     using Balloons.Common;
     using Balloons.FieldFactory;
@@ -16,7 +18,8 @@
             IInputHandler inputHandler = new ConsoleInputHandler();
             IFieldFactory fieldFactory = new GameFieldFactory();
             IPlayer player = new Player();
-            IFieldMemoryManager fieldMemorizerManager = new FieldMemoryManager();
+            IFieldMemoryManager fieldMemoryManager = new FieldMemoryManager();
+            IBalloonsFactory balloonsFactory = new BalloonsFactory();
 
             // Printing initial screen goes here.
             renderer.RenderMenu();
@@ -26,7 +29,17 @@
             GameMode gameMode = inputHandler.GetGameMode();
             GameDifficulty gameDifficulty = inputHandler.GetGameDifficulty();
 
-            IBalloonsEngine engine = new BalloonsGameEngine(renderer, inputHandler, fieldFactory, gameMode, gameDifficulty, fieldMemorizerManager, player);
+            // Fluent interface implementation
+            IBalloonsEngine engine = new BalloonsGameEngine().
+                Renderer(renderer)
+                .Input(inputHandler)
+                .FieldFactory(fieldFactory)
+                .FieldMemoryManager(fieldMemoryManager)
+                .GameDifficulty(gameDifficulty)
+                .Mode(gameMode)
+                .Player(player)
+                .BalloonsFactory(balloonsFactory);
+
             engine.InitializeGame();
             engine.StartGame();
         }
