@@ -23,15 +23,15 @@
             var commandParts = this.SplitCommandString(commandString);
             string commandName = commandParts[0];
             int rowPosition = -1;
-            int colPosition = -1;
-
-            bool rowAndColumnPopulated = !(string.IsNullOrWhiteSpace(commandParts[1]) && string.IsNullOrWhiteSpace(commandParts[2]));
-            bool rowAsInteger = int.TryParse(commandParts[1], out rowPosition);
-            bool columnAsInteger = int.TryParse(commandParts[2], out colPosition);
+            int colPosition=-1;
 
             if (commandParts.Length == 3)
             {
-                if (rowAndColumnPopulated)
+                bool rowAndColumnPopulated = !(string.IsNullOrWhiteSpace(commandParts[1]) && string.IsNullOrWhiteSpace(commandParts[2]));
+                bool rowAsInteger = int.TryParse(commandParts[1], out rowPosition);
+                bool columnAsInteger = int.TryParse(commandParts[2], out colPosition);
+
+                if (rowAndColumnPopulated && rowAsInteger && columnAsInteger)
                 {
                     rowPosition--;
                     colPosition--;
