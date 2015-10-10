@@ -50,7 +50,7 @@
 
             private set
             {
-                if (this.IsValidDimension(value))
+                if (this.IsValidDimensionSize(value))
                 {
                     throw new IndexOutOfRangeException("Rows count cannot be less than 2!");
                 }
@@ -68,7 +68,7 @@
 
             private set
             {
-                if (this.IsValidDimension(value))
+                if (this.IsValidDimensionSize(value))
                 {
                     throw new IndexOutOfRangeException("Columns count cannot be less than 2!");
                 }
@@ -143,7 +143,7 @@
             return 0 <= column && column < this.Columns;
         }
 
-        private bool IsValidDimension(int size)
+        private bool IsValidDimensionSize(int size)
         {
             return size < 2;
         }

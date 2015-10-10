@@ -1,8 +1,9 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using Balloons.Cell;
+﻿using Balloons.Cell;
 using Balloons.FieldFactory.Field;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using Balloons.Memory;
+using Moq;
 
 namespace TestBalloonsPopGame
 {
@@ -64,7 +65,7 @@ namespace TestBalloonsPopGame
 
             Assert.IsNull(field.Filler);
         }
-
+        //
         [TestMethod]
         public void GameFieldFillerShouldNotBeNullWhenPassed()
         {
@@ -83,12 +84,17 @@ namespace TestBalloonsPopGame
         public void GettingNegativeRowFromGameFieldShouldThrowException()
         {
             var field = new GameField(FieldValidRows, FieldValidColumns);
-            var filler = new Filler(new BalloonsFactory());
-
-            field.Filler = filler;
-            field.Fill();
 
             var expectedBalloon = field[-1, FieldValidColumns];
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void GettingRowBiggerThanRowsCountFromGameFieldShouldThrowException()
+        {
+            var field = new GameField(FieldValidRows, FieldValidColumns);
+
+            var expectedBalloon = field[5, FieldValidColumns];
         }
 
         [TestMethod]
@@ -96,12 +102,17 @@ namespace TestBalloonsPopGame
         public void GettingNegativeColumnFromGameFieldShouldThrowException()
         {
             var field = new GameField(FieldValidRows, FieldValidColumns);
-            var filler = new Filler(new BalloonsFactory());
-
-            field.Filler = filler;
-            field.Fill();
 
             var expectedBalloon = field[FieldValidRows, -1];
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void GettingColumnBiggerThanColumnsCountFromGameFieldShouldThrowException()
+        {
+            var field = new GameField(FieldValidRows, FieldValidColumns);
+
+            var expectedBalloon = field[FieldValidRows, 5];
         }
 
         [TestMethod]
@@ -115,11 +126,29 @@ namespace TestBalloonsPopGame
 
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void SettingOnRowBiggerThanRowsCountFromGameFieldShouldThrowException()
+        {
+            var field = new GameField(FieldValidRows, FieldValidColumns);
+
+            field[5, FieldValidColumns] = new BalloonOne();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
         public void SettingOnNegativeColumnFromGameFieldShouldThrowException()
         {
             var field = new GameField(FieldValidRows, FieldValidColumns);
 
             field[FieldValidRows, -1] = new BalloonOne();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void SettingOnColumnBiggerThanColumnsCountFromGameFieldShouldThrowException()
+        {
+            var field = new GameField(FieldValidRows, FieldValidColumns);
+
+            field[FieldValidRows, 5] = new BalloonOne();
         }
 
         [TestMethod]
@@ -133,7 +162,47 @@ namespace TestBalloonsPopGame
         }
 
         [TestMethod]
-        public void FilledGameFieldShouldReturnNotNullBalloon()
+        public void FilledGameFieldPositionShouldReturnBalloon()
+        {
+            var field = new GameField(FieldValidRows, FieldValidColumns);
+
+            field[1, 1] = new BalloonOne();
+            var balloon = field[1, 1];
+
+            Assert.IsNotNull(balloon);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SettingNullBalloonToGameFieldShouldThrowException()
+        {
+            var field = new GameField(FieldValidRows, FieldValidColumns);
+
+            field[1, 1] = null;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void SettingBallonOnWrongRowAndColumnShouldThrowException()
+        {
+            var field = new GameField(FieldValidRows, FieldValidColumns);
+
+            field[-1, -1] = new BalloonOne();
+        }
+
+        // Testing Fill() method
+        [TestMethod]
+        public void FillMethodShouldDoNothingWhenInvoked()
+        {
+            var mock = new Mock<IGameField>();
+            mock.Setup(f => f.Fill()).Verifiable();
+
+            var field = mock.Object;
+            field.Fill();
+        }
+
+        [TestMethod]
+        public void FillMethodShouldFillGmaeFieldWithBalloons()
         {
             var field = new GameField(FieldValidRows, FieldValidColumns);
             var filler = new Filler(new BalloonsFactory());
@@ -142,7 +211,30 @@ namespace TestBalloonsPopGame
             field.Fill();
             var balloon = field[1, 1];
 
-            Assert.IsNotNull(balloon);
+            Assert.IsInstanceOfType(balloon, typeof(Balloon));
+        }
+
+        // Testing SaveField()
+        [TestMethod]
+        public void SaveFieldMethodShouldReturnFieldMemoryObject()
+        {
+            var field = new GameField(FieldValidRows, FieldValidColumns);
+            var saveField = field.SaveField();
+
+            Assert.IsInstanceOfType(saveField, typeof(FieldMemory));
+        }
+
+        // Testing RestoreField()
+        [TestMethod]
+        public void GameFieldShouldHaveTheSameMatrixAsRestored()
+        {
+            var mockField = new Mock<IGameField>();
+            mockField.Setup(f => f.RestoreField(It.IsAny<FieldMemory>()))
+                .Verifiable();
+
+            var field = mockField.Object;
+
+            field.RestoreField(new FieldMemory(new Balloon[FieldValidRows, FieldValidColumns]));
         }
     }
 }
