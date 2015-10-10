@@ -56,7 +56,9 @@
   <ItemGroup>
     <Compile Include="CommandManagerTests.cs" />
     <Compile Include="ConsoleInputHandlerTest.cs" />
-    <Compile Include="GameFieldTests.cs" />
+    <Compile Include="FieldTests\GameFieldTests.cs" />
+    <Compile Include="FieldTests\FillerTests.cs" />
+    <Compile Include="FieldTests\FieldFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,17 +1,12 @@
 ﻿namespace TestBalloonsPopGame
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using Balloons.Common;
-    using Balloons.FieldFactory.Field;
-    using Balloons.InputHandler;
-    using Balloons.Memory;
-    using Balloons.UI;
     using Balloons.Cell;
     using Balloons.Commands;
+    using Balloons.FieldFactory.Field;
+    using Balloons.Memory;
+    using Balloons.UI;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
 
 
     [TestClass]

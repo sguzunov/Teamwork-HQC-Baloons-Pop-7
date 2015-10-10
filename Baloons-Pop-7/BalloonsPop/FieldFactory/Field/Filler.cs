@@ -1,9 +1,13 @@
-﻿namespace Balloons.FieldFactory.Field
+﻿using System;
+
+namespace Balloons.FieldFactory.Field
 {
     using Balloons.Cell;
 
     public class Filler : IFiller
     {
+        private const string FieldNullErrorMessage = "Filler cannot take null field";
+
         private readonly IBalloonsFactory balloonsFactory;
 
         public Filler(IBalloonsFactory balloonsFactory)
@@ -13,6 +17,11 @@
 
         public void Fill(Balloon[,] field)
         {
+            if (field == null)
+            {
+                throw new ArgumentNullException(FieldNullErrorMessage);
+            }
+
             int rows = field.GetLength(0);
             int columns = field.GetLength(1);
 
