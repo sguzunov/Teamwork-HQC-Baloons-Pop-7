@@ -54,6 +54,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EnumUtilsTests.cs" />
+    <Compile Include="GameMessagesTests.cs" />
     <Compile Include="CommandManagerTests.cs" />
     <Compile Include="ConsoleInputHandlerTest.cs" />
     <Compile Include="FieldTests\GameFieldTests.cs" />
