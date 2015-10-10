@@ -22,28 +22,6 @@
         private ICommandManager commandManger;
         private IGameField field;
 
-        //private IRenderer renderer;
-        //private IInputHandler inputHandler;
-        //private IFieldFactory fieldFactory;
-        //private GameMode gameMode;
-        //private GameDifficulty gameDifficulty;
-
-        //private IFieldMemoryManager fieldMemoryManager;
-        //private IPlayer player;
-
-
-        //public BalloonsGameEngine(IRenderer renderer, IInputHandler inputHandler, IFieldFactory fieldFactory,
-        //    GameMode mode, GameDifficulty difficulty, IFieldMemoryManager fieldMemorizerManager,
-        //    IPlayer player)
-        //{
-        //    this.renderer = renderer;
-        //    this.inputHandler = inputHandler;
-        //    this.fieldFactory = fieldFactory;
-        //    this.gameMode = mode;
-        //    this.gameDifficulty = difficulty;
-        //    this.player = player;
-        //    this.fieldMemoryManager = fieldMemorizerManager;
-        //}
 
         public BalloonsGameEngine Renderer(IRenderer renderer)
         {
