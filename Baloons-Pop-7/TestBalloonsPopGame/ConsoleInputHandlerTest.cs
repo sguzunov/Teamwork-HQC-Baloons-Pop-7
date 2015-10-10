@@ -42,7 +42,7 @@
         [TestMethod]
         public void InvalidGameModeNumericShouldReturnFalse()
         {
-            var input = "228";
+            var input = "228 invalid s";
             var result = Validator.CheckIfValidGameMode(input);
             Assert.AreEqual(false, result);
         }

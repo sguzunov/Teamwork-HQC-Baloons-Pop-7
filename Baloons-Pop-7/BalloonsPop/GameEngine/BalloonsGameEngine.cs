@@ -101,8 +101,6 @@
 
                 var commandInput = this.engineContext.Input.ReadInputCommand();
 
-
-
                 try
                 {
 

@@ -2,6 +2,6 @@
 {
     public static class GameConstants
     {
-        public static string PopedBalloonSymbol = ".";
+        public const string PopedBalloonSymbol = ".";
     }
 }

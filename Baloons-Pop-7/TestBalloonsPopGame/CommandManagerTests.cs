@@ -48,18 +48,6 @@
             this.balloonsFactory = new BalloonsFactory(); 
         }
 
-        //[TestMethod]
-        //public void Bla() 
-        //{
-        //    Setup();
-        //    var com = new CommandManager();
-        //    ICommand exit = com.ProcessCommand
-        //        (validCommands[0], this.renderer, this.field, this.fieldMemoryManager, this.balloonsFactory);
-        //    var exitCommand = new ExitCommand(this.renderer);
-
-        //    Assert.IsInstanceOfType(exit, typeof(ExitCommand));
-        //}
-
         [TestMethod]
         public void ProcessCommandWithValidExitInputShouldProduceAExitCommand()
         {
@@ -157,43 +145,42 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
-        public void ProcessCommandPopInputWithoudRowAndColShouldThrow()
+        public void ProcessCommandPopInputWithoutRowAndColShouldShouldReturnPopCommand()
         {
             Setup();
             var commandManager = new CommandManager();
             var invalid = commandManager.ProcessCommand(invalidCommands[4], this.renderer, this.field, this.fieldMemoryManager, this.balloonsFactory);
         }
-        
-        //[TestMethod]
-        //[ExpectedException(typeof(Exception))]
-        //public void ProcessCommandPop00InputShouldThrow()
-        //{
-        //    Setup();
-        //    var commandManager = new CommandManager();
-        //    var invalidPop = commandManager.ProcessCommand(invalidCommands[5], this.renderer, this.field, this.fieldMemoryManager, this.balloonsFactory);
 
-        //    Assert.IsInstanceOfType(invalidPop, typeof(PopBalloonsCommand));
-        //}
+        [TestMethod]
+        public void ProcessCommandPop00InputShouldReturnPopCommand()
+        {
+            Setup();
+            var commandManager = new CommandManager();
+            var invalidPop = commandManager.ProcessCommand(invalidCommands[5], this.renderer, this.field, this.fieldMemoryManager, this.balloonsFactory);
 
-        //[TestMethod]
-        //[ExpectedException(typeof(Exception))]
-        //public void ProcessCommandPopWithNegativesRowAndColInputShouldThrow()
-        //{
-        //    Setup();
-        //    var commandManager = new CommandManager();
-        //    var invalidPop = commandManager.ProcessCommand(invalidCommands[6], this.renderer, this.field, this.fieldMemoryManager, this.balloonsFactory);
+            Assert.IsInstanceOfType(invalidPop, typeof(PopBalloonsCommand));
+        }
 
-        //    Assert.IsInstanceOfType(invalidPop, typeof(PopBalloonsCommand));
-        //}
+        [TestMethod]
+        public void ProcessCommandPopWithNegativesRowAndColInputShouldReturnPopCommand()
+        {
+            Setup();
+            var commandManager = new CommandManager();
+            var invalidPop = commandManager.ProcessCommand(invalidCommands[6], this.renderer, this.field, this.fieldMemoryManager, this.balloonsFactory);
 
-        //public void ProcessCommandPopWithHighRowAndColInputShouldThrow()
-        //{
-        //    Setup();
-        //    var commandManager = new CommandManager();
-        //    var invalidPop = commandManager.ProcessCommand(invalidCommands[7], this.renderer, this.field, this.fieldMemoryManager, this.balloonsFactory);
+            Assert.IsInstanceOfType(invalidPop, typeof(PopBalloonsCommand));
+        }
 
-        //    Assert.IsInstanceOfType(invalidPop, typeof(PopBalloonsCommand));
-        //}
+        [TestMethod]
+        public void ProcessCommandPopWithHighRowAndColInputShouldReturnPopCommand()
+        {
+            Setup();
+            var commandManager = new CommandManager();
+            var invalidPop = commandManager.ProcessCommand(invalidCommands[7], this.renderer, this.field, this.fieldMemoryManager, this.balloonsFactory);
+
+            Assert.IsInstanceOfType(invalidPop, typeof(PopBalloonsCommand));
+        }
+
     }
 }
