@@ -85,35 +85,6 @@
             return userInput;
         }
 
-        public IList<string> ParseInput(IList<string> command, IGameField gameField)
-        {
-            IList<string> parsedCommand = command;
-            int userInputLength = command.Count;
-            Console.WriteLine(userInputLength);
-            int row;
-            int col;
-
-            if (userInputLength == PopCommandLength &&
-                int.TryParse(command[0].ToString(), out row) &&
-                int.TryParse(command[1].ToString(), out col))
-            {
-                if (IsPositionValid(row, col, gameField))
-                {
-                    parsedCommand.Clear();
-                    parsedCommand.Add("pop");
-                    parsedCommand.Add((row - 1).ToString());
-                    parsedCommand.Add((col - 1).ToString());
-                }
-                else
-                {
-                    parsedCommand.Add("invalid");
-                    parsedCommand.Add("pop");
-                }
-            }
-
-            return parsedCommand;
-        }
-
         public bool IsValidInput(string command)
         {
             if (string.IsNullOrWhiteSpace(command))
