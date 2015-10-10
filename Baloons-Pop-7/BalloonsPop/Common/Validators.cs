@@ -43,15 +43,5 @@
 
             return isValidAnswer;
         }
-
-        public static bool CheckIfStringIsNullOrWhiteSpace(string context)
-        {
-            if (string.IsNullOrWhiteSpace(context))
-            {
-                return true;
-            }
-
-            return false;
-        }
     }
 }

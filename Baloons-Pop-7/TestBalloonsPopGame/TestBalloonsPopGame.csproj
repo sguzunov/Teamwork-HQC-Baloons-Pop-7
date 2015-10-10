@@ -60,6 +60,8 @@
     <Compile Include="FieldTests\FillerTests.cs" />
     <Compile Include="FieldTests\FieldFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReoerderTests\DefaultReorderTests.cs" />
+    <Compile Include="ReoerderTests\FlyReorderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BalloonsPop\Balloons.csproj">
@@ -70,6 +72,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

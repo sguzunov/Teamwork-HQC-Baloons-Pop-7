@@ -67,6 +67,7 @@
     <Compile Include="Common\AnotherRound.cs" />
     <Compile Include="Common\GameMode.cs" />
     <Compile Include="Common\GameType.cs" />
+    <Compile Include="Common\ObjectValidator.cs" />
     <Compile Include="Common\Validators.cs" />
     <Compile Include="Facade.cs" />
     <Compile Include="FieldFactory\Field\Filler.cs" />
