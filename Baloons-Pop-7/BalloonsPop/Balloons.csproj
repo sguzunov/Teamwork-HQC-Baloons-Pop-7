@@ -103,6 +103,8 @@
     <Compile Include="RandomProvider.cs" />
     <Compile Include="StartBalloons.cs" />
     <Compile Include="UI\ConsoleRenderer.cs" />
+    <Compile Include="UI\ConsoleWriter.cs" />
+    <Compile Include="UI\IConsoleWriter.cs" />
     <Compile Include="UI\IRenderer.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,9 +15,12 @@
     {
         public static void StartGame()
         {
+            // Console context dependancies
+            IConsoleWriter consoleWriter = new ConsoleWriter();
+
             // Instantiate game dependancies
-            IRenderer renderer = new ConsoleRenderer();
-            IInputHandler inputHandler = new ConsoleInputHandler();
+            IRenderer renderer = new ConsoleRenderer(consoleWriter);
+            IInputHandler inputHandler = new ConsoleInputHandler(consoleWriter);
             IFieldFactory fieldFactory = new GameFieldFactory();
             IFieldMemoryManager fieldMemoryManager = new FieldMemoryManager();
             IBalloonsFactory balloonsFactory = new BalloonsFactory();

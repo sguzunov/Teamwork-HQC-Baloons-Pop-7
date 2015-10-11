@@ -5,6 +5,7 @@
     using Balloons.Common;
     using Balloons.FieldFactory.Field;
     using Balloons.Helpers;
+    using Balloons.UI;
 
     public class ConsoleInputHandler : IInputHandler
     {
@@ -18,6 +19,18 @@
         private const string PlayerResponseInviteMessage = "Do you want to play again? Please type 'yes' or 'no': ";
         private const string CommandInputInviteMessage = "Enter a command ('pop {row} {col}', 'top', 'save', 'restore', 'help', 'exit'): ";
         private const string PlayerInfoInviteMessage = "Please enter your name: ";
+
+        private IConsoleWriter consoleWriter;
+
+        public ConsoleInputHandler(IConsoleWriter consoleWriter)
+        {
+            this.consoleWriter = consoleWriter;
+        }
+
+        public ConsoleInputHandler()
+            : this(new ConsoleWriter())
+        {
+        }
 
         public GameMode GetGameMode()
         {
@@ -35,7 +48,7 @@
                 }
                 else
                 {
-                    ConsoleHelper.DisplayInputErrorMessage(GameModeErrorMessage);
+                    ConsoleHelper.DisplayInputErrorMessage(GameModeErrorMessage, this.consoleWriter);
                 }
             }
         }
@@ -58,7 +71,7 @@
                 }
                 else
                 {
-                    ConsoleHelper.DisplayInputErrorMessage(GameDifficultyErrorMessage);
+                    ConsoleHelper.DisplayInputErrorMessage(GameDifficultyErrorMessage, this.consoleWriter);
                 }
             }
         }
@@ -78,7 +91,7 @@
                 }
                 else
                 {
-                    ConsoleHelper.DisplayInputErrorMessage(PlayAgainAnswerErrorMessage);
+                    ConsoleHelper.DisplayInputErrorMessage(PlayAgainAnswerErrorMessage, this.consoleWriter);
                 }
             }
         }

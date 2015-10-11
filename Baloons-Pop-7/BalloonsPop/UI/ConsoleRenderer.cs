@@ -17,6 +17,18 @@
         private const string Indent = "   ";
         private const string PlayersTemplateString = "{0}. {1} made {2} moves";
 
+        private IConsoleWriter consoleWriter;
+
+        public ConsoleRenderer()
+            : this(new ConsoleWriter())
+        {
+        }
+
+        public ConsoleRenderer(IConsoleWriter consoleWriter)
+        {
+            this.consoleWriter = consoleWriter;
+        }
+
         public void RenderGameField(IGameField field)
         {
             int columns = field.Columns;
@@ -25,7 +37,7 @@
             Console.Write(Indent);
             for (int i = 0; i < columns; i++)
             {
-                Console.Write(" {0}", i + 1);
+                this.consoleWriter.Write(" {0}", i + 1);
             }
 
             Console.WriteLine();
@@ -38,7 +50,7 @@
         public void RenderGameMessage(string message)
         {
             ConsoleHelper.CentraliseCursor(message.Length);
-            Console.WriteLine(message);
+            this.consoleWriter.WriteLine(message);
         }
 
         public void RenderCommands(string[] commands)
@@ -47,7 +59,7 @@
             for (int i = 0; i < commands.Length; i++)
             {
                 ConsoleHelper.CentraliseCursor(commandMaxLength);
-                Console.WriteLine(commands[i]);
+                this.consoleWriter.WriteLine(commands[i]);
             }
         }
 
@@ -55,13 +67,13 @@
         {
             for (int i = 0; i < players.Count; i++)
             {
-                Console.WriteLine(PlayersTemplateString, i + 1, players[i].Name, players[i].Moves);
+                this.consoleWriter.WriteLine(PlayersTemplateString, i + 1, players[i].Name, players[i].Moves);
             }
         }
 
         public void RenderGameErrorMessage(string message)
         {
-            ConsoleHelper.DisplayInputErrorMessage(message);
+            ConsoleHelper.DisplayInputErrorMessage(message, this.consoleWriter);
         }
 
         private void PrintMatrix(IGameField field)
@@ -71,8 +83,8 @@
 
             for (int row = 0; row < rows; row++)
             {
-                // Prints rows index                
-                Console.Write(FieldLeftBorderSymbol, row + 1);
+                // Prints rows index     
+                this.consoleWriter.Write(FieldLeftBorderSymbol, row + 1);
 
                 for (int column = 0; column < columns; column++)
                 {
@@ -80,19 +92,19 @@
                     BalloonsColors symbolColor = field[row, column].Color;
 
                     ConsoleHelper.ChangeForegroundColorDependingOnSymbol(symbolColor);
-                    Console.Write(field[row, column].Symbol + " ");
+                    this.consoleWriter.Write(field[row, column].Symbol + " ");
                 }
 
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Write(FieldRigthBorderSymbol);
+                this.consoleWriter.Write(FieldRigthBorderSymbol);
                 Console.WriteLine();
             }
         }
 
         private void PrintBorder(int columns)
         {
-            Console.Write(Indent);
-            Console.WriteLine(new string(TopAndBottomBorderSymbol, columns * 2));
+            this.consoleWriter.Write(Indent);
+            this.consoleWriter.WriteLine(new string(TopAndBottomBorderSymbol, columns * 2));
         }
 
         private void PrintCommands(string[] commands)
@@ -101,7 +113,7 @@
             for (int i = 0; i < commands.Length; i++)
             {
                 ConsoleHelper.CentraliseCursor(commandMaxLength);
-                Console.WriteLine(commands[i]);
+                this.consoleWriter.WriteLine(commands[i]);
             }
         }
     }

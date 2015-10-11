@@ -4,13 +4,20 @@
     using System.Threading;
 
     using Balloons.Common;
+    using Balloons.UI;
 
-    public class ConsoleHelper
+    public static class ConsoleHelper
     {
-        private const string ColorErrorMessage = "This balloon color does not exists ";
+        private const string ColorErrorMessage = "This balloon color does not exists!";
+        private const string TextLenghtErrorMessage = "Text length must be bigger than 0 and less than console width!";
 
         public static void CentraliseCursor(int textLength)
         {
+            if (textLength <= 0 || Console.WindowWidth <= textLength)
+            {
+                throw new IndexOutOfRangeException(TextLenghtErrorMessage);
+            }
+
             int leftPosition = (Console.WindowWidth / 2) - (textLength / 2);
             int topPosition = Console.CursorTop;
             Console.SetCursorPosition(leftPosition, topPosition);
@@ -40,11 +47,11 @@
             }
         }
 
-        public static void DisplayInputErrorMessage(string message)
+        public static void DisplayInputErrorMessage(string message, IConsoleWriter consoleWriter)
         {
             ClearConsoleLine();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(message);
+            consoleWriter.WriteLine(message);
             Console.ForegroundColor = ConsoleColor.Gray;
             Thread.Sleep(500);
             ClearConsoleLine();
