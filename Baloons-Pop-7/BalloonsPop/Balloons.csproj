@@ -94,7 +94,6 @@
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Helpers\ConsoleHelper.cs" />
-    <Compile Include="Helpers\Sound.cs" />
     <Compile Include="InputHandler\ConsoleInputHandler.cs" />
     <Compile Include="InputHandler\IInputHandler.cs" />
     <Compile Include="Memory\FieldMemory.cs" />

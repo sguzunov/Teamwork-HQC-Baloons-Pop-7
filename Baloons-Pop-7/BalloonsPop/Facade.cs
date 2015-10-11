@@ -1,22 +1,21 @@
-﻿using Balloons.Commands;
-using Balloons.FieldFactory.Field;
-using Balloons.ReorderStrategy;
-
-namespace Balloons
+﻿namespace Balloons
 {
     using Balloons.Cell;
+    using Balloons.Commands;
     using Balloons.Common;
     using Balloons.FieldFactory;
+    using Balloons.FieldFactory.Field;
     using Balloons.GameEngine;
-    using Balloons.GamePlayer;
     using Balloons.InputHandler;
     using Balloons.Memory;
+    using Balloons.ReorderStrategy;
     using Balloons.UI;
 
     public static class Facade
     {
         public static void StartGame()
         {
+            // Instantiate game dependancies
             IRenderer renderer = new ConsoleRenderer();
             IInputHandler inputHandler = new ConsoleInputHandler();
             IFieldFactory fieldFactory = new GameFieldFactory();

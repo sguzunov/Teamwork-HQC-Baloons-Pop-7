@@ -1,7 +1,6 @@
 ﻿namespace Balloons.InputHandler
 {
     using System;
-    using System.Collections.Generic;
 
     using Balloons.Common;
     using Balloons.FieldFactory.Field;
@@ -9,18 +8,26 @@
 
     public class ConsoleInputHandler : IInputHandler
     {
+        // Handler error messages
         private const string GameModeErrorMessage = "Invalid game mode!";
         private const string GameDifficultyErrorMessage = "Invalid game difficulty!";
         private const string PlayAgainAnswerErrorMessage = "Invalid answer!";
+
+        private const string GameModeInviteMessage = "Select a game mode: please type 'default' or 'fly': ";
+        private const string GameDifficultyInviteMessage = "Select a game difficulty: please type 'easy' or 'hard': ";
+        private const string PlayerResponseInviteMessage = "Do you want to play again? Please type 'yes' or 'no': ";
+        private const string CommandInputInviteMessage = "Enter a command ('pop {row} {col}', 'top', 'save', 'restore', 'help', 'exit'): ";
+        private const string PlayerInfoInviteMessage = "Please enter your name: ";
 
         public GameMode GetGameMode()
         {
             while (true)
             {
-                Console.Write("Select a game mode: please type 'default' or 'fly': ");
+                Console.Write(GameModeInviteMessage);
                 string input = Console.ReadLine();
                 string gameModeAsString = input.Trim().ToLower();
                 bool isValidGameMode = Validator.CheckIfValidGameMode(gameModeAsString);
+
                 if (isValidGameMode)
                 {
                     var gameMode = EnumUtils.GetGameModeFromString(gameModeAsString);
@@ -37,10 +44,11 @@
         {
             while (true)
             {
-                Console.Write("Select a game difficulty: please type 'easy' or 'hard': ");
+                Console.Write(GameDifficultyInviteMessage);
                 string input = Console.ReadLine();
                 string gameDifficultyAsString = input.Trim().ToLower();
                 bool isValidGameDifficulty = Validator.CheckIfValidGameDifficulty(gameDifficultyAsString);
+
                 if (isValidGameDifficulty)
                 {
                     ConsoleHelper.ClearConsole();
@@ -59,7 +67,7 @@
         {
             while (true)
             {
-                Console.Write("Do you want to play again? Please type 'yes' or 'no': ");
+                Console.Write(PlayerResponseInviteMessage);
                 string input = Console.ReadLine();
                 string answerAsString = input.Trim().ToLower();
                 bool isValidAnswer = Validator.CheckIfValidAnswer(answerAsString);
@@ -77,14 +85,14 @@
 
         public string ReadInputCommand()
         {
-            Console.Write("Enter a command ('pop {row} {col}', 'top', 'save', 'restore', 'help', 'exit'): ");
+            Console.Write(CommandInputInviteMessage);
             string userInput = Console.ReadLine().Trim().ToLower();
 
             return userInput;
         }
         public string ReadPlayerInfo()
         {
-            Console.Write("Please enter your name: ");
+            Console.Write(PlayerInfoInviteMessage);
             string playerName = Console.ReadLine();
 
             return playerName;

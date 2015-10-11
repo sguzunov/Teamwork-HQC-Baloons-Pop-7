@@ -1,8 +1,7 @@
-﻿
-namespace Balloons.Commands
+﻿namespace Balloons.Commands
 {
-    using Balloons.GameScore;
     using Balloons.Common;
+    using Balloons.GameScore;
     using Balloons.UI;
 
     public class TopScoresCommand : ICommand
