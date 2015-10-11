@@ -62,6 +62,7 @@
                 this.consoleWriter.WriteLine(commands[i]);
             }
         }
+
         
         public void RenderGameTopPlayers(IList<IPlayer> players)
         {
