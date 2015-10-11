@@ -17,10 +17,11 @@
         {
             // Console context dependancies
             IConsoleWriter consoleWriter = new ConsoleWriter();
+            IConsoleReader consoleReader = new ConsoleReader();
 
             // Instantiate game dependancies
             IRenderer renderer = new ConsoleRenderer(consoleWriter);
-            IInputHandler inputHandler = new ConsoleInputHandler(consoleWriter);
+            IInputHandler inputHandler = new ConsoleInputHandler(consoleWriter, consoleReader);
             IFieldFactory fieldFactory = new GameFieldFactory();
             IFieldMemoryManager fieldMemoryManager = new FieldMemoryManager();
             IBalloonsFactory balloonsFactory = new BalloonsFactory();
