@@ -6,6 +6,7 @@
     using Balloons.UI;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
+using System;
 
 
     [TestClass]
@@ -18,13 +19,27 @@
         private readonly string[] validInputCommands = { "help", "start", "exit" };
 
         [TestMethod]
-        public void GetGameModeShuldCallConsoleMethodReadLineOnceWithValidInput()
+        public void GetGameModeShuldCallConsoleMethodReadLineOnceWithValidInputFly()
         {
             var mockConsole = new Mock<IConsoleReader>();
             var reader = mockConsole.Object;
             var writer = new ConsoleWriter();
 
             mockConsole.Setup(c => c.ReadLine()).Returns("fly");
+            var inputHandler = new ConsoleInputHandler(writer, reader);
+            inputHandler.GetGameMode();
+
+            mockConsole.Verify(c => c.ReadLine(), Times.Exactly(1));
+        }
+
+        [TestMethod]
+        public void GetGameModeShuldCallConsoleMethodReadLineOnceWithValidInputDefault()
+        {
+            var mockConsole = new Mock<IConsoleReader>();
+            var reader = mockConsole.Object;
+            var writer = new ConsoleWriter();
+
+            mockConsole.Setup(c => c.ReadLine()).Returns("Default");
             var inputHandler = new ConsoleInputHandler(writer, reader);
             inputHandler.GetGameMode();
 
@@ -45,6 +60,51 @@
             mockConsole.Verify(c => c.ReadLine(), Times.Exactly(1));
         }
 
+        [TestMethod]
+        public void GetAnswerShouldCallConsoleMethodReadLineOnceWithValidInput()
+        {
+            var mockConsole = new Mock<IConsoleReader>();
+            var reader = mockConsole.Object;
+            var writer = new ConsoleWriter();
+
+            mockConsole.Setup(c => c.ReadLine()).Returns("yes");
+            var inputHandler = new ConsoleInputHandler(writer, reader);
+            inputHandler.GetPlayAgainResponse();
+
+            mockConsole.Verify(c => c.ReadLine(), Times.Exactly(1));
+        }
+
+        [TestMethod]
+        public void ReadInputCallConsoleMethodReadLineOnce()
+        {
+            var mockConsole = new Mock<IConsoleReader>();
+            var reader = mockConsole.Object;
+            var mockConsoleW = new Mock<IConsoleWriter>();
+            var writer = mockConsoleW.Object;
+
+            mockConsoleW.Setup(c => c.WriteLine(It.IsAny<string>()));
+            mockConsole.Setup(c => c.ReadLine()).Returns("top");
+            var inputHandler = new ConsoleInputHandler(writer, reader);
+            inputHandler.ReadInputCommand();
+
+            mockConsole.Verify(c => c.ReadLine(), Times.Exactly(1));
+        }
+
+        [TestMethod]
+        public void ReadPlayerInfoCallConsoleMethodReadLineOnce()
+        {
+            var mockConsole = new Mock<IConsoleReader>();
+            var reader = mockConsole.Object;
+            var mockConsoleW = new Mock<IConsoleWriter>();
+            var writer = mockConsoleW.Object;
+
+            mockConsoleW.Setup(c => c.WriteLine(It.IsAny<string>()));
+            mockConsole.Setup(c => c.ReadLine()).Returns("Pesho");
+            var inputHandler = new ConsoleInputHandler(writer, reader);
+            inputHandler.ReadPlayerInfo();
+
+            mockConsole.Verify(c => c.ReadLine(), Times.Exactly(1));
+        }
 
         [TestMethod]
         public void ValidGameModeFlyShouldReturnTrue()

@@ -105,6 +105,7 @@
 
             return userInput;
         }
+
         public string ReadPlayerInfo()
         {
             Console.Write(PlayerInfoInviteMessage);
