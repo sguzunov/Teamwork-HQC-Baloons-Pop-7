@@ -11,7 +11,7 @@
     using Balloons.ReorderStrategy;
     using Balloons.UI;
 
-    public static class Facade
+    public static class GameEntry
     {
         public static void StartGame()
         {
@@ -58,11 +58,11 @@
             ReorderBalloonsStrategy strategy;
             if (gameMode == GameMode.Fly)
             {
-                strategy = new ReorderBallonsStrategyFly();
+                strategy = new ReorderBalloonsStrategyFly();
             }
             else
             {
-                strategy = new ReorderBallonsStrategyDefault();
+                strategy = new ReorderBalloonsStrategyDefault();
             }
 
             return strategy;

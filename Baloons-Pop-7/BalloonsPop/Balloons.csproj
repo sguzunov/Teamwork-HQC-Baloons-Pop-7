@@ -69,7 +69,7 @@
     <Compile Include="Common\GameType.cs" />
     <Compile Include="Common\ObjectValidator.cs" />
     <Compile Include="Common\Validators.cs" />
-    <Compile Include="Facade.cs" />
+    <Compile Include="GameEntry.cs" />
     <Compile Include="FieldFactory\Field\Filler.cs" />
     <Compile Include="FieldFactory\Field\IField.cs" />
     <Compile Include="FieldFactory\Field\IFiller.cs" />
@@ -85,8 +85,8 @@
     <Compile Include="FieldFactory\Field\IGameField.cs" />
     <Compile Include="GamePlayer\IPlayer.cs" />
     <Compile Include="GamePlayer\Player.cs" />
-    <Compile Include="ReorderStrategy\ReorderBallonsStrategyDefault.cs" />
-    <Compile Include="ReorderStrategy\ReorderBallonsStrategyFly.cs">
+    <Compile Include="ReorderStrategy\ReorderBalloonsStrategyDefault.cs" />
+    <Compile Include="ReorderStrategy\ReorderBalloonsStrategyFly.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="ReorderStrategy\ReorderBalloonsStrategy.cs" />

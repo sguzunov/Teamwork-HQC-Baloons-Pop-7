@@ -8,7 +8,7 @@
     /// <summary>
     /// This class gives strategy for ordering matrix in a way to move the field cells with numbers at a bigger row.
     /// </summary>
-    public class ReorderBallonsStrategyDefault : ReorderBalloonsStrategy
+    public class ReorderBalloonsStrategyDefault : ReorderBalloonsStrategy
     {
         private const string FieldNullErrorMessage = "Null field cannot be reorderd";
 

@@ -14,7 +14,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void PassingNullGameFieldShouldThrowException()
         {
-            var strategy = new ReorderBallonsStrategyDefault();
+            var strategy = new ReorderBalloonsStrategyDefault();
 
             strategy.ReorderBalloons(null);
         }
@@ -22,7 +22,7 @@
         [TestMethod]
         public void GameFieldHavingCellsWithNumbersIsNotReordered()
         {
-            var strategy = new ReorderBallonsStrategyDefault();
+            var strategy = new ReorderBalloonsStrategyDefault();
             var field = new GameField(2, 2);
             field[0, 0] = new BalloonOne();
             field[0, 1] = new BalloonTwo();
@@ -51,7 +51,7 @@
         [TestMethod]
         public void TwoDimensionalGameFieldWithThirdCellHavingSymbolDotIsMovedAtTop()
         {
-            var strategy = new ReorderBallonsStrategyDefault();
+            var strategy = new ReorderBalloonsStrategyDefault();
             var field = new GameField(2, 2);
             field[0, 0] = new BalloonOne();
             field[0, 1] = new BalloonTwo();
@@ -66,7 +66,7 @@
         [TestMethod]
         public void TwoDimensionalGameFieldWithFirstCellHavingSymbolDotIsNotMoved()
         {
-            var strategy = new ReorderBallonsStrategyDefault();
+            var strategy = new ReorderBalloonsStrategyDefault();
             var field = new GameField(2, 2);
             field[0, 0] = new BalloonPoped();
             field[0, 1] = new BalloonTwo();

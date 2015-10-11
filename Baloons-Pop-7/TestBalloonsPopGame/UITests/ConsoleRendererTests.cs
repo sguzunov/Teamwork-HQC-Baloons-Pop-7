@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Balloons.GamePlayer;
 using Balloons.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -75,6 +77,88 @@ namespace TestBalloonsPopGame.UITests
             var renderer = new ConsoleRenderer();
 
             renderer.RenderCommands(commands);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RenderGameTopPlayersWhenPassedNullShouldthrowException()
+        {
+            var renderer = new ConsoleRenderer();
+
+            renderer.RenderGameTopPlayers(null);
+        }
+
+        [TestMethod]
+        public void RenderGameTopPlayersWhenPassedOnePlayerShouldInvokeConsoleWriteLineOnce()
+        {
+            var player = new Player();
+            player.Name = "Player";
+            player.Moves = 20;
+            var players = new List<IPlayer>()
+            {
+                player
+            };
+
+            var mockConsole = new Mock<IConsoleWriter>();
+            var writer = mockConsole.Object;
+            var renderer = new ConsoleRenderer(writer);
+
+            renderer.RenderGameTopPlayers(players);
+
+            mockConsole.Verify(c => c.WriteLine(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>()), Times.Exactly(1));
+        }
+
+        [TestMethod]
+        public void RenderGameTopPlayersWhenPassedThreePlayerShouldInvokeConsoleWriteLineMoreThanOnce()
+        {
+            var player = new Player();
+            player.Name = "Player";
+            player.Moves = 20;
+            var player1 = new Player();
+            player.Name = "Player1";
+            player.Moves = 10;
+            var player2 = new Player();
+            player.Name = "Player2";
+            player.Moves = 30;
+
+            var players = new List<IPlayer>()
+            {
+                player,
+                player1,
+                player2
+            };
+
+            var mockConsole = new Mock<IConsoleWriter>();
+            var writer = mockConsole.Object;
+            var renderer = new ConsoleRenderer(writer);
+
+            renderer.RenderGameTopPlayers(players);
+
+            mockConsole.Verify(c => c.WriteLine(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>()), Times.AtLeastOnce);
+        }
+
+        [TestMethod]
+        public void RenderGameTopPlayersWhenPassedZeroPlayerShouldInvokeConsoleWriteLineNever()
+        {
+
+            var players = new List<IPlayer>();
+
+            var mockConsole = new Mock<IConsoleWriter>();
+            var writer = mockConsole.Object;
+            var renderer = new ConsoleRenderer(writer);
+
+            renderer.RenderGameTopPlayers(players);
+
+            mockConsole.Verify(c => c.WriteLine(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>()), Times.Never);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RenderGameFieldWhenPassedNullShouldThrowException()
+        {
+            var renderer = new ConsoleRenderer();
+
+            renderer.RenderGameField(null);
         }
     }
 }
