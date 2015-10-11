@@ -49,12 +49,12 @@
 
         public static void DisplayInputErrorMessage(string message, IConsoleWriter consoleWriter)
         {
-            ClearConsoleLine();
+            ClearConsoleLine(consoleWriter);
             Console.ForegroundColor = ConsoleColor.Red;
             consoleWriter.WriteLine(message);
             Console.ForegroundColor = ConsoleColor.Gray;
             Thread.Sleep(500);
-            ClearConsoleLine();
+            ClearConsoleLine(consoleWriter);
         }
 
         public static void ClearConsole()
@@ -62,12 +62,20 @@
             Console.Clear();
         }
 
-        private static void ClearConsoleLine()
+        private static void ClearConsoleLine(IConsoleWriter consoleWriter)
         {
-            var currentLine = Console.CursorTop - 1;
+            var currentLine = 1;
+            if (Console.CursorTop < 2)
+            {
+                currentLine = Console.CursorTop;
+            }
+            else
+            {
+                currentLine = Console.CursorTop - 1;
+            }
 
             Console.SetCursorPosition(0, currentLine);
-            Console.Write(new string(' ', Console.WindowWidth));
+            consoleWriter.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, currentLine);
         }
     }

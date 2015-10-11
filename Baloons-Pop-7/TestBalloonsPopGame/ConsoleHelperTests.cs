@@ -1,4 +1,6 @@
-﻿namespace TestBalloonsPopGame
+﻿using Balloons.UI;
+
+namespace TestBalloonsPopGame
 {
     using System;
     using Balloons.Common;
@@ -123,6 +125,25 @@
         [TestMethod]
         public void DisplayInputErrorMessageShouldInvokeConsoleWriteLineMethod()
         {
+            var mockConsole = new Mock<IConsoleWriter>();
+            var writer = mockConsole.Object;
+
+            ConsoleHelper.DisplayInputErrorMessage("any string", writer);
+
+            mockConsole.Verify(c => c.WriteLine(It.IsAny<string>()), Times.Exactly(1));
+        }
+
+        [TestMethod]
+        public void DisplayInputErrorMessageShouldReturnConsoleForefroundColorToGray()
+        {
+            var mockConsole = new Mock<IConsoleWriter>();
+            var writer = mockConsole.Object;
+
+            ConsoleHelper.DisplayInputErrorMessage("any string", writer);
+            var expectedColor = ConsoleColor.Gray;
+            var actualColor = Console.ForegroundColor;
+
+            Assert.AreEqual(expectedColor, actualColor);
         }
     }
 }

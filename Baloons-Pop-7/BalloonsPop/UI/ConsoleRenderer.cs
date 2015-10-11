@@ -11,13 +11,16 @@
 
     public class ConsoleRenderer : IRenderer
     {
+        private const string FieldNullErrorMessage = "Field cannot be null!";
+        private const string PlayersNullErrorMessage = "Players list cannot be null!";
+
         private const char TopAndBottomBorderSymbol = '-';
         private const string FieldLeftBorderSymbol = "{0} | ";
         private const string FieldRigthBorderSymbol = "| ";
         private const string Indent = "   ";
         private const string PlayersTemplateString = "{0}. {1} made {2} moves";
 
-        private IConsoleWriter consoleWriter;
+        private readonly IConsoleWriter consoleWriter;
 
         public ConsoleRenderer()
             : this(new ConsoleWriter())
@@ -31,6 +34,11 @@
 
         public void RenderGameField(IGameField field)
         {
+            if (ObjectValidator.IsGameObjectNull(field))
+            {
+                throw new ArgumentNullException(FieldNullErrorMessage);
+            }
+
             int columns = field.Columns;
 
             // Prints columns index
@@ -65,6 +73,11 @@
 
         public void RenderGameTopPlayers(IList<IPlayer> players)
         {
+            if (players == null)
+            {
+                throw new ArgumentNullException(PlayersNullErrorMessage);
+            }
+
             for (int i = 0; i < players.Count; i++)
             {
                 this.consoleWriter.WriteLine(PlayersTemplateString, i + 1, players[i].Name, players[i].Moves);

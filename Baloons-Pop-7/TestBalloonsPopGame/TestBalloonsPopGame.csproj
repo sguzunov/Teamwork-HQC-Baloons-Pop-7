@@ -72,6 +72,7 @@
     <Compile Include="ReoerderTests\DefaultReorderTests.cs" />
     <Compile Include="ReoerderTests\FlyReorderTest.cs" />
     <Compile Include="ConsoleHelperTests.cs" />
+    <Compile Include="UITests\ConsoleRendererTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BalloonsPop\Balloons.csproj">
