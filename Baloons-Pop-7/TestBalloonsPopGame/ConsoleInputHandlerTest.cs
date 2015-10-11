@@ -3,7 +3,9 @@
     using Balloons.Common;
     using Balloons.FieldFactory.Field;
     using Balloons.InputHandler;
+    using Balloons.UI;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
 
 
     [TestClass]
@@ -14,6 +16,35 @@
         private readonly string[] validGameAnswers = { "yes", "no" };
 
         private readonly string[] validInputCommands = { "help", "start", "exit" };
+
+        [TestMethod]
+        public void GetGameModeShuldCallConsoleMethodReadLineOnceWithValidInput()
+        {
+            var mockConsole = new Mock<IConsoleReader>();
+            var reader = mockConsole.Object;
+            var writer = new ConsoleWriter();
+
+            mockConsole.Setup(c => c.ReadLine()).Returns("fly");
+            var inputHandler = new ConsoleInputHandler(writer, reader);
+            inputHandler.GetGameMode();
+
+            mockConsole.Verify(c => c.ReadLine(), Times.Exactly(1));
+        }
+
+        [TestMethod]
+        public void GetGameDifficultyShouldCallConsoleMethodReadLineOnceWithValidInput()
+        {
+            var mockConsole = new Mock<IConsoleReader>();
+            var reader = mockConsole.Object;
+            var writer = new ConsoleWriter();
+
+            mockConsole.Setup(c => c.ReadLine()).Returns("easy");
+            var inputHandler = new ConsoleInputHandler(writer, reader);
+            inputHandler.GetGameDifficulty();
+
+            mockConsole.Verify(c => c.ReadLine(), Times.Exactly(1));
+        }
+
 
         [TestMethod]
         public void ValidGameModeFlyShouldReturnTrue()
