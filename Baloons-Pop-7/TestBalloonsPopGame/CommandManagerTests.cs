@@ -10,7 +10,7 @@
 
 
     [TestClass]
-    public class CommandManagerTests
+    public class BalloonsFactoryTest
     {
         private readonly string[] validCommands = 
         {
@@ -45,8 +45,9 @@
             this.renderer = new ConsoleRenderer();
             this.field = new GameField(5, 5);
             this.fieldMemoryManager = new FieldMemoryManager();
-            this.balloonsFactory = new BalloonsFactory(); 
+            this.balloonsFactory = new BalloonsFactory();
         }
+
 
         [TestMethod]
         public void ProcessCommandWithValidExitInputShouldProduceAExitCommand()
