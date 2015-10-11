@@ -11,7 +11,7 @@
         private readonly IGameField gameField;
         private readonly int activeRow;
         private readonly int activeCol;
-        private IBalloonsFactory balloonsFactory;
+        private readonly IBalloonsFactory balloonsFactory;
 
         public PopBalloonsCommand(IBalloonsFactory balloonsFactory, IGameField gameField, int activeRow, int activeCol)
         {

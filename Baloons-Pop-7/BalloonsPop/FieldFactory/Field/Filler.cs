@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Balloons.FieldFactory.Field
+﻿namespace Balloons.FieldFactory.Field
 {
+    using System;
+
     using Balloons.Cell;
 
     public class Filler : IFiller

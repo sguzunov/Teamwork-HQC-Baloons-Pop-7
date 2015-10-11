@@ -2,7 +2,6 @@
 {
     public static class GameMessages
     {
-        // New Constants
         public const string InitialGameMessage = "Welcome to 'Balloons Pops' game. Try to pop all the balloons. Use the following commands:";
 
         public const string EndGameMessage = "Goodbye";
@@ -10,8 +9,8 @@
         public const string TopScoresMessage = "Top players: ";
 
         public const string EmptyScoreBoardMessage = "No players saved.";
-        
-        public static string[] CommandsMessages = new string[] 
+
+        public static string[] CommandsMessages =
         { 
             "'top' - View the top scores.", 
             "'restart' - Start a new game.",

@@ -2,8 +2,8 @@
 {
     using System;
 
-    using Balloons.UI;
     using Balloons.Common;
+    using Balloons.UI;
 
     public class ExitCommand : ICommand
     {
