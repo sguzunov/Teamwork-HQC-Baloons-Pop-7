@@ -3,10 +3,16 @@
     using System;
     using System.Security.Cryptography;
 
+    /// <summary>
+    /// This class is responsible for providing the game with random numbers.
+    /// </summary>
     public static class RandomProvider
     {
         private static readonly RNGCryptoServiceProvider Provider = new RNGCryptoServiceProvider();
 
+        /// <summary>
+        /// Generates random number depending the passed bounds.
+        /// </summary>
         public static int GetRandomNumber(int minSize, int maxSize)
         {
             byte[] randomBytes = new byte[4];

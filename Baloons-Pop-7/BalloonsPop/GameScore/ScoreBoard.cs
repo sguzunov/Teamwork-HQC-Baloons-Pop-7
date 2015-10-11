@@ -44,7 +44,7 @@
         {
             get
             {
-                var sortedPlayers = this.SortPlayersByPoints(this.listOfPlayers);
+                var sortedPlayers = this.SortPlayersAscendingByMoves(this.listOfPlayers);
                 return sortedPlayers;
             }
         }
@@ -63,20 +63,20 @@
             else
             {
                 this.listOfPlayers.Add(newPlayer);
-                this.RemovePlayerWithLeastPoints(this.listOfPlayers);
+                this.RemovePlayerWithLeastMostMoves(this.listOfPlayers);
             }
         }
 
-        private void RemovePlayerWithLeastPoints(IList<IPlayer> players)
+        private void RemovePlayerWithLeastMostMoves(IList<IPlayer> players)
         {
-            int leastPoints = players.Min(p => p.Points);
-            var playerWithLeastPoints = players.Single(p => p.Points == leastPoints);
-            players.Remove(playerWithLeastPoints);
+            int mostPoints = players.Max(p => p.Moves);
+            var playerWithMostMoves = players.Single(p => p.Moves == mostPoints);
+            players.Remove(playerWithMostMoves);
         }
 
-        private IList<IPlayer> SortPlayersByPoints(IList<IPlayer> players)
+        private IList<IPlayer> SortPlayersAscendingByMoves(IList<IPlayer> players)
         {
-            return players.OrderByDescending(p => p.Points).ToList();
+            return players.OrderBy(p => p.Moves).ToList();
         }
     }
 }

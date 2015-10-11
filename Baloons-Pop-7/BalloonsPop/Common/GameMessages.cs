@@ -10,7 +10,7 @@
         public const string TopScoresMessage = "Top players: ";
 
         public const string EmptyScoreBoardMessage = "No players saved.";
-
+        
         public static string[] CommandsMessages = new string[] 
         { 
             "'top' - View the top scores.", 

@@ -1,11 +1,12 @@
 ﻿namespace Balloons.GameEngine
 {
     using Balloons.Cell;
-    using Balloons.Common;
+    using Balloons.Commands;
     using Balloons.FieldFactory;
-    using Balloons.GamePlayer;
+    using Balloons.FieldFactory.Field;
     using Balloons.InputHandler;
     using Balloons.Memory;
+    using Balloons.ReorderStrategy;
     using Balloons.UI;
 
     public class GameEngineContext
@@ -16,14 +17,14 @@
 
         public IFieldFactory FieldFactory { get; set; }
 
-        public GameMode GameMode { get; set; }
-
-        public GameDifficulty GameDifficulty { get; set; }
-
-        public IPlayer Player { get; set; }
-
         public IFieldMemoryManager FieldMemoryManager { get; set; }
 
         public IBalloonsFactory BalloonsFactory { get; set; }
+
+        public ICommandManager CommandManager { get; set; }
+
+        public IFiller GameFieldFiller { get; set; }
+
+        public ReorderBalloonsStrategy ReorderBalloonsStrategy { get; set; }
     }
 }

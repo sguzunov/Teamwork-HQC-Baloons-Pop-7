@@ -4,6 +4,6 @@
     {
         string Name { get; set; }
 
-        int Points { get; set; }
+        int Moves { get; set; }
     }
 }

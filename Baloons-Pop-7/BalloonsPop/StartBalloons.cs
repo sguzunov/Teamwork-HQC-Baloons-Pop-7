@@ -1,8 +1,14 @@
 ﻿namespace Balloons
 {
+    /// <summary>
+    /// The main entry point for the game.
+    /// </summary>
     public class StartBalloons
     {
-        public static void Main(string[] args)
+        /// <summary>
+        /// Starts the game.
+        /// </summary>
+        public static void Main()
         {
             Facade.StartGame();
         }

@@ -75,14 +75,19 @@
             }
         }
 
-        const int PopCommandLength = 2;
-
         public string ReadInputCommand()
         {
             Console.Write("Enter a command ('pop {row} {col}', 'top', 'save', 'restore', 'help', 'exit'): ");
             string userInput = Console.ReadLine().Trim().ToLower();
-            
+
             return userInput;
+        }
+        public string ReadPlayerInfo()
+        {
+            Console.Write("Please enter your name: ");
+            string playerName = Console.ReadLine();
+
+            return playerName;
         }
 
         public bool IsValidInput(string command)

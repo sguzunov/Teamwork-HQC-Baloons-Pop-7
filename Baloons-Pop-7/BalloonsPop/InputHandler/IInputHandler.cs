@@ -10,6 +10,8 @@
 
         GameDifficulty GetGameDifficulty();
 
+        string ReadPlayerInfo();
+
         AnotherRound GetPlayAgainResponse();
     }
 }

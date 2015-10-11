@@ -1,7 +1,6 @@
 ﻿namespace Balloons.GameEngine
 {
     using System;
-    using System.Collections.Generic;
 
     using Balloons.Cell;
     using Balloons.Commands;
@@ -12,16 +11,15 @@
     using Balloons.GameScore;
     using Balloons.InputHandler;
     using Balloons.Memory;
-    using Balloons.UI;
     using Balloons.ReorderStrategy;
+    using Balloons.UI;
 
     public class BalloonsGameEngine : IBalloonsEngine
     {
         private readonly GameEngineContext engineContext = new GameEngineContext();
-        private ReorderBalloonsStrategy strategy;
-        private ICommandManager commandManger;
-        private IGameField field;
 
+        private int gameRoundMoves;
+        private IGameField field;
 
         public BalloonsGameEngine Renderer(IRenderer renderer)
         {
@@ -41,24 +39,6 @@
             return this;
         }
 
-        public BalloonsGameEngine Mode(GameMode gameMode)
-        {
-            this.engineContext.GameMode = gameMode;
-            return this;
-        }
-
-        public BalloonsGameEngine GameDifficulty(GameDifficulty gameDifficulty)
-        {
-            this.engineContext.GameDifficulty = gameDifficulty;
-            return this;
-        }
-
-        public BalloonsGameEngine Player(IPlayer player)
-        {
-            this.engineContext.Player = player;
-            return this;
-        }
-
         public BalloonsGameEngine FieldMemoryManager(IFieldMemoryManager fieldMemoryManager)
         {
             this.engineContext.FieldMemoryManager = fieldMemoryManager;
@@ -71,41 +51,40 @@
             return this;
         }
 
-        public void InitializeGame()
+        public BalloonsGameEngine CommandManager(ICommandManager commandManager)
         {
-            if (this.engineContext.GameMode == GameMode.Fly)
-            {
-                this.strategy = new ReorderBallonsStrategyFly();
-            }
-            else
-            {
-                this.strategy = new ReorderBallonsStrategyDefault();
-            }
+            this.engineContext.CommandManager = commandManager;
+            return this;
+        }
 
-            this.field = this.engineContext.FieldFactory.CreateGameField(this.engineContext.GameDifficulty);
+        public BalloonsGameEngine ReorderBalloonsStrategy(ReorderBalloonsStrategy reorderStrategy)
+        {
+            this.engineContext.ReorderBalloonsStrategy = reorderStrategy;
+            return this;
+        }
 
-            // Needs refactoring
-            var filler = new Filler(this.engineContext.BalloonsFactory);
-            this.field.Filler = filler;
-            this.field.Fill();
-            this.commandManger = new CommandManager();
+        public BalloonsGameEngine GameFieldFiller(IFiller matrixFiller)
+        {
+            this.engineContext.GameFieldFiller = matrixFiller;
+            return this;
+        }
+
+        public void InitializeGame(GameDifficulty gameDifficulty)
+        {
+            this.PrepareNewGameRound(this.engineContext.FieldFactory, gameDifficulty);
         }
 
         public void StartGame()
         {
-            var moves = 0;
-
             while (true)
             {
                 this.engineContext.Renderer.RenderGameField(this.field);
-
                 var commandInput = this.engineContext.Input.ReadInputCommand();
 
                 try
                 {
-
                     // Get command from manager and tries to execute
-                    var command = this.commandManger.ProcessCommand(
+                    var command = this.engineContext.CommandManager.ProcessCommand(
                         commandInput,
                         this.engineContext.Renderer,
                         this.field,
@@ -115,32 +94,28 @@
                     command.Execute();
                     if (command.Name == "pop")
                     {
-                        moves++;
+                        // Every pop command calculate a move.
+                        this.gameRoundMoves++;
+                        this.ReorderBallons(this.engineContext.ReorderBalloonsStrategy, this.field);
                     }
-
-                    ReorderBallons(this.field);
 
                     if (this.IsGameFinished(this.field))
                     {
-                        var points = ((this.field.Rows * this.field.Columns) - moves) * 100;
-                        this.engineContext.Renderer.RenderGameField(this.field);
-                        Console.Write("Please enter your name:");
-                        this.engineContext.Player.Name = Console.ReadLine();
-                        this.engineContext.Player.Points = points;
-                        ScoreBoard.Instance.AddPlayer(this.engineContext.Player);
-                        ICommand showScore = new TopScoresCommand(this.engineContext.Renderer);
-                        showScore.Execute();
+                        var player = new Player();
+                        player.Name = this.engineContext.Input.ReadPlayerInfo();
+                        player.Moves = this.gameRoundMoves;
+                        ScoreBoard.Instance.AddPlayer(player);
 
-                        AnotherRound playAnotherRound = this.engineContext.Input.GetPlayAgainResponse();
+                        AnotherRound playAnotherRoundResponse = this.engineContext.Input.GetPlayAgainResponse();
 
-                        if (playAnotherRound == AnotherRound.Yes)
+                        if (playAnotherRoundResponse == AnotherRound.Yes)
                         {
-                            Facade.StartGame();
+                            var difficulty = this.engineContext.Input.GetGameDifficulty();
+                            this.PrepareNewGameRound(this.engineContext.FieldFactory, difficulty);
                         }
                         else
                         {
-                            ICommand exit = new ExitCommand(this.engineContext.Renderer);
-                            exit.Execute();
+                            return;
                         }
                     }
                 }
@@ -151,15 +126,22 @@
             }
         }
 
-        public bool IsGameFinished(IGameField field)
+        private void PrepareNewGameRound(IFieldFactory fieldFactory, GameDifficulty gameDifficulty)
         {
-            int rows = field.Rows;
-            int columns = field.Columns;
+            this.field = fieldFactory.CreateGameField(gameDifficulty);
+            this.field.Filler = this.engineContext.GameFieldFiller;
+            this.field.Fill();
+        }
+
+        private bool IsGameFinished(IGameField gameField)
+        {
+            int rows = gameField.Rows;
+            int columns = gameField.Columns;
             for (int row = 0; row < rows; row++)
             {
                 for (int column = 0; column < columns; column++)
                 {
-                    if (field[row, column].Symbol != GameConstants.PopedBalloonSymbol)
+                    if (gameField[row, column].Symbol != GameConstants.PopedBalloonSymbol)
                     {
                         return false;
                     }
@@ -169,9 +151,9 @@
             return true;
         }
 
-        private void ReorderBallons(IGameField field)
+        private void ReorderBallons(ReorderBalloonsStrategy reorderStrategy, IGameField gameField)
         {
-            strategy.ReorderBalloons(field);
+            reorderStrategy.ReorderBalloons(gameField);
         }
     }
 }

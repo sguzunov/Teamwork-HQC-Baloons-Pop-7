@@ -1,13 +1,11 @@
 ﻿namespace Balloons.GameEngine
 {
-    using Balloons.FieldFactory.Field;
+    using Balloons.Common;
 
     public interface IBalloonsEngine
     {
-        void InitializeGame();
+        void InitializeGame(GameDifficulty gameDifficulty);
 
         void StartGame();
-
-        bool IsGameFinished(IGameField gameField);
     }
 }

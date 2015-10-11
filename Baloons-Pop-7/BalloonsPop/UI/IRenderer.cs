@@ -9,13 +9,11 @@
     {
         void RenderGameField(IGameField field);
 
-        void RenderMenu();
+        void RenderGameMessage(string message);
 
         void RenderCommands(string[] commands);
 
         void RenderGameTopPlayers(IList<IPlayer> players);
-
-        void RenderGameMessage(string message);
 
         void RenderGameErrorMessage(string message);
     }

@@ -15,7 +15,7 @@
         private const string FieldLeftBorderSymbol = "{0} | ";
         private const string FieldRigthBorderSymbol = "| ";
         private const string Indent = "   ";
-        private const string PlayersTemplateString = "{0}. {1} won {2} points";
+        private const string PlayersTemplateString = "{0}. {1} made {2} moves";
 
         public void RenderGameField(IGameField field)
         {
@@ -35,10 +35,10 @@
             this.PrintBorder(columns);
         }
 
-        public void RenderMenu()
+        public void RenderGameMessage(string message)
         {
-            ConsoleHelper.CentraliseCursor(GameMessages.InitialGameMessage.Length);
-            Console.WriteLine(GameMessages.InitialGameMessage);
+            ConsoleHelper.CentraliseCursor(message.Length);
+            Console.WriteLine(message);
         }
 
         public void RenderCommands(string[] commands)
@@ -55,14 +55,8 @@
         {
             for (int i = 0; i < players.Count; i++)
             {
-                Console.WriteLine(PlayersTemplateString, i + 1, players[i].Name, players[i].Points);
+                Console.WriteLine(PlayersTemplateString, i + 1, players[i].Name, players[i].Moves);
             }
-        }
-
-        public void RenderGameMessage(string message)
-        {
-            ConsoleHelper.CentraliseCursor(message.Length);
-            Console.WriteLine(message);
         }
 
         public void RenderGameErrorMessage(string message)
