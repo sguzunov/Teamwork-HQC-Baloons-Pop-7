@@ -7,7 +7,7 @@
         public BalloonPoped()
         {
             this.Symbol = ".";
-            this.Color = BalloonsColors.Blue;
+            this.Color = BalloonsColors.Red;
         }
     }
 }
