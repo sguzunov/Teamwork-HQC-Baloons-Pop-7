@@ -149,7 +149,7 @@
 
 	+	Structural
 		+	Facade - Facade.cs
-		+   Flyweigh - ????
+		+   Flyweigh - Cell - BalloonFactory
 		+   Bridge - FieldFactory - Fill();
 
 	+	Behavioral
