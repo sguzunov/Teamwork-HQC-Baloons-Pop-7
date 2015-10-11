@@ -21,16 +21,14 @@
         private const string PlayerInfoInviteMessage = "Please enter your name: ";
 
         private IConsoleWriter consoleWriter;
-        private IConsoleReader consoleReader;
 
-        public ConsoleInputHandler(IConsoleWriter consoleWriter, IConsoleReader consoleReader)
+        public ConsoleInputHandler(IConsoleWriter consoleWriter)
         {
             this.consoleWriter = consoleWriter;
-            this.consoleReader = consoleReader;
         }
 
         public ConsoleInputHandler()
-            : this(new ConsoleWriter(), new ConsoleReader())
+            : this(new ConsoleWriter())
         {
         }
 
@@ -39,7 +37,7 @@
             while (true)
             {
                 Console.Write(GameModeInviteMessage);
-                string input = consoleReader.ReadLine();
+                string input = Console.ReadLine();
                 string gameModeAsString = input.Trim().ToLower();
                 bool isValidGameMode = Validator.CheckIfValidGameMode(gameModeAsString);
 
@@ -60,7 +58,7 @@
             while (true)
             {
                 Console.Write(GameDifficultyInviteMessage);
-                string input = consoleReader.ReadLine();
+                string input = Console.ReadLine();
                 string gameDifficultyAsString = input.Trim().ToLower();
                 bool isValidGameDifficulty = Validator.CheckIfValidGameDifficulty(gameDifficultyAsString);
 
@@ -83,7 +81,7 @@
             while (true)
             {
                 Console.Write(PlayerResponseInviteMessage);
-                string input = consoleReader.ReadLine();
+                string input = Console.ReadLine();
                 string answerAsString = input.Trim().ToLower();
                 bool isValidAnswer = Validator.CheckIfValidAnswer(answerAsString);
                 if (isValidAnswer)
@@ -101,14 +99,14 @@
         public string ReadInputCommand()
         {
             Console.Write(CommandInputInviteMessage);
-            string userInput = consoleReader.ReadLine().Trim().ToLower();
+            string userInput = Console.ReadLine().Trim().ToLower();
 
             return userInput;
         }
         public string ReadPlayerInfo()
         {
             Console.Write(PlayerInfoInviteMessage);
-            string playerName = consoleReader.ReadLine();
+            string playerName = Console.ReadLine();
 
             return playerName;
         }

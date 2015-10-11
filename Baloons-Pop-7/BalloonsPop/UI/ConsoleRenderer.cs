@@ -63,7 +63,6 @@
             }
         }
 
-        
         public void RenderGameTopPlayers(IList<IPlayer> players)
         {
             for (int i = 0; i < players.Count; i++)
