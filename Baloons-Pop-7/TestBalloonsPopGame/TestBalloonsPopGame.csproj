@@ -54,24 +54,24 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="BalloonsFactoryTest.cs" />
+    <Compile Include="CellTests\BalloonsFactoryTest.cs" />
     <Compile Include="CommandsTests\HelpCommandTests .cs" />
-    <Compile Include="EnumUtilsTests.cs" />
+    <Compile Include="CommonTests\EnumUtilsTests.cs" />
     <Compile Include="GameEngineTest.cs" />
-    <Compile Include="GameMessagesTests.cs" />
+    <Compile Include="CommonTests\GameMessagesTests.cs" />
     <Compile Include="CommandsTests\CommandManagerTests.cs" />
-    <Compile Include="ConsoleInputHandlerTest.cs" />
+    <Compile Include="InputHandlerTests\ConsoleInputHandlerTest.cs" />
     <Compile Include="FieldTests\GameFieldTests.cs" />
     <Compile Include="FieldTests\FillerTests.cs" />
     <Compile Include="FieldTests\FieldFactoryTests.cs" />
-    <Compile Include="GameScoreTests.cs" />
+    <Compile Include="GameScoreTests\GameScoreTests.cs" />
     <Compile Include="CommandsTests\PopBalloonsCommandTests.cs" />
     <Compile Include="MemoryTests\FieldMemoryTests.cs" />
     <Compile Include="MemoryTests\FieldMemoryManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReorderTests\DefaultReorderTests.cs" />
     <Compile Include="ReorderTests\FlyReorderTest.cs" />
-    <Compile Include="ConsoleHelperTests.cs" />
+    <Compile Include="HelpersTests\ConsoleHelperTests.cs" />
     <Compile Include="UITests\ConsoleRendererTests.cs" />
   </ItemGroup>
   <ItemGroup>
