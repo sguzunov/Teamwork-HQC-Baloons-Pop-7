@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Balloons.Cell;
+using Balloons.FieldFactory.Field;
 using Balloons.GamePlayer;
 using Balloons.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -159,6 +161,33 @@ namespace TestBalloonsPopGame.UITests
             var renderer = new ConsoleRenderer();
 
             renderer.RenderGameField(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RenderGameFieldWhenPassedFieldHavingNullCellShouldThrowException()
+        {
+            var renderer = new ConsoleRenderer();
+            var field = new GameField(2, 2);
+
+            renderer.RenderGameField(field);
+        }
+
+        [TestMethod]
+        public void RenderGameFieldWhenPassedFieldHavingNonNullCellsShouldWriteOnConsole()
+        {
+            var mockConsole = new Mock<IConsoleWriter>();
+            var console = mockConsole.Object;
+
+            var renderer = new ConsoleRenderer(console);
+            var field = new GameField(2, 2);
+            var filler = new Filler(new BalloonsFactory());
+            field.Filler = filler;
+            field.Fill();
+
+            renderer.RenderGameField(field);
+
+            mockConsole.Verify(c => c.Write(It.IsAny<string>()), Times.AtLeastOnce);
         }
     }
 }

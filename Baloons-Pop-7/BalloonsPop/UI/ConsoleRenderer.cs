@@ -12,6 +12,7 @@
     public class ConsoleRenderer : IRenderer
     {
         private const string FieldNullErrorMessage = "Field cannot be null!";
+        private const string FieldCellNullErrorMessage = "Field cell cannot be null!";
         private const string PlayersNullErrorMessage = "Players list cannot be null!";
         private const string CommandsCountErrorMessage = "Commands count cannot be less than one!";
 
@@ -43,7 +44,7 @@
             int columns = field.Columns;
 
             // Prints columns index
-            Console.Write(Indent);
+            this.consoleWriter.Write(Indent);
             for (int i = 0; i < columns; i++)
             {
                 this.consoleWriter.Write(" {0}", i + 1);
@@ -107,6 +108,11 @@
 
                 for (int column = 0; column < columns; column++)
                 {
+                    if (ObjectValidator.IsGameObjectNull(field[row, column]))
+                    {
+                        throw new ArgumentNullException(FieldCellNullErrorMessage);
+                    }
+
                     string symbol = field[row, column].Symbol;
                     BalloonsColors symbolColor = field[row, column].Color;
 
@@ -124,16 +130,6 @@
         {
             this.consoleWriter.Write(Indent);
             this.consoleWriter.WriteLine(new string(TopAndBottomBorderSymbol, columns * 2));
-        }
-
-        private void PrintCommands(string[] commands)
-        {
-            int commandMaxLength = commands.Max(m => m.Length);
-            for (int i = 0; i < commands.Length; i++)
-            {
-                ConsoleHelper.CentraliseCursor(commandMaxLength);
-                this.consoleWriter.WriteLine(commands[i]);
-            }
         }
     }
 }
