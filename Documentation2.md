@@ -4,10 +4,12 @@
 
 	+ ***Renaming:*** variables and metods renamed in order to make the code easier to understand (*Self-Documentating code*)
 	int shirina -> int lenght 
+
 	+ ***Character casing***: variables and fields made *camelCase*; types and methods made *PascalCase*
 	private int gameRoundMoves;
 	public void AddPlayer(IPlayer newPlayer)
 	StyleCop rules are used
+
 	+ ***Empty Lines:***
 		+ Removed unnecessary empty lines
 		  class StartBaloons
@@ -70,6 +72,7 @@
             }
 
 2. **Project Re-Structuration**: classes
+
 	+ Cell:
 		+ Balloon
 		+ BalloonFour
@@ -99,13 +102,59 @@
 		+ GameType
 		+ ObjectValidator
 		+ Validator
+	+ FieldFactory:
+		+ Field
+		  + Filler
+		  + GameField
+		  + IField
+		  + IFiller
+		  + IGameField
+		  + IMemorable
+		+ GameFieldFactory
+		+ IFieldFactory
+	+ GameEngine:
+		+ BalloonsGameEngine
+		+ GameEngineContex
+		+ IBalloonsEngine
+	+ GamePlayer:
+		+ IPlayer
+		+ Player
+	+ GameScore:
+		+ ScoreBoard
+	+ Helpers:
+		+ ConsoleHelper
+	+ InputHandler:
+		+ ConsoleInputHandler
+		+ IInputHandler
+	+ Memory:
+		+ FieldMemory
+		+ FieldMemoryManager
+		+ IFieldMemoryManager
+	+ ReorderStrategy:
+		+ ReorderBallonsStrategyDefault
+		+ ReorderBallonsStrategyFly
+		+ ReorderBalloonsStrategy
+	+ UI
+	    + ConsoleRender
+		+ IRender
+	+ Facade
+	+ RandomProvider
+	+ StartBalloons
 
 3. **Design Patterns:**
+
 	+	Creational
-		+	here patterns used +example with code
+		+	Singleton - ScoreBoard class
+		+   Factory - FieldFactory
+
 	+	Structural
-		+	here patterns used +example with code
+		+	Facade - Facade.cs
+		+   Flyweigh - ????
+		+   Bridge - FieldFactory - Fill();
+
 	+	Behavioral
-		+	here patterns used +example with code
+		+	Memento - Memory
+		+   Command - Command
+		+   Strategy - ReoderStrategy
 
 4. **Class Diagram** of the project (eventually)
