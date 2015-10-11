@@ -13,6 +13,7 @@
     {
         private const string FieldNullErrorMessage = "Field cannot be null!";
         private const string PlayersNullErrorMessage = "Players list cannot be null!";
+        private const string CommandsCountErrorMessage = "Commands count cannot be less than one!";
 
         private const char TopAndBottomBorderSymbol = '-';
         private const string FieldLeftBorderSymbol = "{0} | ";
@@ -63,6 +64,11 @@
 
         public void RenderCommands(string[] commands)
         {
+            if (commands.Length < 1)
+            {
+                throw new IndexOutOfRangeException(CommandsCountErrorMessage);
+            }
+
             int commandMaxLength = commands.Max(m => m.Length);
             for (int i = 0; i < commands.Length; i++)
             {
