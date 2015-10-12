@@ -1,14 +1,10 @@
-﻿using System;
-using Balloons.Commands;
-using Balloons.Common;
-using Balloons.Common.ConsoleContext;
-using Balloons.GameScore;
-using Balloons.UI;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-
-namespace TestBalloonsPopGame.CommandsTests
+﻿namespace TestBalloonsPopGame.CommandsTests
 {
+    using Balloons.Commands;
+    using Balloons.GameScore;
+    using Balloons.UI;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class ExitCommandTests
     {

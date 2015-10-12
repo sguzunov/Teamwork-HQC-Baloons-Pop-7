@@ -1,13 +1,10 @@
 ﻿namespace TestBalloonsPopGame
 {
     using Balloons.Common;
-    using Balloons.FieldFactory.Field;
+    using Balloons.Common.ConsoleContext;
     using Balloons.InputHandler;
-    using Balloons.UI;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using System;
-    using Balloons.Common.ConsoleContext;
 
     [TestClass]
     public class ConsoleInputHandlerTest

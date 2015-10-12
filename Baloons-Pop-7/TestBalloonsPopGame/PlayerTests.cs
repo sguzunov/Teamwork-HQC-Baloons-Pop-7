@@ -1,9 +1,9 @@
-﻿using System;
-using Balloons.GamePlayer;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace TestBalloonsPopGame
+﻿namespace TestBalloonsPopGame
 {
+    using System;
+    using Balloons.GamePlayer;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class PlayerTests
     {

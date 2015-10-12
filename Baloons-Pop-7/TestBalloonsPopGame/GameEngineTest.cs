@@ -1,17 +1,8 @@
 ﻿namespace TestBalloonsPopGame
 {
-    using Balloons.Cell;
-    using Balloons.Commands;
-    using Balloons.FieldFactory.Field;
     using Balloons.GameEngine;
-    using Balloons.InputHandler;
-    using Balloons.Memory;
-    using Balloons.ReorderStrategy;
     using Balloons.UI;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Moq;
-    using System;
-    using Balloons.Common.ConsoleContext;
 
     [TestClass]
     public class GameEngineTests

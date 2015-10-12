@@ -1,6 +1,7 @@
 ﻿namespace TestBalloonsPopGame.MemoryTests
 {
     using System;
+
     using Balloons.FieldFactory.Field;
     using Balloons.Memory;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

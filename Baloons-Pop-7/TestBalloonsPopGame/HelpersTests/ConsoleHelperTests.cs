@@ -1,13 +1,12 @@
-﻿using Balloons.UI;
-
-namespace TestBalloonsPopGame
+﻿namespace TestBalloonsPopGame
 {
     using System;
+
     using Balloons.Common;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Balloons.Helpers;
-    using Moq;
     using Balloons.Common.ConsoleContext;
+    using Balloons.Helpers;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
 
     [TestClass]
     public class ConsoleHelperTests

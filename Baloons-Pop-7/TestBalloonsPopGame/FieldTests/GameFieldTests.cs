@@ -1,12 +1,13 @@
-﻿using Balloons.Cell;
-using Balloons.FieldFactory.Field;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Balloons.Memory;
-using Moq;
-
-namespace TestBalloonsPopGame
+﻿namespace TestBalloonsPopGame
 {
+    using System;
+
+    using Balloons.Cell;
+    using Balloons.FieldFactory.Field;
+    using Balloons.Memory;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
+
     [TestClass]
     public class GameFieldTests
     {

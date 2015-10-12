@@ -6,7 +6,6 @@
     using Balloons.Memory;
     using Balloons.UI;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System;
 
     [TestClass]
     public class HelpCommandTests

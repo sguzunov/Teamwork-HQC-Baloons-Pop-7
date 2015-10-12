@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Balloons.Cell;
-using Balloons.Memory;
-
-namespace TestBalloonsPopGame.MemoryTests
+﻿namespace TestBalloonsPopGame.MemoryTests
 {
+    using Balloons.Cell;
+    using Balloons.Memory;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class FieldMemoryTests
     {

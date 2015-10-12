@@ -1,11 +1,11 @@
 ﻿namespace TestBalloonsPopGame.ReoerderTests
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using Balloons.Cell;
     using Balloons.FieldFactory.Field;
     using Balloons.ReorderStrategy;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class DefaultReorderTests
