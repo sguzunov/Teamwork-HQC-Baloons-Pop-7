@@ -15,8 +15,13 @@
         public Player()
             : this(PlayerDefaultName, PlayerDefaultMoves)
         {
-        }
 
+        }
+        /// <summary>
+        /// Construktor for object Plaayer
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="moves"></param>
         public Player(string name, int moves)
         {
             this.Name = name;
