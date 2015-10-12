@@ -4,11 +4,6 @@
     using Balloons.GameScore;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Moq;
 
     [TestClass]
     public class GameScoreTests
@@ -31,7 +26,7 @@
         }
 
         [TestMethod]
-        public void AddPlayerInListTest()
+        public void AddPlayerInListOfGameScoreBoardTest()
         {
             var instanceScoreBoard = ScoreBoard.Instance;
             instanceScoreBoard.AddPlayer(new Player());
@@ -39,10 +34,20 @@
         }
 
         [TestMethod]
-        public void GetSortedPlayersByPointsTest()
+        public void GetSortedPlayersByMovesTest()
         {
-
-
+            var randomGenerator = new Random();
+            var randomNum = randomGenerator.Next(1, 100);
+            var player1 = new Player("Pesho", randomNum);
+            var player2 = new Player("Gosho", randomNum);
+            var scoreBoard = ScoreBoard.Instance;
+            scoreBoard.AddPlayer(player1);
+            scoreBoard.AddPlayer(player2);
+            var sortedPlayer = scoreBoard.GetSortedPlayers;
+            for (int i = 0; i < sortedPlayer.Count - 1; i++)
+            {
+                Assert.IsTrue((sortedPlayer[i].Moves <= sortedPlayer[i + 1].Moves));
+            }
         }
 
         [TestMethod]
