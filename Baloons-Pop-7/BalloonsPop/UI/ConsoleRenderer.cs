@@ -46,6 +46,10 @@
             this.consoleWriter = consoleWriter;
         }
 
+        /// <summary>
+        /// Method which knows how to render on console game field matrix.
+        /// </summary>
+        /// <param name="field">Field to render.</param>
         public void RenderGameField(IGameField field)
         {
             if (ObjectValidator.IsGameObjectNull(field))
@@ -69,12 +73,20 @@
             this.PrintBorder(columns);
         }
 
+        /// <summary>
+        /// Method which knows how to render all game messages on console.
+        /// </summary>
+        /// <param name="message">Concrete message to render.</param>
         public void RenderGameMessage(string message)
         {
             ConsoleHelper.CentraliseCursor(message.Length);
             this.consoleWriter.WriteLine(message);
         }
 
+        /// <summary>
+        /// Method which knows how to render all game commands on console.
+        /// </summary>
+        /// <param name="commands">An array containing string for rendering.</param>
         public void RenderCommands(string[] commands)
         {
             if (commands.Length < 1)
@@ -90,6 +102,10 @@
             }
         }
 
+        /// <summary>
+        /// Method which knows how to render all players in the game on console.
+        /// </summary>
+        /// <param name="players">A list of players having info for rendering.</param>
         public void RenderGameTopPlayers(IList<IPlayer> players)
         {
             if (players == null)
@@ -111,6 +127,10 @@
             }
         }
 
+        /// <summary>
+        /// Method which knows how to render all error messages on console on different way.
+        /// </summary>
+        /// <param name="message">A message for printing on console.</param>
         public void RenderGameErrorMessage(string message)
         {
             ConsoleHelper.DisplayInputErrorMessage(message, this.consoleWriter);
