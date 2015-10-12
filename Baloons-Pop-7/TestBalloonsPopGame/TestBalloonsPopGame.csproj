@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="CellTests\BalloonsFactoryTest.cs" />
     <Compile Include="CommandsTests\HelpCommandTests .cs" />
+    <Compile Include="CommandsTests\ExitCommandTests.cs" />
     <Compile Include="CommonTests\EnumUtilsTests.cs" />
     <Compile Include="GameEngineTest.cs" />
     <Compile Include="CommonTests\GameMessagesTests.cs" />

@@ -17,6 +17,9 @@
     /// </summary>
     public static class GameEntry
     {
+        /// <summary>
+        /// This method instantiate all dependencies for the game.
+        /// </summary>
         public static void StartGame()
         {
             // Console context dependancies
@@ -57,6 +60,11 @@
             engine.StartGame();
         }
 
+        /// <summary>
+        /// Depending the game mode value provides object representing the class having the needed logic.
+        /// </summary>
+        /// <param name="gameMode">The needed mode taken from the user.</param>
+        /// <returns>Concrete instance of the mode.</returns>
         private static ReorderBalloonsStrategy GetReorderStrategy(GameMode gameMode)
         {
             ReorderBalloonsStrategy strategy;

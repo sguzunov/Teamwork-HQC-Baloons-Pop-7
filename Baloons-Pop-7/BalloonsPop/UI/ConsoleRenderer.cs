@@ -10,6 +10,9 @@
     using Balloons.GamePlayer;
     using Balloons.Helpers;
 
+    /// <summary>
+    /// Concrete game renderer which uses console for context.
+    /// </summary>
     public class ConsoleRenderer : IRenderer
     {
         private const string FieldNullErrorMessage = "Field cannot be null!";
@@ -26,11 +29,18 @@
 
         private readonly IConsoleWriter consoleWriter;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleRenderer"/> class.
+        /// </summary>
         public ConsoleRenderer()
             : this(new ConsoleWriter())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleRenderer"/> class.
+        /// </summary>
+        /// <param name="consoleWriter">Concrete console context.</param>
         public ConsoleRenderer(IConsoleWriter consoleWriter)
         {
             this.consoleWriter = consoleWriter;
