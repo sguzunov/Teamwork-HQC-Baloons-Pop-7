@@ -7,7 +7,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using System;
-
+    using Balloons.Common.ConsoleContext;
 
     [TestClass]
     public class ConsoleInputHandlerTest

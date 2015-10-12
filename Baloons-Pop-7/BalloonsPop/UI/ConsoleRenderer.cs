@@ -5,6 +5,7 @@
     using System.Linq;
 
     using Balloons.Common;
+    using Balloons.Common.ConsoleContext;
     using Balloons.FieldFactory.Field;
     using Balloons.GamePlayer;
     using Balloons.Helpers;

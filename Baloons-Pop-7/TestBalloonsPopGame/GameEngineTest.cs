@@ -11,6 +11,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using System;
+    using Balloons.Common.ConsoleContext;
 
     [TestClass]
     public class GameEngineTests
@@ -40,7 +41,7 @@
             Setup();
             var mockConsole = new Mock<IConsoleReader>();
             var reader = mockConsole.Object;
-            var writer = new ConsoleWriter(); 
+            var writer = new ConsoleWriter();
 
             mockConsole.Setup(c => c.ReadLine()).Returns("top");
             engineContext.Input = new ConsoleInputHandler(writer, reader);

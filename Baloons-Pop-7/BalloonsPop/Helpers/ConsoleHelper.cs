@@ -4,7 +4,7 @@
     using System.Threading;
 
     using Balloons.Common;
-    using Balloons.UI;
+    using Balloons.Common.ConsoleContext;
 
     public static class ConsoleHelper
     {

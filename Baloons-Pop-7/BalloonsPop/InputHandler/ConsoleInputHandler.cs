@@ -4,7 +4,7 @@
 
     using Balloons.Common;
     using Balloons.Helpers;
-    using Balloons.UI;
+    using Balloons.Common.ConsoleContext;
 
     public class ConsoleInputHandler : IInputHandler
     {

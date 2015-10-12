@@ -6,6 +6,7 @@ using Balloons.GamePlayer;
 using Balloons.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Balloons.Common.ConsoleContext;
 
 namespace TestBalloonsPopGame.UITests
 {

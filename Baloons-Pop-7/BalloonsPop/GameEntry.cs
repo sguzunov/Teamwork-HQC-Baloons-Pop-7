@@ -3,6 +3,7 @@
     using Balloons.Cell;
     using Balloons.Commands;
     using Balloons.Common;
+    using Balloons.Common.ConsoleContext;
     using Balloons.FieldFactory;
     using Balloons.FieldFactory.Field;
     using Balloons.GameEngine;

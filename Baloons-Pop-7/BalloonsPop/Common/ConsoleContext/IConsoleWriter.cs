@@ -1,4 +1,4 @@
-﻿namespace Balloons.UI
+﻿namespace Balloons.Common.ConsoleContext
 {
     public interface IConsoleWriter
     {

@@ -7,6 +7,7 @@ namespace TestBalloonsPopGame
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Balloons.Helpers;
     using Moq;
+    using Balloons.Common.ConsoleContext;
 
     [TestClass]
     public class ConsoleHelperTests
