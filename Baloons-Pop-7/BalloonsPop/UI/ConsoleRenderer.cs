@@ -15,6 +15,7 @@
         private const string FieldNullErrorMessage = "Field cannot be null!";
         private const string FieldCellNullErrorMessage = "Field cell cannot be null!";
         private const string PlayersNullErrorMessage = "Players list cannot be null!";
+        private const string PlayersEmptyListErrorMessage = "Players count cannot be less than 1!";
         private const string CommandsCountErrorMessage = "Commands count cannot be less than one!";
 
         private const char TopAndBottomBorderSymbol = '-';
@@ -84,6 +85,11 @@
             if (players == null)
             {
                 throw new ArgumentNullException(PlayersNullErrorMessage);
+            }
+
+            if (players.Count < 1)
+            {
+                throw new ArgumentException(PlayersEmptyListErrorMessage);
             }
 
             int maxPlayerNameLength = players.Max(p => p.Name.Length);

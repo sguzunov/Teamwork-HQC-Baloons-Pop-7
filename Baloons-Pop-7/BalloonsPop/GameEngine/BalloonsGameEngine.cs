@@ -101,9 +101,10 @@
 
                     if (this.IsGameFinished(this.field))
                     {
-                        var player = new Player();
-                        player.Name = this.engineContext.Input.ReadPlayerInfo();
-                        player.Moves = this.gameRoundMoves;
+                        // Collecting info for player and saves it.
+                        var playerName = this.engineContext.Input.ReadPlayerInfo();
+                        var playerMoves = this.gameRoundMoves;
+                        var player = new Player(playerName, playerMoves);
                         ScoreBoard.Instance.AddPlayer(player);
 
                         AnotherRound playAnotherRoundResponse = this.engineContext.Input.GetPlayAgainResponse();

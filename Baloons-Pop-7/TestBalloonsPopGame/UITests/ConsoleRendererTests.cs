@@ -118,11 +118,11 @@ namespace TestBalloonsPopGame.UITests
             player.Name = "Player";
             player.Moves = 20;
             var player1 = new Player();
-            player.Name = "Player1";
-            player.Moves = 10;
+            player1.Name = "Player1";
+            player1.Moves = 10;
             var player2 = new Player();
-            player.Name = "Player2";
-            player.Moves = 30;
+            player2.Name = "Player2";
+            player2.Moves = 30;
 
             var players = new List<IPlayer>()
             {
@@ -141,18 +141,14 @@ namespace TestBalloonsPopGame.UITests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void RenderGameTopPlayersWhenPassedZeroPlayerShouldInvokeConsoleWriteLineNever()
         {
 
             var players = new List<IPlayer>();
-
-            var mockConsole = new Mock<IConsoleWriter>();
-            var writer = mockConsole.Object;
-            var renderer = new ConsoleRenderer(writer);
+            var renderer = new ConsoleRenderer();
 
             renderer.RenderGameTopPlayers(players);
-
-            mockConsole.Verify(c => c.WriteLine(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>()), Times.Never);
         }
 
         [TestMethod]
