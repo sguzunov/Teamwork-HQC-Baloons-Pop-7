@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using Balloons.Cell;
-using Balloons.FieldFactory.Field;
-using Balloons.GamePlayer;
-using Balloons.UI;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Balloons.Common.ConsoleContext;
-
-namespace TestBalloonsPopGame.UITests
+﻿namespace TestBalloonsPopGame.UITests
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Balloons.Cell;
+    using Balloons.Common.ConsoleContext;
+    using Balloons.FieldFactory.Field;
+    using Balloons.GamePlayer;
+    using Balloons.UI;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
+
     [TestClass]
     public class ConsoleRendererTests
     {

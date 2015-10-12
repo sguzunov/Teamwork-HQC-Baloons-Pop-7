@@ -1,10 +1,9 @@
-﻿using System;
-using Balloons.Common;
-using Balloons.FieldFactory;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace TestBalloonsPopGame.FieldTests
+﻿namespace TestBalloonsPopGame.FieldTests
 {
+    using Balloons.Common;
+    using Balloons.FieldFactory;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class FieldFactoryTests
     {

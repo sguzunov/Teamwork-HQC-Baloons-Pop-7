@@ -1,9 +1,10 @@
 ﻿namespace TestBalloonsPopGame
 {
+    using System;
+
     using Balloons.GamePlayer;
     using Balloons.GameScore;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System;
 
     [TestClass]
     public class GameScoreTests

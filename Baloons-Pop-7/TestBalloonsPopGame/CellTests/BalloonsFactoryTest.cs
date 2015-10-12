@@ -1,13 +1,9 @@
 ﻿namespace TestBalloonsPopGame
 {
-    using Balloons.Cell;
-    using Balloons.Commands;
-    using Balloons.FieldFactory.Field;
-    using Balloons.Memory;
-    using Balloons.UI;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
 
+    using Balloons.Cell;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class CommandManagerTests
@@ -28,7 +24,7 @@
             "hello",            
             "80",
         };
-      
+
         [TestMethod]
         public void GetBalloonWithBalloonOneLikeSymbolShouldRetournedBalloonOne()
         {
