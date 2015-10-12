@@ -11,6 +11,9 @@
     using Balloons.ReorderStrategy;
     using Balloons.UI;
 
+    /// <summary>
+    /// This class provides an easy interface for game dependency initialization.
+    /// </summary>
     public static class GameEntry
     {
         public static void StartGame()

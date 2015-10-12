@@ -3,7 +3,6 @@
     using System;
 
     using Balloons.Common;
-    using Balloons.FieldFactory.Field;
     using Balloons.Helpers;
     using Balloons.UI;
 
@@ -17,7 +16,7 @@
         private const string GameModeInviteMessage = "Select a game mode: please type 'default' or 'fly': ";
         private const string GameDifficultyInviteMessage = "Select a game difficulty: please type 'easy' or 'hard': ";
         private const string PlayerResponseInviteMessage = "Do you want to play again? Please type 'yes' or 'no': ";
-        private const string CommandInputInviteMessage = "Enter a command ('pop {row} {col}', 'top', 'save', 'restore', 'help', 'exit'): ";
+        private const string CommandInputInviteMessage = @"Enter a command ('pop {{row}} {{col}}', 'top', 'save', 'restore', 'help', 'exit'): ";
         private const string PlayerInfoInviteMessage = "Please enter your name: ";
 
         private IConsoleWriter consoleWriter;
@@ -100,7 +99,7 @@
 
         public string ReadInputCommand()
         {
-            Console.Write(CommandInputInviteMessage);
+            this.consoleWriter.Write(CommandInputInviteMessage);
             string userInput = consoleReader.ReadLine().Trim().ToLower();
 
             return userInput;
@@ -108,35 +107,10 @@
 
         public string ReadPlayerInfo()
         {
-            Console.Write(PlayerInfoInviteMessage);
+            this.consoleWriter.Write(PlayerInfoInviteMessage);
             string playerName = consoleReader.ReadLine();
 
             return playerName;
-        }
-
-        public bool IsValidInput(string command)
-        {
-            if (string.IsNullOrWhiteSpace(command))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public bool IsPositionValid(int row, int col, IGameField gameField)
-        {
-            bool validRow = (row >= 0) && (row <= gameField.Rows);
-            bool validColumn = (col >= 0) && (col <= gameField.Columns);
-
-            if (validRow && validColumn)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 }

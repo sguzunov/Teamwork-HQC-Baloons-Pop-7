@@ -85,8 +85,11 @@
                 throw new ArgumentNullException(PlayersNullErrorMessage);
             }
 
+            int maxPlayerNameLength = players.Max(p => p.Name.Length);
+            int lengthForCentralizing = PlayersTemplateString.Length + maxPlayerNameLength;
             for (int i = 0; i < players.Count; i++)
             {
+                ConsoleHelper.CentraliseCursor(lengthForCentralizing);
                 this.consoleWriter.WriteLine(PlayersTemplateString, i + 1, players[i].Name, players[i].Moves);
             }
         }
