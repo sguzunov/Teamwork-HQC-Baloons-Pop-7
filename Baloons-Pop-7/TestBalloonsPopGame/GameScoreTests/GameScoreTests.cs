@@ -39,7 +39,7 @@
             var randomGenerator = new Random();
             var randomNum = randomGenerator.Next(1, 100);
             var player1 = new Player("Pesho", randomNum);
-            var player2 = new Player("Gosho", randomNum);
+            var player2 = new Player("Stamat", randomNum);
             var scoreBoard = ScoreBoard.Instance;
             scoreBoard.AddPlayer(player1);
             scoreBoard.AddPlayer(player2);
