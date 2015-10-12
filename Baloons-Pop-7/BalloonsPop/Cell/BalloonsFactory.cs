@@ -9,6 +9,9 @@
 
         private readonly IDictionary<string, Balloon> balloons = new Dictionary<string, Balloon>();
 
+        /// <summary>
+        /// Method for taking Balloons, if the Balloon is already in the dictionary, it's not added again
+        /// </summary>
         public Balloon GetBalloon(string symbol)
         {
             if (this.balloons.ContainsKey(symbol))

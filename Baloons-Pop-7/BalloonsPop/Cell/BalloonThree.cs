@@ -4,6 +4,9 @@
 
     public class BalloonThree : Balloon
     {
+        /// <summary>
+        /// Contructor for object BalloonThree
+        /// </summary>
         public BalloonThree()
         {
             this.Symbol = "3";
