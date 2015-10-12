@@ -8,17 +8,11 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Moq;
 
     [TestClass]
     public class GameScoreTests
     {
-        private const int MaxPossiblePlayers = 5;
-        private const string PlayerNullErrorMessage = "New player cannot be null.";
-
-        private static readonly object SyncLock = new object();
-
-        private static ScoreBoard instance;
-        private readonly IList<IPlayer> listOfPlayers;
         public Player player;
 
         [TestMethod]
@@ -37,21 +31,26 @@
         }
 
         [TestMethod]
-        public void AddPlayer()
+        public void AddPlayerInListTest()
         {
+            var instanceScoreBoard = ScoreBoard.Instance;
+            instanceScoreBoard.AddPlayer(new Player());
+            Assert.IsNotNull(instanceScoreBoard);
         }
 
         [TestMethod]
-        public void SortedPlayersByPoints()
+        public void GetSortedPlayersByPointsTest()
         {
 
 
         }
 
         [TestMethod]
-        public void IsScoreBoardIstance()
+        public void ScoreBoardIsSingle()
         {
-
+            var instance1 = ScoreBoard.Instance;
+            var instance2 = ScoreBoard.Instance;
+            Assert.AreSame(instance1, instance2);
         }
     }
 }
